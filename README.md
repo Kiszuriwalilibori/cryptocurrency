@@ -1,46 +1,95 @@
-# Getting Started with Create React App
+# REACT EXERCISE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
-## Available Scripts
+CryptoCurrency Tracker
 
-In the project directory, you can run:
+# The objective
 
-### `npm start`
+-   demonstrate knowledge of React, Router, Redux, Styled Components, Material UI
+-   act as playground for new techs and skills
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-   The app gets data from external API
+-   Afterwards it prompts to choose crypto- and basic- currency
+-   displays its current price and some historical prices
+-   updates results every 5 seconds
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   React
+-   Redux
+-   Styled Components
+-   Material UI
+-   JS
+-   TypeScript
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   Not required, just open HTML file in your browser
+-   That site is hosted on GH Pages and Netlify
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Browser Support
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   Not for IE and Opera Mini
 
-### `npm run eject`
+## Versions
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### 1.00
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   initial version
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+##### 1.1
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-   fully with redux
+-   partially with thunk
+-   responsive
 
-## Learn More
+##### 1.2
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   initial coin list fetched with thunk
+-   new background and some colors
+-   corrected error handling in getcurrentprice
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##### 1.3
+
+-   restyled
+
+##### 1.4
+
+-   fully thunked
+
+##### 1.5
+
+-   lazy and suspense for DataDisplay
+
+#### 1.6
+
+-   prevention against very long numbers
+-   focusable inputs
+-   tooltip saying that INEWESTUJ is not yet implemented
+
+#### 1.7
+
+-   fixed bug which didn't stop attempts to get current crypto price after failure
+-   when returning to choice window, the forms are cleared
+
+#### 2.0
+
+-   Totally rewritten logic, now with Axios hooks
+
+## TODO
+
+003 implementation for INWESTUJ
+
+006 crypto selection form should clearly show that is drop-down
+
+007 there is GetListOfCryptos Hook but we use uselazyAxios, why?
+
+008 selection of currency and crypto: too much ifs. Why not useEffect?
+
+010 results table shows with considerable delay. Spinner?
+
+historical data z dziwnym opóxnieniem przenosi się na historical crypto i to jest problem. Nie wiem czy state
+nie był szybszy wbre wpozorom

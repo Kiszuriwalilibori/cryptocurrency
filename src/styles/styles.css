@@ -1,0 +1,407 @@
+.currencySettingButton {
+  display: block;
+  background-color: grey;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-radius: 4px;
+  color: #fff;
+  padding: 7px 0;
+  margin: 2vh auto 1vh auto;
+  height: 40px;
+  font-size: 1rem;
+  width: 150px;
+  opacity: 0.4;
+}
+
+.currencySettingButton.enabled {
+  display: block;
+  -webkit-animation: fade_in 0.3s ease-in-out forwards;
+          animation: fade_in 0.3s ease-in-out forwards;
+  background-color: #759ae9;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#759ae9), color-stop(50%, #376fe0), color-stop(50%, #1a5ad9), to(#2463de));
+  background-image: linear-gradient(#759ae9 0%, #376fe0 50%, #1a5ad9 50%, #2463de 100%);
+  border-top: 1px solid #1f58cc;
+  border-right: 1px solid #1b4db3;
+  border-bottom: 1px solid #174299;
+  border-left: 1px solid #1b4db3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 2px 0 rgba(57, 140, 255, 0.8);
+  box-shadow: inset 0 0 2px 0 rgba(57, 140, 255, 0.8);
+  color: #fff;
+  padding: 7px 0;
+  text-shadow: 0 -1px 1px #1a5ad9;
+  margin: 2vh auto 1vh auto;
+  height: 40px;
+  font-size: 1rem;
+  width: 150px;
+}
+
+.currencySettingButton.enabled:hover, .currencySettingButton.enabled:focus {
+  background-color: #5d89e8;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5d89e8), color-stop(50%, #2261e0), color-stop(50%, #044bd9), to(#0d53de));
+  background-image: linear-gradient(#5d89e8 0%, #2261e0 50%, #044bd9 50%, #0d53de 100%);
+  cursor: pointer;
+}
+
+.currencySettingButton.enabled:active {
+  cursor: pointer;
+  border-top: 1px solid #1b4db3;
+  border-right: 1px solid #174299;
+  border-bottom: 1px solid #133780;
+  border-left: 1px solid #174299;
+  -webkit-box-shadow: inset 0 0 5px 2px #1a47a0, 0 1px 0 #eeeeee;
+  box-shadow: inset 0 0 5px 2px #1a47a0, 0 1px 0 #eeeeee;
+}
+
+.currencySettingButton.enabled:focus {
+  outline: none;
+}
+
+body {
+  overflow-y: scroll;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+@media (max-width: 640px) {
+  #root {
+    background-image: url("../graphics/background_640.jpg");
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1280px) {
+  #root {
+    background-image: url("../graphics/background_1280.jpg");
+  }
+}
+
+@media (min-width: 1281px) {
+  #root {
+    background-image: url("../graphics/background_1920.jpg");
+  }
+}
+
+#root * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@-webkit-keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.selector-item__coin {
+  color: #1a86db;
+  width: 300px;
+  margin-bottom: 8px;
+  background-color: white;
+  border-radius: 2px;
+  border: 2px solid #1a86db;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 7px 2px;
+}
+
+.selector-item {
+  width: 300px;
+}
+
+.virtualized {
+  background-color: #2c303a;
+  -webkit-animation: fade_in 1s ease-in-out forwards;
+          animation: fade_in 1s ease-in-out forwards;
+  -webkit-box-shadow: inset 0 0 5px #1e1f26, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          box-shadow: inset 0 0 5px #1e1f26, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  color: white;
+  padding: 20px;
+  font-size: 1rem;
+  border: 2px solid #1e1f26;
+  border-radius: 2px;
+  margin: 2vh 0;
+  cursor: pointer;
+}
+
+.virtualized:hover {
+  border: 2px solid #ee760a;
+}
+
+.virtualized .Select-placeholder {
+  color: white;
+  margin-bottom: 15px;
+  font-family: 'Lato', sans-serif;
+}
+
+.virtualized input {
+  width: 100% !important;
+  margin: 0 auto;
+  display: block;
+  border: 1px solid white;
+  border-radius: 1px;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  padding: 0 2px;
+  -webkit-box-shadow: inset 0px 0px 2px 1px rgba(255, 255, 255, 0.54);
+          box-shadow: inset 0px 0px 2px 1px rgba(255, 255, 255, 0.54);
+}
+
+.virtualized .Select-menu-outer span:hover {
+  background-color: white;
+}
+
+.DataContainer {
+  margin: 0 auto;
+  height: 110px;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: transparent;
+  background: mintcream;
+  border-top: 2px solid #4b7de6;
+  border-right: 2px solid #4b7de6;
+  border-bottom: 2px solid #4b7de6;
+  color: #726b68;
+  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 0.25rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Select-multi-value-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DataContainer::before {
+  min-width: 110px;
+  content: 'ALTCOINS';
+  height: 20px;
+  background-color: #2692c3;
+  background-color: #4b7de6;
+  border-radius: 0.25rem 0.25rem 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  left: -45px;
+  color: white;
+  font-size: 10px;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+@media (max-width: 1000px) {
+  .DataContainer::before {
+    min-width: 246px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .DataContainer::before {
+    left: -112.5px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .DataContainer {
+    border: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: unset;
+    border-radius: 0 0 0.25rem 0.25rem;
+  }
+  .DataContainer::before {
+    width: inherit;
+    left: 0;
+    top: -20px;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+/**
+ * Tooltip
+ */
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -80px;
+  padding: 7px;
+  min-width: 160px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 760px) {
+  [data-tooltip]:before {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  [data-tooltip]:before {
+    font-size: 10px;
+  }
+}
+
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid rgba(51, 51, 51, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: ' ';
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -webkit-animation: tooltip 3s forwards;
+          animation: tooltip 3s forwards;
+}
+
+@-webkit-keyframes tooltip {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tooltip {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.clock {
+  position: fixed;
+}
+
+.logo {
+  margin-right: 3px;
+}
+/*# sourceMappingURL=styles.css.map */
