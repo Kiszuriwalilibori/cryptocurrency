@@ -1,3 +1,7 @@
+/**
+ * not in use, maybe in the future replace axios in searchsection
+ */
+
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useAxios } from 'use-axios-client';

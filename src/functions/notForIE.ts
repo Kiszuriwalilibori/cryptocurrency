@@ -1,3 +1,7 @@
+/**
+ * Detects IE and forwards to infopage
+ */
+
 export default function breakWhenInternetExplorer(): void {
     var ua = window.navigator.userAgent;
     var isIE = /MSIE|Trident/.test(ua);

@@ -8,7 +8,10 @@ const queryClient = new QueryClient();
 const Results = lazy(() => import('../pages/Results'));
 
 const SelectionPage = lazy(() => import('../pages/Selection'));
-
+/**
+ * function that returns App itself
+ * @returns App
+ */
 function App() {
     const location = useLocation();
     return (

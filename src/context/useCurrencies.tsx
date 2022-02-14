@@ -1,3 +1,7 @@
+/**
+ * Out of use -perhaps will be papplied later, that is attempt to rewrite currenciesContext
+ */
+
 import React, { createContext, useState } from 'react';
 import { baseCurrencyType, currencyCryptoType } from '../types';
 import { initial } from '../config';

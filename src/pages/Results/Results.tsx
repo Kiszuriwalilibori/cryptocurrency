@@ -5,8 +5,7 @@ import { SelectedCurrenciesContext } from '../../context/currenciesContext';
 import { useQuery } from 'react-query';
 import { useSnackbar } from 'notistack';
 import ReturnToSelectionButton from './parts/returnToSelectionButton';
-import createURL from '../../functions/createURL';
-import timestamps from '../../functions/timestamps';
+import CreateURL from '../../functions/createURL';
 import useFetchHistoricalValues from '../../hooks/useFetchHistoricalValues';
 import createComparativeArray from '../../functions/createComparativeArray';
 import formatCurrentPrice from '../../functions/formatCurrentPrice';
@@ -20,7 +19,7 @@ import { Grow } from '@material-ui/core';
 import { comparativeArray, historicalPricesType } from '../../types';
 import { initial } from '../../config';
 import Logo from './parts/Logo';
-
+import Loader from '../../components/Spinner';
 interface ResultsType {
     comparativePricesArray: comparativeArray;
     currentPrice: string;
@@ -28,32 +27,33 @@ interface ResultsType {
 
 interface refType {
     date: Date;
-    historicalCryptoPrice: historicalPricesType | undefined | null;
     currentCryptoPrice: number | undefined;
 }
+
+/**
+ * Presents cryptocurrency price current and historical
+ * @returns component
+ */
 const Results = (): JSX.Element => {
     const ref = React.useRef<refType>({
         date: new Date(),
-        historicalCryptoPrice: undefined,
         currentCryptoPrice: undefined,
     });
 
     const { enqueueSnackbar } = useSnackbar();
-
     const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext);
     const intervalMs = initial.intervalMs;
-    const currentURL = createURL.current(currencyCrypto.value, currencyBase);
+    const currentURL = CreateURL.current(currencyCrypto.value, currencyBase);
     const [results, setResults] = React.useState<ResultsType | null>(null);
-
-    const cryptoLogoUrl = currencyCrypto.image
-        ? process.env.REACT_APP_CRYPTOS_GENERAL + currencyCrypto.image + '?width=30'
-        : '';
+    const [historicalCryptoPrice, sethistoricalCryptoPrice] = React.useState<
+        historicalPricesType | undefined | null
+    >(undefined);
 
     const { data: currentCryptoData, error: currentCryptoError } = useQuery(
         'currentCrypto',
         async () => {
             if (!isToday(ref.current.date)) {
-                const historicalsURLsArray = createURL.historical(timestamps, currencyCrypto, currencyBase);
+                const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
                 runFetchHistoricalValues(historicalsURLsArray, currencyBase);
             }
             const res = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
@@ -67,18 +67,12 @@ const Results = (): JSX.Element => {
     const { data: historicalData, runFetchHistoricalValues } = useFetchHistoricalValues();
 
     useEffect(() => {
-        const historicalsURLsArray = createURL.historical(timestamps, currencyCrypto, currencyBase);
+        const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
         runFetchHistoricalValues(historicalsURLsArray, currencyBase);
     }, []);
-    // console.log(
-    //     currentCryptoData,
-    //     ref.current.historicalCryptoPrice,
-    //     historicalData,
-    //     'ccd,ref.histo, historicaldata',
-    // );
-    console.log('results renders');
+
     React.useEffect(() => {
-        if (currentCryptoData && ref.current.historicalCryptoPrice) {
+        if (currentCryptoData && historicalCryptoPrice) {
             let cryptoPrice = Object.values(currentCryptoData)[0] as number;
             if (cryptoPrice !== ref.current.currentCryptoPrice) {
                 ref.current.currentCryptoPrice = cryptoPrice;
@@ -86,10 +80,7 @@ const Results = (): JSX.Element => {
                     variant: 'success',
                 });
 
-                const comparativeArray = createComparativeArray(
-                    cryptoPrice,
-                    ref.current.historicalCryptoPrice,
-                );
+                const comparativeArray = createComparativeArray(cryptoPrice, historicalCryptoPrice);
                 const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
                 const result: ResultsType = {
                     comparativePricesArray: comparativeArray,
@@ -99,12 +90,11 @@ const Results = (): JSX.Element => {
                 setResults(result);
             }
         }
-    });
+    }, [currentCryptoData, historicalCryptoPrice]);
 
     React.useEffect(() => {
-        if (historicalData) {
-            // console.log('set historical');
-            ref.current.historicalCryptoPrice = historicalData;
+        if (historicalData && historicalCryptoPrice !== historicalData) {
+            sethistoricalCryptoPrice(historicalData);
         }
     }, [historicalData]);
 
@@ -112,7 +102,7 @@ const Results = (): JSX.Element => {
         enqueueSnackbar(`Podczas pobierania danych bieżących dla ${currencyCrypto.label} wystąpił błąd `, {
             variant: 'error',
         });
-
+    if (!results) return <Loader />;
     return (
         <>
             <ReturnToSelectionButton />
@@ -121,12 +111,10 @@ const Results = (): JSX.Element => {
                     <Grow in={true} timeout={1000}>
                         <div className="DataContainer">
                             <GeneralInfo name={currencyCrypto.label} />
-                            {cryptoLogoUrl && <Logo src={cryptoLogoUrl} />}
+                            {currencyCrypto.image && <Logo URL={currencyCrypto.image} />}
                             <CryptoCurrencyPricesContainer>
                                 <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />
-
                                 <ComparativeTable historicals={results!.comparativePricesArray} />
-
                                 <InvestButton />
                             </CryptoCurrencyPricesContainer>
                         </div>

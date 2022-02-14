@@ -57,6 +57,10 @@ const InvestWrapper = styled.div`
         background: url(${oko_hover});
     }
 `;
+/**
+ * creates button which could be in the future used for investing
+ * @returns button component
+ */
 const InvestButton = () => {
     return (
         <PriceTableCell>

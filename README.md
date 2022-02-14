@@ -81,15 +81,23 @@ CryptoCurrency Tracker
 
 ## TODO
 
-003 implementation for INWESTUJ
+001 implementation for INWESTUJ
 
-006 crypto selection form should clearly show that is drop-down
+002 there is GetListOfCryptos Hook but we use uselazyAxios, why?
 
-007 there is GetListOfCryptos Hook but we use uselazyAxios, why?
+003 selection of currency and crypto: too much ifs. Why not useEffect?
 
-008 selection of currency and crypto: too much ifs. Why not useEffect?
+004 formatCurrentPrice zawiera helpera tworzącego obiekty albo zastosowac wszędzie albo usunąć w każdym razie
+zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz
 
-010 results table shows with considerable delay. Spinner?
+005 timestamps opisać każdą po kolei
 
-historical data z dziwnym opóxnieniem przenosi się na historical crypto i to jest problem. Nie wiem czy state
-nie był szybszy wbre wpozorom
+006 Opis crypto dodać
+
+007 persistent state w local storage?
+
+008 nowy wzorzec contextu może
+
+009 kółko postępu pokazujące czas do nowego pobrania
+
+010 z unsplasha tło zmienne dołożyć

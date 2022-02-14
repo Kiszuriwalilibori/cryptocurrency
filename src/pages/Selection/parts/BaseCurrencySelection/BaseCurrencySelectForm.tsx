@@ -10,6 +10,13 @@ interface BaseCurrencyChoiceType {
     currencyBase: baseCurrencyType;
     setCurrencyBase: Function;
 }
+/**
+ * Creates form which alows choise of base currency
+ * @param currencyBase base currency
+ * @param setCurrencyBase: function which sets chosen base currency
+ * @returns form component with radiogroup
+ */
+
 const BaseCurrencySelectForm = (props: BaseCurrencyChoiceType): JSX.Element => {
     const { currencyBase, setCurrencyBase } = props;
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

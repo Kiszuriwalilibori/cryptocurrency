@@ -8,7 +8,11 @@ import reducer from '../reducer/reducer';
 import { Provider } from 'react-redux';
 
 export const store = createStore(reducer);
-
+/**
+ * creates provider of redux store, router, snackbar, and selectedcurrenciescontext
+ * @param param0 anything renders within this provider
+ * @returns provider
+ */
 const AppProvider: React.FC = ({ children }) => {
     return (
         <Provider store={store}>

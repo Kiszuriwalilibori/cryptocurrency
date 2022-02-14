@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
-import CurrenciesSelectionConfirmButton from '../../components/Button';
-import SearchPageContainer from '../../components/SearchPage_Container';
-import BaseCurrencySelectForm from './parts/BaseCurrencyChoice';
+import CurrenciesSelectionConfirmButton from './parts/CurrenciesSelectionConfirmButton';
+import SearchPageContainer from './parts/SearchPage_Container';
+import BaseCurrencySelectForm from './parts/BaseCurrencySelection';
 import createOptions from '../../functions/createOptions';
-import Loader from '../../components/Loader';
+import Loader from '../../components/Spinner';
 import { useSnackbar } from 'notistack';
-import CryptoCurrencySelectForm from './parts/CryptoCurrencyChoice';
+import CryptoCurrencySelectForm from './parts/CryptoCurrencySelection';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useLazyAxios } from 'use-axios-client';
 import notForIE from '../../functions/notForIE';
 import { ApiResponseType, baseCurrencyType, currencyCryptoType } from '../../types';
 
-const initialCurrencyCrypto = { label: '', value: '' };
-
+/**
+ * creates a page which enables choice of base currency and cryptocurrency
+ * @returns page component
+ */
 const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
     let [currencyBase, setCurrencyBase] = React.useState<baseCurrencyType | null>(null);
     let [currencyCrypto, setCurrencyCrypto] = React.useState<currencyCryptoType | null>(null);
@@ -25,9 +27,10 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
     const { enqueueSnackbar } = useSnackbar();
     const listOfAllCryptos = useTypedSelector(state => state.listOfAllCryptos, shallowEqual);
     const dispatch = useDispatch();
-    const [getData, { data, error: listError, loading }] = useLazyAxios({
-        url: process.env.REACT_APP_ALL_CRYPTOS_URL,
-    });
+    const [getListOfAllAvailableCryptos, { data: dataFromCryptosAPI, error: listError, loading }] =
+        useLazyAxios({
+            url: process.env.REACT_APP_ALL_CRYPTOS_URL,
+        });
     useEffect(() => {
         listError &&
             enqueueSnackbar(`Błąd pobierania listy kryptowalut`, {
@@ -39,16 +42,18 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
         notForIE();
     }, []);
 
-    if (loading) return <Loader />;
+    useEffect(() => {
+        if (dataFromCryptosAPI && !ref.current.listReceived) {
+            const options = createOptions(dataFromCryptosAPI as ApiResponseType);
+            dispatch({ type: 'LIST_OF_ALL_CRYPTOS_SET', payload: options });
+        }
+    }, [dataFromCryptosAPI, ref.current.listReceived]);
 
-    if (data && !ref.current.listReceived) {
-        const options = createOptions(data as ApiResponseType);
-        dispatch({ type: 'LIST_OF_ALL_CRYPTOS_SET', payload: options });
-    }
+    if (loading) return <Loader />;
 
     if (!listOfAllCryptos && !ref.current.fetchingListActive) {
         ref.current.fetchingListActive = true;
-        getData();
+        getListOfAllAvailableCryptos();
     }
 
     if (listOfAllCryptos && !ref.current.listReceived) {
@@ -67,8 +72,8 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
             />
 
             <CryptoCurrencySelectForm
-                selectedCrypto={currencyCrypto as currencyCryptoType}
-                sendSelectedCrypto={setCurrencyCrypto}
+                currencyCrypto={currencyCrypto as currencyCryptoType}
+                setCurrencyCrypto={setCurrencyCrypto}
             />
         </SearchPageContainer>
     );

@@ -8,20 +8,25 @@ import { shallowEqual } from 'react-redux';
 import { currencyCryptoType } from '../../../../types';
 
 interface CryptoCurrencyChoiceProps {
-    sendSelectedCrypto: Function;
-    selectedCrypto: currencyCryptoType;
+    setCurrencyCrypto: Function;
+    currencyCrypto: currencyCryptoType;
 }
-
+/**
+ * Creates form which alows choise of cryptocurrency
+ * @param currencyCrypto base currency
+ * @param setCurrencyCrypto function which sets chosen base currency
+ * @returns form component with radiogroup or null if list of cryptos is not available
+ */
 const CryptoCurrencySelectForm: React.FC<CryptoCurrencyChoiceProps> = props => {
-    const { selectedCrypto, sendSelectedCrypto } = props;
+    const { currencyCrypto, setCurrencyCrypto } = props;
     const cryptos = useTypedSelector(state => state.listOfAllCryptos, shallowEqual);
     return cryptos && cryptos.length ? (
         <VirtualizedSelect
-            value={selectedCrypto}
+            value={currencyCrypto}
             className="selector-item virtualized"
             placeholder="Wybierz kryptowalutę"
             onChange={selectValue => {
-                sendSelectedCrypto(selectValue);
+                setCurrencyCrypto(selectValue);
             }}
             options={cryptos}
         />

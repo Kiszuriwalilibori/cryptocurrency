@@ -83,9 +83,9 @@ interface PropsType {
     name: string;
 }
 /**
- * Renders general inforamtion about cryptocurrency
+ * Renders general information about cryptocurrency
  * @param {string} name cryptocurrency nam
- * @returns component
+ * @returns memoised component
  */
 const GeneralInfo = React.memo((props: PropsType) => {
     const { name } = props;

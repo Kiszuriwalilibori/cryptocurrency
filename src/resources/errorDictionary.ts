@@ -1,3 +1,7 @@
+/**
+ * Not in use. perhaps in the future
+ */
+
 import { GenericStringObject } from '../../src/types';
 
 let errorDictionary: GenericStringObject = {

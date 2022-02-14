@@ -1,5 +1,5 @@
 /**
- *
+ * reducer
  */
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import { optionsArrayType } from '../types';

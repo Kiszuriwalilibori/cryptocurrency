@@ -26,7 +26,10 @@ const ColorCircularProgress = withStyles({
         color: 'rgba(122, 194, 33, 0.8);',
     },
 })(CircularProgress);
-
+/**
+ * creates memoised spinner that indicates loading state
+ * @returns spinner component
+ */
 const Loader = React.memo(() => {
     return (
         <ContainerVerticallyCentered>

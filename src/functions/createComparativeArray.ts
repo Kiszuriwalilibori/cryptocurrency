@@ -17,7 +17,7 @@ const createComparativeArray = (
 
     historicalPricesArray.forEach((item, index) => {
         const obj = {} as comparativeArrayElement;
-        obj[IDs[index]] = getPercentChange(currentPrice, item);
+        obj[IDs[index]] = getPercentChange(currentPrice, item); // tu mogłby być helper z fcp
         result.push(obj);
     });
     return result;
