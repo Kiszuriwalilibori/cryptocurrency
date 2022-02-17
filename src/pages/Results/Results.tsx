@@ -34,7 +34,7 @@ interface refType {
  * Presents cryptocurrency price current and historical
  * @returns component
  */
-const Results = (): JSX.Element => {
+const Results = (): JSX.Element | null => {
     const ref = React.useRef<refType>({
         date: new Date(),
         currentCryptoPrice: undefined,
@@ -106,7 +106,7 @@ const Results = (): JSX.Element => {
     return (
         <>
             <ReturnToSelectionButton />
-            {(results as ResultsType) && (
+            {(results as ResultsType) && currencyCrypto !== initial.currencyCrypto && (
                 <CryptoCurrencyContainer>
                     <Grow in={true} timeout={1000}>
                         <div className="DataContainer">
