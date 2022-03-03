@@ -1,5 +1,5 @@
 /**
- * Out of use -perhaps will be papplied later, that is attempt to rewrite currenciesContext
+ * Out of use -perhaps will be applied later, that is attempt to rewrite currenciesContext
  */
 
 import React, { createContext, useState } from 'react';
@@ -13,29 +13,21 @@ interface SelectedCurrenciesContextProps {
     setCurrencyCrypto: (currencyCrypto: currencyCryptoType /*{ value: string; label: string }*/) => void;
 }
 
-const useCurrencies = () => {
-    const context = createContext<SelectedCurrenciesContextProps>({} as SelectedCurrenciesContextProps);
-
-    if (context) {
-        throw new Error('useCurrencies must be used within SelectedCurrenciesContext');
-    }
-    return context;
-};
-
 const SelectedCurrenciesContext = createContext<SelectedCurrenciesContextProps>(
     {} as SelectedCurrenciesContextProps,
 );
 
-function SelectedCurrenciesContextProvider({ children }: { children: React.ReactNode }) {
+const useCurrencies = () => {
+    const context = createContext<SelectedCurrenciesContextProps>({} as SelectedCurrenciesContextProps);
+
+    if (!context) {
+        throw new Error('useCurrencies must be used within SelectedCurrenciesContext');
+    }
+    return context;
+};
+const SelectedCurrenciesContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [currencyBase, setCurrencyBase] = useState<baseCurrencyType>(initial.currencyBase);
     const [currencyCrypto, setCurrencyCrypto] = useState<currencyCryptoType>(initial.currencyCrypto);
-
-    // Same names will be recognized, no need to do currencyBase:currencyBase
-    // const value = React.useMemo(()=>[currencyBase,
-    //     currencyCrypto,
-    //     setCurrencyBase,
-    //     setCurrencyCrypto],[currencyBase,currencyCrypto ])
-
     return (
         <SelectedCurrenciesContext.Provider
             value={{
@@ -48,5 +40,5 @@ function SelectedCurrenciesContextProvider({ children }: { children: React.React
             {children}
         </SelectedCurrenciesContext.Provider>
     );
-}
+};
 export { SelectedCurrenciesContextProps, useCurrencies, SelectedCurrenciesContextProvider };

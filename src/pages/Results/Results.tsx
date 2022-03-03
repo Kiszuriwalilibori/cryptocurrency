@@ -34,7 +34,7 @@ interface refType {
  * Presents cryptocurrency price current and historical
  * @returns component
  */
-const Results = (): JSX.Element | null => {
+const Results = (): JSX.Element => {
     const ref = React.useRef<refType>({
         date: new Date(),
         currentCryptoPrice: undefined,
