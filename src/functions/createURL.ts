@@ -1,4 +1,4 @@
-import { timestampsType, optionType } from '../types';
+import { timestampsType, currencyCryptoType } from '../types';
 import timestamps from './timestamps';
 class CreateURL {
     /**
@@ -38,7 +38,7 @@ class CreateURL {
      * @param crypto cryptocurrency
      * @returns string being URL
      */
-    static historical(crypto: optionType, base: string) {
+    static historical(crypto: currencyCryptoType, base: string) {
         const linksArray = [];
         for (let i = 0; i <= this.timestamps.reducedLength(); i++) {
             linksArray.push(this.historicalURL(crypto.value, base, this.timestamps.getValue(i)));

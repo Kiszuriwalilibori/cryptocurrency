@@ -7,5 +7,6 @@ export const initial = {
         value: '',
         label: '',
         image: '',
+        description: '',
     },
 };

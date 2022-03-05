@@ -11,7 +11,7 @@ import { shallowEqual, useDispatch } from 'react-redux';
 import { useLazyAxios } from 'use-axios-client';
 import notForIE from '../../functions/notForIE';
 import { ApiResponseType, baseCurrencyType, currencyCryptoType } from '../../types';
-
+import CryptoCurrencyDecription from '../Selection/parts/CryptoCurrencySelection/cryptoCurrencyDescription';
 /**
  * creates a page which enables choice of base currency and cryptocurrency
  * @returns page component
@@ -59,7 +59,7 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
     if (listOfAllCryptos && !ref.current.listReceived) {
         ref.current.listReceived = true;
     }
-
+    console.log(currencyCrypto, 'currencycrypto');
     return (
         <SearchPageContainer>
             <CurrenciesSelectionConfirmButton
@@ -75,6 +75,7 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
                 currencyCrypto={currencyCrypto as currencyCryptoType}
                 setCurrencyCrypto={setCurrencyCrypto}
             />
+            {currencyCrypto && <CryptoCurrencyDecription currencyCrypto={currencyCrypto} />}
         </SearchPageContainer>
     );
 };

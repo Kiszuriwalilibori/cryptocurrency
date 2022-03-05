@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
-import { baseCurrencyType, optionType } from '../../../../types';
+import { baseCurrencyType, currencyCryptoType } from '../../../../types';
 import { SelectedCurrenciesContext } from '../../../../context/currenciesContext';
 
 interface SelectedCurrenciesType {
     currencyBase: baseCurrencyType;
-    currencyCrypto: optionType;
+    currencyCrypto: currencyCryptoType;
 }
 /**
  * Creates button which - when clicked - accepts chosesn currencies to context and switches to page wit results

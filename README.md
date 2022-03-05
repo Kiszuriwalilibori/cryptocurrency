@@ -79,6 +79,11 @@ CryptoCurrency Tracker
 
 -   Totally rewritten logic, now with Axios hooks
 
+#### 2.0.1
+
+-   006 done Crypto description component added
+-   007 done page with data is persistent
+
 ## TODO
 
 001 implementation for INWESTUJ
@@ -92,9 +97,9 @@ zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz
 
 005 timestamps opisać każdą po kolei
 
-006 Opis crypto dodać
+--006 Opis crypto dodać
 
--007 persistent state w local storage? W tej chwili jest persistent reducer ale to za mało - trzeba i siatty
+--007 persistent state w local storage? W tej chwili jest persistent reducer ale to za mało - trzeba i siatty
 porobić bo reducer trzyma tylko listę wszystkich dostępnych walut, co nic nie zmienia w działniu apki. Czyli
 trzeba z usecurrncies albo curreenciescontext. Pytanie czy to nie będzie konfliktowało zfunkcją pobierającą po
 raz pierwszy listę. A może tutaj rtquery?

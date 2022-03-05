@@ -4,17 +4,20 @@ export interface currencyCryptoType {
     value: string;
     label: string;
     image: string;
+    description: string;
 }
+export type currencyCryptoArrayType = currencyCryptoType[];
 
 export interface optionType {
     value: string;
     label: string;
     image: string;
+    description: string;
 }
 export type optionsArrayType = optionType[];
 
 export interface ApiResponseDataType {
-    [key: string]: { CoinName: string; ImageUrl: string };
+    [key: string]: { CoinName: string; ImageUrl: string; Description: string };
 }
 export interface ApiResponseType {
     Data: ApiResponseDataType;

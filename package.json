@@ -1,7 +1,7 @@
 {
     "name": "cryptocurrency_tracker",
     "homepage": "http://kiszuriwalilibori.github.io/cryptocurrency",
-    "version": "2.0",
+    "version": "2.0.1",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.7.0",
