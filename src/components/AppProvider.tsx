@@ -1,7 +1,7 @@
 import React from 'react';
 import { SnackbarProvider } from 'notistack';
 import { SelectedCurrenciesContextProvider } from '../context/currenciesContext';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import '../styles/styles.css';
 import { createStore } from 'redux';
 import reducer from '../reducer/reducer';
