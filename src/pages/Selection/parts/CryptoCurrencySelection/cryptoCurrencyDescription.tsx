@@ -14,11 +14,12 @@ const CryptoCurrencyDescription = (props: CryptoCurrencyDescriptionPropsType) =>
             <Paper elevation={1}>
                 <Box
                     sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: '#1076AB',
                         boxShadow: 1,
-                        borderRadius: 5,
+                        borderRadius: 1,
                         p: 2,
                         maxWidth: 300,
+                        color: 'white',
                     }}
                 >
                     {currencyCrypto.description}

@@ -17,7 +17,6 @@ const createOptions = (obj: ApiResponseType): currencyCryptoArrayType => {
             });
         }
     }
-    console.log(result, 'result');
     return result;
 };
 

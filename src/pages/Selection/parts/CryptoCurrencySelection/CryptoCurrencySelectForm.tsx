@@ -27,7 +27,6 @@ const CryptoCurrencySelectForm: React.FC<CryptoCurrencyChoiceProps> = props => {
             placeholder="Wybierz kryptowalutę"
             onChange={selectValue => {
                 setCurrencyCrypto(selectValue);
-                console.log(selectValue, 'selectValue');
             }}
             options={cryptos}
         />

@@ -59,7 +59,7 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
     if (listOfAllCryptos && !ref.current.listReceived) {
         ref.current.listReceived = true;
     }
-    console.log(currencyCrypto, 'currencycrypto');
+
     return (
         <SearchPageContainer>
             <CurrenciesSelectionConfirmButton
