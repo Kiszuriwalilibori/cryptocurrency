@@ -21,15 +21,17 @@ const CryptoCurrencySelectForm: React.FC<CryptoCurrencyChoiceProps> = props => {
     const { currencyCrypto, setCurrencyCrypto } = props;
     const cryptos = useTypedSelector(state => state.listOfAllCryptos, shallowEqual);
     return cryptos && cryptos.length ? (
-        <VirtualizedSelect
-            value={currencyCrypto}
-            className="selector-item virtualized"
-            placeholder="Wybierz kryptowalutę"
-            onChange={selectValue => {
-                setCurrencyCrypto(selectValue);
-            }}
-            options={cryptos}
-        />
+        <label>
+            <VirtualizedSelect
+                value={currencyCrypto}
+                className="selector-item virtualized"
+                placeholder="Wybierz kryptowalutę"
+                onChange={selectValue => {
+                    setCurrencyCrypto(selectValue);
+                }}
+                options={cryptos}
+            />
+        </label>
     ) : null;
 };
 

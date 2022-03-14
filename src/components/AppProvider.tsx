@@ -6,6 +6,7 @@ import '../styles/styles.css';
 import { createStore } from 'redux';
 import reducer from '../reducer/reducer';
 import { Provider } from 'react-redux';
+import { register } from '../../src/serviceWorkerRegistration';
 
 export const store = createStore(reducer);
 /**
@@ -32,7 +33,7 @@ const AppProvider: React.FC = ({ children }) => {
         </Provider>
     );
 };
-
+register();
 export type RootStateType = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default AppProvider;
