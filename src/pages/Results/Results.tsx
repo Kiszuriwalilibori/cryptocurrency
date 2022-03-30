@@ -9,18 +9,11 @@ import CreateURL from '../../functions/createURL';
 import useFetchHistoricalValues from '../../hooks/useFetchHistoricalValues';
 import createComparativeArray from '../../functions/createComparativeArray';
 import formatCurrentPrice from '../../functions/formatCurrentPrice';
-import CryptoCurrencyContainer from './parts/CryptoCurrencyContainer';
-import GeneralInfo from './parts/GeneralInfo';
-import CryptoCurrencyPricesContainer from './parts/CryptoCurencyPricesContainer';
-import CryptoCurrencyCurrentPrice from './parts/CryptoCurrencyCurrentPrice';
-import ComparativeTable from './parts/ComparativeTable';
-import InvestButton from './parts/InvestButton';
-import { Grow } from '@material-ui/core';
 import { comparativeArray, historicalPricesType } from '../../types';
 import { initial } from '../../config';
-import Logo from './parts/Logo';
-import Loader from '../../components/Spinner';
-interface ResultsType {
+import ResultsTabelarised from './parts/ResultsTabelarised';
+import FetchingStatusIndicators from './parts/FetchingStatusIndicators';
+export interface ResultsType {
     comparativePricesArray: comparativeArray;
     currentPrice: string;
 }
@@ -86,7 +79,6 @@ const Results = (): JSX.Element => {
                     comparativePricesArray: comparativeArray,
                     currentPrice: formattedCryptoPrice,
                 };
-
                 setResults(result);
             }
         }
@@ -98,28 +90,18 @@ const Results = (): JSX.Element => {
         }
     }, [historicalData]);
 
-    currentCryptoError &&
-        enqueueSnackbar(`Podczas pobierania danych bieżących dla ${currencyCrypto.label} wystąpił błąd `, {
-            variant: 'error',
-        });
-    if (!results) return <Loader />;
     return (
         <>
+            {(currentCryptoError || !results) && (
+                <FetchingStatusIndicators
+                    label={currencyCrypto.label}
+                    result={Boolean(results)}
+                    error={currentCryptoError}
+                />
+            )}
             <ReturnToSelectionButton />
             {(results as ResultsType) && currencyCrypto !== initial.currencyCrypto && (
-                <CryptoCurrencyContainer>
-                    <Grow in={true} timeout={1000}>
-                        <div className="DataContainer">
-                            <GeneralInfo name={currencyCrypto.label} />
-                            {currencyCrypto.image && <Logo URL={currencyCrypto.image} />}
-                            <CryptoCurrencyPricesContainer>
-                                <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />
-                                <ComparativeTable historicals={results!.comparativePricesArray} />
-                                <InvestButton />
-                            </CryptoCurrencyPricesContainer>
-                        </div>
-                    </Grow>
-                </CryptoCurrencyContainer>
+                <ResultsTabelarised currencyCrypto={currencyCrypto} results={results as ResultsType} />
             )}
         </>
     );
