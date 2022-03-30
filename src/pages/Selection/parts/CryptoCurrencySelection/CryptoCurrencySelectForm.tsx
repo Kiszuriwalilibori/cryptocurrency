@@ -31,6 +31,7 @@ const CryptoCurrencySelectForm: React.FC<CryptoCurrencyChoiceProps> = props => {
                 }}
                 options={cryptos}
             />
+            {/* {''} */}
         </label>
     ) : null;
 };

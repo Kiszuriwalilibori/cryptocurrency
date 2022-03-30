@@ -18,7 +18,7 @@ function App() {
         <>
             <Switch>
                 <Route exact path="/">
-                    <Suspense fallback={<></>}>
+                    <Suspense fallback={null}>
                         <SelectionPage />
                     </Suspense>
                 </Route>

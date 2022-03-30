@@ -99,10 +99,7 @@ zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz
 
 --006 Opis crypto dodać
 
---007 persistent state w local storage? W tej chwili jest persistent reducer ale to za mało - trzeba i siatty
-porobić bo reducer trzyma tylko listę wszystkich dostępnych walut, co nic nie zmienia w działniu apki. Czyli
-trzeba z usecurrncies albo curreenciescontext. Pytanie czy to nie będzie konfliktowało zfunkcją pobierającą po
-raz pierwszy listę. A może tutaj rtquery?
+--007 persistent
 
 008 nowy wzorzec contextu może
 
