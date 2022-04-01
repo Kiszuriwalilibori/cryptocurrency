@@ -106,3 +106,8 @@ zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz
 009 kółko postępu pokazujące czas do nowego pobrania
 
 010 z unsplasha tło zmienne dołożyć
+
+011 do rozważenia semantyka typu <section> zamiast MUI Box itp.
+
+012 na dobrą sprawę Selcetionof currency and crypto zawiera logikę pobierania listy, to trochę nie teges, czy
+tego gdzieś nie wyeksportować? Komponent zwracający zawsze null?

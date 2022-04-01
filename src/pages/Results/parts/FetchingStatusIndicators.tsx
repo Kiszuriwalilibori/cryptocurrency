@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSnackbar } from 'notistack';
-import Loader from '../../../components/Spinner';
+import Loader from '../../../components/Loader';
 
 interface propsType {
     result: boolean;
