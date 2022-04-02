@@ -1,1 +1,1 @@
-export { default } from './SelectionOfCurrencyAndCrypto';
+export { default } from './SelectionSection';

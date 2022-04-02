@@ -2,12 +2,12 @@ import * as React from 'react';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
+import FetchListOfAllCryptos from '../pages/Selection/fetchListOfAllCryptos';
 const queryClient = new QueryClient();
 
 const Results = lazy(() => import('../pages/Results'));
 
-const SelectionPage = lazy(() => import('../pages/Selection'));
+const SelectionSection = lazy(() => import('../pages/Selection/SelectionSection'));
 /**
  * function that returns App itself
  * @returns App
@@ -15,11 +15,13 @@ const SelectionPage = lazy(() => import('../pages/Selection'));
 function App() {
     const location = useLocation();
     return (
-        <>
+        <main>
             <Switch>
                 <Route exact path="/">
                     <Suspense fallback={null}>
-                        <SelectionPage />
+                        <FetchListOfAllCryptos>
+                            <SelectionSection />
+                        </FetchListOfAllCryptos>
                     </Suspense>
                 </Route>
 
@@ -31,7 +33,7 @@ function App() {
                     </QueryClientProvider>
                 </Route>
             </Switch>
-        </>
+        </main>
     );
 }
 

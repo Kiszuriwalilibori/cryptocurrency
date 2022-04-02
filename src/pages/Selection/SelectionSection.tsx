@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { baseCurrencyType, currencyCryptoType } from '../../../types';
-import BaseCurrencySelectForm from './BaseCurrencySelection';
-import CryptoCurrencySelectForm from './CryptoCurrencySelection';
-import CurrenciesSelectionConfirmButton from './CurrenciesSelectionConfirmButton';
-import SearchPageContainer from './SearchPage_Container';
-import CryptoCurrencyDecription from '../parts/CryptoCurrencySelection/cryptoCurrencyDescription';
+import { baseCurrencyType, currencyCryptoType } from '../../types';
+import BaseCurrencySelectForm from './parts/BaseCurrencySelection';
+import CryptoCurrencySelectForm from './parts/CryptoCurrencySelection';
+import CurrenciesSelectionConfirmButton from './parts/CurrenciesSelectionConfirmButton';
+import CryptoCurrencyDecription from './parts/CryptoCurrencySelection/cryptoCurrencyDescription';
+import withLogo from '../../HOCs/withLogo';
 
 const SelectionSection = () => {
     let [currencyBase, setCurrencyBase] = React.useState<baseCurrencyType | null>(null);
     let [currencyCrypto, setCurrencyCrypto] = React.useState<currencyCryptoType | null>(null);
     return (
-        <SearchPageContainer>
+        <section className="selection-container">
             <CurrenciesSelectionConfirmButton
                 currencyBase={currencyBase as baseCurrencyType}
                 currencyCrypto={currencyCrypto as currencyCryptoType}
@@ -25,8 +25,8 @@ const SelectionSection = () => {
                 setCurrencyCrypto={setCurrencyCrypto}
             />
             {currencyCrypto && <CryptoCurrencyDecription currencyCrypto={currencyCrypto} />}
-        </SearchPageContainer>
+        </section>
     );
 };
 
-export default SelectionSection;
+export default withLogo(SelectionSection);

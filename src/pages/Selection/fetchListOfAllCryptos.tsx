@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react';
-import createOptions from '../../functions/createOptions';
-import FetchingStatusIndicator from './parts/FetchingStatusIndicator';
+import * as React from 'react';
+import Loader from '../../components/Loader';
+import { ApiResponseType } from '../../types';
 import { useSnackbar } from 'notistack';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useLazyAxios } from 'use-axios-client';
-import { ApiResponseType } from '../../types';
-import SelectionSection from './parts/SelectionSection';
+import createOptions from '../../functions/createOptions';
 
-/**
- * creates a page with logic for fetching lit of available cryptos
- * @returns page component
- */
-const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
+const FetchListOfAllCryptos = ({ children }: any) => {
     const ref = React.useRef({
         fetchingListActive: false,
         listReceived: false,
@@ -25,14 +20,14 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
         useLazyAxios({
             url: process.env.REACT_APP_ALL_CRYPTOS_URL,
         });
-    useEffect(() => {
+    React.useEffect(() => {
         listError &&
             enqueueSnackbar(`Błąd pobierania listy kryptowalut`, {
                 variant: 'error',
             });
     }, [listError]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (dataFromCryptosAPI && !ref.current.listReceived) {
             const options = createOptions(dataFromCryptosAPI as ApiResponseType);
             dispatch({ type: 'LIST_OF_ALL_CRYPTOS_SET', payload: options });
@@ -47,13 +42,8 @@ const SelectionOfCurrencyAndCrypto = (): JSX.Element => {
     if (listOfAllCryptos && !ref.current.listReceived) {
         ref.current.listReceived = true;
     }
-
-    return (
-        <>
-            <FetchingStatusIndicator loading={loading} />
-            <SelectionSection />
-        </>
-    );
+    if (loading) return <Loader />;
+    return children;
 };
 
-export default SelectionOfCurrencyAndCrypto;
+export default FetchListOfAllCryptos;
