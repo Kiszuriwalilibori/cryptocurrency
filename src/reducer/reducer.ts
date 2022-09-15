@@ -1,8 +1,5 @@
-/**
- * reducer
- */
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { CurrencyCryptoArray } from "types/types";
+import { CurrencyCryptoArray } from "types";
 export const setListOfAllCryptos = createAction<CurrencyCryptoArray>("LIST_OF_ALL_CRYPTOS_SET");
 
 interface InitialStateType {

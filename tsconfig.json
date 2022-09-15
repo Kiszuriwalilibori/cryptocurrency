@@ -21,7 +21,8 @@
       "components/*": ["components/*"],
       "graphics/*": ["graphics/*"],
       "contexts/*": ["contexts/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "hooks/*": ["hooks/*"]
     }
   },
   "include": ["src"]

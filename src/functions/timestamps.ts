@@ -2,7 +2,7 @@ import subMonths from "date-fns/subMonths";
 import getUnixTime from "date-fns/getUnixTime";
 import endOfYesterday from "date-fns/endOfYesterday";
 import startOfYear from "date-fns/startOfYear";
-import { Timestamps, TimestampIDs } from "../types/types";
+import { Timestamps, TimestampIDs } from "types";
 
 const timestamps: Timestamps = {
   content: [

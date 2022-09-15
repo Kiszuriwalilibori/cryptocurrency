@@ -3,7 +3,7 @@
  */
 
 import React, { createContext, useState } from "react";
-import { BaseCurrency, CurrencyCrypto } from "types/types";
+import { BaseCurrency, CurrencyCrypto } from "types";
 import { initialCurrency } from "../config";
 
 interface SelectedCurrenciesContextProps {

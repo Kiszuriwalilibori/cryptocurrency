@@ -1,4 +1,4 @@
-import { ApiResponse, CurrencyCryptoArray } from "../types/types";
+import { ApiResponse, CurrencyCryptoArray } from "types";
 /**
  * Takes response from list of all cryptos API and creates array with desired content
  * @param obj

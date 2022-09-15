@@ -5,7 +5,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 
 import { MyFormControl } from "./style";
-import { BaseCurrency } from "types/types";
+import { BaseCurrency } from "types";
 
 interface BaseCurrencyChoiceType {
   currencyBase: BaseCurrency;

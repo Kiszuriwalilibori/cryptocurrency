@@ -1,4 +1,4 @@
-import { BaseCurrency } from "../types/types";
+import { BaseCurrency } from "types";
 
 function createObject(key: string, value: any): any {
   const pair = {} as { [key: string]: any };

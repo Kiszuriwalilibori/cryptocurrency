@@ -1,5 +1,5 @@
 import getPercentChange from "./getPercentageChange";
-import { TimestampIDs, ComparativeArrayItem, ComparativeArray, HistoricalPrices } from "../types/types";
+import { TimestampIDs, ComparativeArrayItem, ComparativeArray, HistoricalPrices } from "types";
 import timestamps from "./timestamps";
 
 /**

@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { BaseCurrency, CurrencyCrypto } from "types/types";
+import { BaseCurrency, CurrencyCrypto } from "types";
 import { initialCurrency } from "../config";
 import { useLocalStorage } from "usehooks-ts";
 

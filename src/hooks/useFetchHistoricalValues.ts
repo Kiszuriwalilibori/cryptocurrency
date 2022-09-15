@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useSnackbar } from "notistack";
 
-import { BaseCurrency, HistoricalPrices } from "../types/types";
+import { BaseCurrency, HistoricalPrices } from "types";
 
 const useFetchHistoricalValues = () => {
   const [data, setData] = useState<HistoricalPrices | null>(null);

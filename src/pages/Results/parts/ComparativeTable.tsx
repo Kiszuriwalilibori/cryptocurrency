@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { ComparativeArray } from "../../../types/types";
+import { ComparativeArray } from "types";
 import { PriceTableCell } from "./PriceTableCell";
 
 const HistoricalValue = styled.div`

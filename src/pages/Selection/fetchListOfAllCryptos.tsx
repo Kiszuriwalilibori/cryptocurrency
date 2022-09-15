@@ -5,8 +5,8 @@ import { useSnackbar } from "notistack";
 import { shallowEqual, useDispatch } from "react-redux";
 
 import Loader from "components/Loader";
-import { ApiResponse } from "types/types";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { ApiResponse } from "types";
+import { useTypedSelector } from "hooks/useTypedSelector";
 import { createOptions } from "functions";
 
 const FetchListOfAllCryptos = ({ children }: any) => {

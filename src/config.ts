@@ -1,4 +1,4 @@
-import { BaseCurrency } from "types/types";
+import { BaseCurrency } from "types";
 
 export const initialIntervalMs = 3000;
 

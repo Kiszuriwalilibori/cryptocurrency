@@ -1,4 +1,4 @@
-import { Timestamps, CurrencyCrypto } from "../types/types";
+import { Timestamps, CurrencyCrypto } from "types";
 
 import timestamps from "./timestamps";
 class CreateURL {

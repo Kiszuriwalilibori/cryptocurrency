@@ -2,7 +2,7 @@ import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Fade from "@material-ui/core/Fade";
-import { CurrencyCrypto } from "types/types";
+import { CurrencyCrypto } from "types";
 
 interface Props {
   currencyCrypto: CurrencyCrypto;

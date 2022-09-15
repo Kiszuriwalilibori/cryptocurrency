@@ -9,10 +9,10 @@ import FetchingStatusIndicators from "./parts/FetchingStatusIndicators";
 import isToday from "./scripts/isToday";
 import ReturnToSelectionButton from "./parts/returnToSelectionButton";
 
-import useFetchHistoricalValues from "../../hooks/useFetchHistoricalValues";
+import useFetchHistoricalValues from "hooks/useFetchHistoricalValues";
 
 import { CreateURL, createComparativeArray, formatCurrentPrice } from "functions";
-import { ComparativeArray, HistoricalPrices } from "../../types/types";
+import { ComparativeArray, HistoricalPrices } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 

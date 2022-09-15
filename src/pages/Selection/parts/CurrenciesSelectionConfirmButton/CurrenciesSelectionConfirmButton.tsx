@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import { BaseCurrency, CurrencyCrypto } from "types/types";
+import { BaseCurrency, CurrencyCrypto } from "types";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 interface Props {

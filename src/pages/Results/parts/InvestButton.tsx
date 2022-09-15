@@ -79,7 +79,3 @@ const InvestButton = () => {
 };
 
 export default InvestButton;
-
-/**
- * todo co najmniej obrazkom trzeba skrócić ścieżki
- */

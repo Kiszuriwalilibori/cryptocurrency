@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseCurrency, CurrencyCrypto } from "types/types";
+import { BaseCurrency, CurrencyCrypto } from "types";
 import BaseCurrencySelectForm from "./parts/BaseCurrencySelection";
 import CryptoCurrencySelectForm from "./parts/CryptoCurrencySelection";
 import CurrenciesSelectionConfirmButton from "./parts/CurrenciesSelectionConfirmButton";

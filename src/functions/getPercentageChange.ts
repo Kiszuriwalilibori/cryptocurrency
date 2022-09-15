@@ -1,4 +1,4 @@
-import { NotAvailable } from "types/types";
+import { NotAvailable } from "types";
 
 /**
  * calculate percentchange of two numbers (or strings, see return)

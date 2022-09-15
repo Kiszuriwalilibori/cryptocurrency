@@ -9,7 +9,7 @@ import CryptoCurrencyCurrentPrice from "./CryptoCurrencyCurrentPrice";
 import GeneralInfo from "./GeneralInfo";
 import InvestButton from "./InvestButton";
 import Logo from "./Logo";
-import { CurrencyCrypto } from "../../../types/types";
+import { CurrencyCrypto } from "types";
 import { ResultsType } from "../Results";
 
 interface propTypes {

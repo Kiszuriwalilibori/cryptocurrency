@@ -3,9 +3,9 @@ import "react-virtualized-select/styles.css";
 import "react-virtualized/styles.css";
 import "react-virtualized-select/styles.css";
 import VirtualizedSelect from "react-virtualized-select";
-import { useTypedSelector } from "../../../../hooks/useTypedSelector";
+import { useTypedSelector } from "hooks/useTypedSelector";
 import { shallowEqual } from "react-redux";
-import { CurrencyCrypto } from "types/types";
+import { CurrencyCrypto } from "types";
 
 interface Props {
   setCurrencyCrypto: Function;
@@ -32,7 +32,6 @@ const CryptoCurrencySelectForm: React.FC<Props> = props => {
         }}
         options={cryptos}
       />
-      {/* {''} */}
     </label>
   ) : null;
 };
