@@ -1,7 +1,8 @@
 import { BaseCurrency } from "types/types";
 
-export const initial = {
-  intervalMs: 3000,
+export const initialIntervalMs = 3000;
+
+export const initialCurrency = {
   currencyBase: "" as BaseCurrency,
   currencyCrypto: {
     value: "",
@@ -10,7 +11,3 @@ export const initial = {
     description: "",
   },
 };
-
-/**
- * TODO w zaadzie należy podzielić initial, jest brany przez dwa rózne komponenty ięc podzielić go na dwa specyficzne fragmenty
- */

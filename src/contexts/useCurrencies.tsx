@@ -4,7 +4,7 @@
 
 import React, { createContext, useState } from "react";
 import { BaseCurrency, CurrencyCrypto } from "types/types";
-import { initial } from "../config";
+import { initialCurrency } from "../config";
 
 interface SelectedCurrenciesContextProps {
   currencyBase: BaseCurrency;
@@ -24,8 +24,8 @@ const useCurrencies = () => {
   return context;
 };
 const SelectedCurrenciesContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [currencyBase, setCurrencyBase] = useState<BaseCurrency>(initial.currencyBase);
-  const [currencyCrypto, setCurrencyCrypto] = useState<CurrencyCrypto>(initial.currencyCrypto);
+  const [currencyBase, setCurrencyBase] = useState<BaseCurrency>(initialCurrency.currencyBase);
+  const [currencyCrypto, setCurrencyCrypto] = useState<CurrencyCrypto>(initialCurrency.currencyCrypto);
   return (
     <SelectedCurrenciesContext.Provider
       value={{

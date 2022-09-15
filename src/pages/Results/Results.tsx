@@ -13,7 +13,7 @@ import useFetchHistoricalValues from "../../hooks/useFetchHistoricalValues";
 
 import { CreateURL, createComparativeArray, formatCurrentPrice } from "functions";
 import { ComparativeArray, HistoricalPrices } from "../../types/types";
-import { initial } from "../../config";
+import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 export interface ResultsType {
@@ -38,7 +38,7 @@ const Results = (): JSX.Element => {
 
   const { enqueueSnackbar } = useSnackbar();
   const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext);
-  const intervalMs = initial.intervalMs;
+  const intervalMs = initialIntervalMs;
   const currentURL = CreateURL.current(currencyCrypto.value, currencyBase);
   const [results, setResults] = React.useState<ResultsType | null>(null);
   const [historicalCryptoPrice, sethistoricalCryptoPrice] = React.useState<HistoricalPrices | undefined | null>(undefined);
@@ -98,7 +98,7 @@ const Results = (): JSX.Element => {
     <>
       {(currentCryptoError || !results) && <FetchingStatusIndicators label={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
       <ReturnToSelectionButton />
-      {(results as ResultsType) && currencyCrypto !== initial.currencyCrypto && <ResultsTabelarised currencyCrypto={currencyCrypto} results={results as ResultsType} />}
+      {(results as ResultsType) && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTabelarised currencyCrypto={currencyCrypto} results={results as ResultsType} />}
     </>
   );
 };
