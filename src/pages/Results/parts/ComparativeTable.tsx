@@ -1,18 +1,19 @@
-import { PriceTableCell } from './PriceTableCell';
-import * as React from 'react';
-import styled from 'styled-components';
-import { comparativeArray } from '../../../types';
+import * as React from "react";
+import styled from "styled-components";
+
+import { comparativeArray } from "../../../types/types";
+import { PriceTableCell } from "./PriceTableCell";
 
 const HistoricalValue = styled.div`
-    font-size: 20px;
-    padding: 0 3px;
+  font-size: 20px;
+  padding: 0 3px;
 `;
 const HistoricalName = styled.div`
-    font-size: 10px;
+  font-size: 10px;
 `;
 
-interface ComparativeTablePropsType {
-    historicals: comparativeArray;
+interface Props {
+  historicals: comparativeArray;
 }
 /**
  * Creates table with historical price and percentage change
@@ -20,19 +21,19 @@ interface ComparativeTablePropsType {
  * @returns component with tabelarised data
  */
 
-const ComparativeTable = (props: ComparativeTablePropsType): JSX.Element => {
-    const { historicals } = props;
+const ComparativeTable = (props: Props): JSX.Element => {
+  const { historicals } = props;
 
-    return (
-        <>
-            {historicals.map((element, index) => (
-                <PriceTableCell key={index}>
-                    <HistoricalValue key={index}>{Object.values(element)[0]}</HistoricalValue>
-                    <HistoricalName key={index + 'x'}>{Object.keys(element)[0]}</HistoricalName>
-                </PriceTableCell>
-            ))}
-        </>
-    );
+  return (
+    <>
+      {historicals.map((element, index) => (
+        <PriceTableCell key={index}>
+          <HistoricalValue key={index}>{Object.values(element)[0]}</HistoricalValue>
+          <HistoricalName key={index + "x"}>{Object.keys(element)[0]}</HistoricalName>
+        </PriceTableCell>
+      ))}
+    </>
+  );
 };
 
 export default ComparativeTable;

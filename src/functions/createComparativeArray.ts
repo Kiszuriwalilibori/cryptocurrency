@@ -1,6 +1,6 @@
-import getPercentChange from './getPercentageChange';
-import { timestampIDs, comparativeArrayElement, comparativeArray, historicalPricesType } from '../types';
-import timestamps from './timestamps';
+import getPercentChange from "./getPercentageChange";
+import { timestampIDs, comparativeArrayElement, comparativeArray, historicalPricesType } from "../types/types";
+import timestamps from "./timestamps";
 
 /**
  * combines current cryptocurrency price, historical cryptocurrency prices to get array with percentage changes in time
@@ -8,18 +8,16 @@ import timestamps from './timestamps';
  * @param historicalPricesArray
  * @returns array
  */
-const createComparativeArray = (
-    currentPrice: number,
-    historicalPricesArray: historicalPricesType,
-): comparativeArray => {
-    const result: comparativeArray = [];
-    const IDs: timestampIDs[] = timestamps.getCodes();
+const createComparativeArray = (currentPrice: number, historicalPricesArray: historicalPricesType): comparativeArray => {
+  const result: comparativeArray = [];
+  const IDs: timestampIDs[] = timestamps.getCodes();
 
-    historicalPricesArray.forEach((item, index) => {
-        const obj = {} as comparativeArrayElement;
-        obj[IDs[index]] = getPercentChange(currentPrice, item); // tu mogłby być helper z fcp
-        result.push(obj);
-    });
-    return result;
+  historicalPricesArray.forEach((item, index) => {
+    const obj = {} as comparativeArrayElement;
+    obj[IDs[index]] = getPercentChange(currentPrice, item); // tu mogłby być helper z fcp
+    result.push(obj);
+  });
+
+  return result;
 };
 export default createComparativeArray;

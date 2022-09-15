@@ -1,85 +1,91 @@
-import { useState, useCallback } from 'react';
-import axios from 'axios';
-import { useSnackbar } from 'notistack';
-import { baseCurrencyType, historicalPricesType } from '../types';
+import axios from "axios";
+
+import { useState, useCallback } from "react";
+import { useSnackbar } from "notistack";
+
+import { baseCurrencyType, historicalPricesType } from "../types/types";
 
 const useFetchHistoricalValues = () => {
-    const [data, setData] = useState<historicalPricesType | null>(null);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const { enqueueSnackbar } = useSnackbar();
+  const [data, setData] = useState<historicalPricesType | null>(null);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
-    var historicalPrices: historicalPricesType = [];
+  let historicalPrices: historicalPricesType = [];
 
-    const fatalError = useCallback(() => {
-        setError(true);
-        enqueueSnackbar(`No data fetched at all for endpoints`, {
-            variant: 'error',
-        });
-    }, []);
+  const fatalError = useCallback(() => {
+    setError(true);
+    enqueueSnackbar(`No data fetched at all for given endpoints`, {
+      variant: "error",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const theEndOfRecursiveFetchLoopHandle = () => {
-        setLoading(false);
+  const theEndOfRecursiveFetchLoopHandle = () => {
+    setLoading(false);
 
-        if (historicalPrices.length) {
-            setData(historicalPrices);
-        } else {
-            fatalError();
-        }
-    };
+    if (historicalPrices.length) {
+      setData(historicalPrices);
+    } else {
+      fatalError();
+    }
+  };
 
-    const fetchData = async (endpoints: string[], baseCurrency: baseCurrencyType) => {
-        if (endpoints.length) {
-            let URL = endpoints.shift();
-            let reducedEndpoints = [...endpoints];
+  const fetchData = async (endpoints: string[], baseCurrency: baseCurrencyType) => {
+    if (endpoints.length) {
+      let URL = endpoints.shift();
+      let reducedEndpoints = [...endpoints]; /// co ta linika robi, tylko kopię tworzy?
 
-            axios
-                .get(URL as string, { Apikey: process.env.REACT_APP_API_KEY as string })
-                .then(data => {
-                    const weatherData = { ...data };
+      axios
+        .get(URL as string, { Apikey: process.env.REACT_APP_API_KEY as string })
+        .then(data => {
+          const weatherData = { ...data };
 
-                    if (data.hasOwnProperty('data')) {
-                        if (weatherData.data.hasOwnProperty(baseCurrency)) {
-                            historicalPrices.push(weatherData.data[baseCurrency]);
-                        } else {
-                            historicalPrices.push('n/a');
-                        }
+          if (data.hasOwnProperty("data")) {
+            if (weatherData.data.hasOwnProperty(baseCurrency)) {
+              historicalPrices.push(weatherData.data[baseCurrency]);
+            } else {
+              historicalPrices.push("n/a");
+            }
 
-                        if (reducedEndpoints.length) {
-                            fetchData(reducedEndpoints, baseCurrency);
-                        } else {
-                            theEndOfRecursiveFetchLoopHandle();
-                        }
-                    } else {
-                        setLoading(false);
-                        const label = URL ? URL : 'unknown location';
-                        enqueueSnackbar(`Data for ${label} was broken, corrupted or otherwise invalid`, {
-                            variant: 'warning',
-                        });
-                    }
-                })
-                .catch(err => {
-                    let code = err.response ? err.response.status : err;
-                    enqueueSnackbar(`Error ${code} encountered when fetching data for ${URL}`, {
-                        variant: 'warning',
-                    });
-                    if (reducedEndpoints.length) {
-                        fetchData(reducedEndpoints, baseCurrency);
-                    } else {
-                        theEndOfRecursiveFetchLoopHandle();
-                    }
-                });
-        } else {
-            setError(true);
-            enqueueSnackbar(`Empty array of URLs passed to useAxiosArray as argument`, {
-                variant: 'error',
+            if (reducedEndpoints.length) {
+              fetchData(reducedEndpoints, baseCurrency);
+            } else {
+              theEndOfRecursiveFetchLoopHandle();
+            }
+          } else {
+            setLoading(false);
+            const label = URL ? URL : "unknown location";
+            enqueueSnackbar(`Data for ${label} was broken, corrupted or otherwise invalid`, {
+              variant: "warning",
             });
-        }
-    };
-    const runFetchHistoricalValues = (endpoints: string[], baseCurrency: baseCurrencyType) =>
-        fetchData(endpoints, baseCurrency);
+          }
+        })
+        .catch(err => {
+          let code = err.response ? err.response.status : err;
+          enqueueSnackbar(`Error ${code} encountered when fetching data for ${URL}`, {
+            variant: "warning",
+          });
+          if (reducedEndpoints.length) {
+            fetchData(reducedEndpoints, baseCurrency);
+          } else {
+            theEndOfRecursiveFetchLoopHandle();
+          }
+        });
+    } else {
+      setError(true);
+      enqueueSnackbar(`Empty array of URLs passed to useAxiosArray as argument`, {
+        variant: "error",
+      });
+    }
+  };
+  const runFetchHistoricalValues = (endpoints: string[], baseCurrency: baseCurrencyType) => fetchData(endpoints, baseCurrency);
 
-    return { data, error, loading, runFetchHistoricalValues };
+  return { data, error, loading, runFetchHistoricalValues };
 };
 
 export default useFetchHistoricalValues;
+
+/**
+ * todo: chyba dobre miejsce na useBoolean
+ */

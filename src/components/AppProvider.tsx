@@ -1,12 +1,12 @@
-import React from 'react';
-import { SnackbarProvider } from 'notistack';
-import { SelectedCurrenciesContextProvider } from '../context/currenciesContext';
-import { HashRouter as Router } from 'react-router-dom';
-import '../styles/styles.css';
-import { createStore } from 'redux';
-import reducer from '../reducer/reducer';
-import { Provider } from 'react-redux';
-import { register } from '../../src/serviceWorkerRegistration';
+import React from "react";
+import { SnackbarProvider } from "notistack";
+import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
+import { HashRouter as Router } from "react-router-dom";
+import "../styles/styles.css";
+import { createStore } from "redux";
+import reducer from "../reducer/reducer";
+import { Provider } from "react-redux";
+import { register } from "../../src/serviceWorkerRegistration";
 
 export const store = createStore(reducer);
 /**
@@ -15,23 +15,23 @@ export const store = createStore(reducer);
  * @returns provider
  */
 const AppProvider: React.FC = ({ children }) => {
-    return (
-        <Provider store={store}>
-            <Router basename={process.env.PUBLIC_URL}>
-                <SelectedCurrenciesContextProvider>
-                    <SnackbarProvider
-                        maxSnack={3}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                    >
-                        {children}
-                    </SnackbarProvider>
-                </SelectedCurrenciesContextProvider>
-            </Router>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <Router basename={process.env.PUBLIC_URL}>
+        <SelectedCurrenciesContextProvider>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+          >
+            {children}
+          </SnackbarProvider>
+        </SelectedCurrenciesContextProvider>
+      </Router>
+    </Provider>
+  );
 };
 register();
 export type RootStateType = ReturnType<typeof store.getState>;
