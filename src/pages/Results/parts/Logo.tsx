@@ -10,8 +10,9 @@ interface Props {
  */
 const Logo = (props: Props) => {
   const { URL } = props;
-  const cryptoLogoUrl = URL ? process.env.REACT_APP_CRYPTOS_GENERAL + URL + "?width=30" : "";
-  return cryptoLogoUrl ? <img className="logo" src={cryptoLogoUrl} alt={""} aria-label={"cryptocurrency logo image"} /> : null;
+  const cryptoLogoUrl = process.env.REACT_APP_CRYPTOS_GENERAL + URL + "?width=30";
+
+  return <img className="logo" src={cryptoLogoUrl} alt={""} aria-label={"cryptocurrency logo image"} />;
 };
 
 export default Logo;
