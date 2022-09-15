@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { comparativeArray } from "../../../types/types";
+import { ComparativeArray } from "../../../types/types";
 import { PriceTableCell } from "./PriceTableCell";
 
 const HistoricalValue = styled.div`
@@ -13,7 +13,7 @@ const HistoricalName = styled.div`
 `;
 
 interface Props {
-  historicals: comparativeArray;
+  historicals: ComparativeArray;
 }
 /**
  * Creates table with historical price and percentage change

@@ -2,10 +2,10 @@ import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Fade from "@material-ui/core/Fade";
-import { currencyCryptoType } from "types/types";
+import { CurrencyCrypto } from "types/types";
 
 interface Props {
-  currencyCrypto: currencyCryptoType;
+  currencyCrypto: CurrencyCrypto;
 }
 const CryptoCurrencyDescription = (props: Props) => {
   const { currencyCrypto } = props;

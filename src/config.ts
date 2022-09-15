@@ -1,8 +1,8 @@
-import { baseCurrencyType } from "types/types";
+import { BaseCurrency } from "types/types";
 
 export const initial = {
   intervalMs: 3000,
-  currencyBase: "" as baseCurrencyType,
+  currencyBase: "" as BaseCurrency,
   currencyCrypto: {
     value: "",
     label: "",

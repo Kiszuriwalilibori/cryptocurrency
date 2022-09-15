@@ -5,11 +5,11 @@ import "react-virtualized-select/styles.css";
 import VirtualizedSelect from "react-virtualized-select";
 import { useTypedSelector } from "../../../../hooks/useTypedSelector";
 import { shallowEqual } from "react-redux";
-import { currencyCryptoType } from "types/types";
+import { CurrencyCrypto } from "types/types";
 
 interface Props {
   setCurrencyCrypto: Function;
-  currencyCrypto: currencyCryptoType;
+  currencyCrypto: CurrencyCrypto;
 }
 /**
  * Creates form which alows choise of cryptocurrency

@@ -12,12 +12,12 @@ import ReturnToSelectionButton from "./parts/returnToSelectionButton";
 import useFetchHistoricalValues from "../../hooks/useFetchHistoricalValues";
 
 import { CreateURL, createComparativeArray, formatCurrentPrice } from "functions";
-import { comparativeArray, historicalPricesType } from "../../types/types";
+import { ComparativeArray, HistoricalPrices } from "../../types/types";
 import { initial } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 export interface ResultsType {
-  comparativePricesArray: comparativeArray;
+  comparativePricesArray: ComparativeArray;
   currentPrice: string;
 }
 
@@ -41,7 +41,7 @@ const Results = (): JSX.Element => {
   const intervalMs = initial.intervalMs;
   const currentURL = CreateURL.current(currencyCrypto.value, currencyBase);
   const [results, setResults] = React.useState<ResultsType | null>(null);
-  const [historicalCryptoPrice, sethistoricalCryptoPrice] = React.useState<historicalPricesType | undefined | null>(undefined);
+  const [historicalCryptoPrice, sethistoricalCryptoPrice] = React.useState<HistoricalPrices | undefined | null>(undefined);
 
   const { data: currentCryptoData, error: currentCryptoError } = useQuery(
     "currentCrypto",

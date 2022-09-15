@@ -1,5 +1,5 @@
 import getPercentChange from "./getPercentageChange";
-import { timestampIDs, comparativeArrayElement, comparativeArray, historicalPricesType } from "../types/types";
+import { TimestampIDs, ComparativeArrayItem, ComparativeArray, HistoricalPrices } from "../types/types";
 import timestamps from "./timestamps";
 
 /**
@@ -8,12 +8,12 @@ import timestamps from "./timestamps";
  * @param historicalPricesArray
  * @returns array
  */
-const createComparativeArray = (currentPrice: number, historicalPricesArray: historicalPricesType): comparativeArray => {
-  const result: comparativeArray = [];
-  const IDs: timestampIDs[] = timestamps.getCodes();
+const createComparativeArray = (currentPrice: number, historicalPricesArray: HistoricalPrices): ComparativeArray => {
+  const result: ComparativeArray = [];
+  const IDs: TimestampIDs[] = timestamps.getCodes();
 
   historicalPricesArray.forEach((item, index) => {
-    const obj = {} as comparativeArrayElement;
+    const obj = {} as ComparativeArrayItem;
     obj[IDs[index]] = getPercentChange(currentPrice, item); // tu mogłby być helper z fcp
     result.push(obj);
   });

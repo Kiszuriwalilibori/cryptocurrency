@@ -1,4 +1,4 @@
-import { baseCurrencyType } from "../types/types";
+import { BaseCurrency } from "../types/types";
 
 function createObject(key: string, value: any): any {
   const pair = {} as { [key: string]: any };
@@ -13,7 +13,7 @@ function createObject(key: string, value: any): any {
  * @returns object with key being given string and value being current price with currency symbol
  */
 
-const formatCurrentPrice = (currentPrice: number, currencyBase: baseCurrencyType): string => {
+const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency): string => {
   const formattedCurrentPrice = currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
   const withCoin = formattedCurrentPrice + " " + currencyBase;
 

@@ -9,11 +9,11 @@ import CryptoCurrencyCurrentPrice from "./CryptoCurrencyCurrentPrice";
 import GeneralInfo from "./GeneralInfo";
 import InvestButton from "./InvestButton";
 import Logo from "./Logo";
-import { currencyCryptoType } from "../../../types/types";
+import { CurrencyCrypto } from "../../../types/types";
 import { ResultsType } from "../Results";
 
 interface propTypes {
-  currencyCrypto: currencyCryptoType;
+  currencyCrypto: CurrencyCrypto;
   results: ResultsType;
 }
 /**

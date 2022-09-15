@@ -1,19 +1,19 @@
 import React, { createContext } from "react";
-import { baseCurrencyType, currencyCryptoType } from "types/types";
+import { BaseCurrency, CurrencyCrypto } from "types/types";
 import { initial } from "../config";
 import { useLocalStorage } from "usehooks-ts";
 
 interface SelectedCurrenciesContextProps {
-  currencyBase: baseCurrencyType;
-  currencyCrypto: currencyCryptoType;
-  setCurrencyBase: (currencyBase: baseCurrencyType) => void;
-  setCurrencyCrypto: (currencyCrypto: currencyCryptoType) => void;
+  currencyBase: BaseCurrency;
+  currencyCrypto: CurrencyCrypto;
+  setCurrencyBase: (currencyBase: BaseCurrency) => void;
+  setCurrencyCrypto: (currencyCrypto: CurrencyCrypto) => void;
 }
 const SelectedCurrenciesContext = createContext<SelectedCurrenciesContextProps>({} as SelectedCurrenciesContextProps);
 
 function SelectedCurrenciesContextProvider({ children }: { children: React.ReactNode }) {
-  const [currencyCrypto, setCurrencyCrypto] = useLocalStorage<currencyCryptoType>("currencyCryptoFromContext", initial.currencyCrypto);
-  const [currencyBase, setCurrencyBase] = useLocalStorage<baseCurrencyType>("currencyBaseFromContext", initial.currencyBase);
+  const [currencyCrypto, setCurrencyCrypto] = useLocalStorage<CurrencyCrypto>("currencyCryptoFromContext", initial.currencyCrypto);
+  const [currencyBase, setCurrencyBase] = useLocalStorage<BaseCurrency>("currencyBaseFromContext", initial.currencyBase);
 
   return (
     <SelectedCurrenciesContext.Provider

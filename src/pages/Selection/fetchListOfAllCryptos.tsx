@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { shallowEqual, useDispatch } from "react-redux";
 
 import Loader from "components/Loader";
-import { ApiResponseType } from "types/types";
+import { ApiResponse } from "types/types";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { createOptions } from "functions";
 
@@ -31,7 +31,7 @@ const FetchListOfAllCryptos = ({ children }: any) => {
 
   React.useEffect(() => {
     if (dataFromCryptosAPI && !ref.current.listReceived) {
-      const options = createOptions(dataFromCryptosAPI as ApiResponseType);
+      const options = createOptions(dataFromCryptosAPI as ApiResponse);
       dispatch({ type: "LIST_OF_ALL_CRYPTOS_SET", payload: options });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

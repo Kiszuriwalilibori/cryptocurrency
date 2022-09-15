@@ -1,4 +1,4 @@
-import { timestampsType, currencyCryptoType } from "../types/types";
+import { Timestamps, CurrencyCrypto } from "../types/types";
 
 import timestamps from "./timestamps";
 class CreateURL {
@@ -12,7 +12,7 @@ class CreateURL {
 
   private static timestamps = timestamps;
 
-  private static historicalURL(coin: string, reference: string, timestamp: timestampsType) {
+  private static historicalURL(coin: string, reference: string, timestamp: Timestamps) {
     return process.env.REACT_APP_HISTORICAL_URL + coin + "&tsym=" + reference + "&toTs=" + timestamp + "&avgType=MidHighLow&tryConversion=true&extraParams=your_app_name";
   }
   /**
@@ -31,7 +31,7 @@ class CreateURL {
    * @param crypto cryptocurrency
    * @returns string being URL
    */
-  static historical(crypto: currencyCryptoType, base: string) {
+  static historical(crypto: CurrencyCrypto, base: string) {
     const linksArray = [];
     for (let i = 0; i <= this.timestamps.reducedLength(); i++) {
       linksArray.push(this.historicalURL(crypto.value, base, this.timestamps.getValue(i)));

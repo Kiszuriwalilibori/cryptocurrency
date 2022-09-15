@@ -5,10 +5,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 
 import { MyFormControl } from "./style";
-import { baseCurrencyType } from "types/types";
+import { BaseCurrency } from "types/types";
 
 interface BaseCurrencyChoiceType {
-  currencyBase: baseCurrencyType;
+  currencyBase: BaseCurrency;
   setCurrencyBase: Function;
 }
 /**

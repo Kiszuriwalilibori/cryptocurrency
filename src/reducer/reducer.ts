@@ -2,11 +2,11 @@
  * reducer
  */
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { currencyCryptoArrayType } from "types/types";
-export const setListOfAllCryptos = createAction<currencyCryptoArrayType>("LIST_OF_ALL_CRYPTOS_SET");
+import { CurrencyCryptoArray } from "types/types";
+export const setListOfAllCryptos = createAction<CurrencyCryptoArray>("LIST_OF_ALL_CRYPTOS_SET");
 
 interface InitialStateType {
-  listOfAllCryptos: null | currencyCryptoArrayType;
+  listOfAllCryptos: null | CurrencyCryptoArray;
 }
 const initialState: InitialStateType = {
   listOfAllCryptos: null,

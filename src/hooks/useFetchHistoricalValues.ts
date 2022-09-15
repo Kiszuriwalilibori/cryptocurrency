@@ -3,15 +3,15 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useSnackbar } from "notistack";
 
-import { baseCurrencyType, historicalPricesType } from "../types/types";
+import { BaseCurrency, HistoricalPrices } from "../types/types";
 
 const useFetchHistoricalValues = () => {
-  const [data, setData] = useState<historicalPricesType | null>(null);
+  const [data, setData] = useState<HistoricalPrices | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const { enqueueSnackbar } = useSnackbar();
 
-  let historicalPrices: historicalPricesType = [];
+  let historicalPrices: HistoricalPrices = [];
 
   const fatalError = useCallback(() => {
     setError(true);
@@ -31,7 +31,7 @@ const useFetchHistoricalValues = () => {
     }
   };
 
-  const fetchData = async (endpoints: string[], baseCurrency: baseCurrencyType) => {
+  const fetchData = async (endpoints: string[], baseCurrency: BaseCurrency) => {
     if (endpoints.length) {
       let URL = endpoints.shift();
       let reducedEndpoints = [...endpoints]; /// co ta linika robi, tylko kopię tworzy?
@@ -79,7 +79,7 @@ const useFetchHistoricalValues = () => {
       });
     }
   };
-  const runFetchHistoricalValues = (endpoints: string[], baseCurrency: baseCurrencyType) => fetchData(endpoints, baseCurrency);
+  const runFetchHistoricalValues = (endpoints: string[], baseCurrency: BaseCurrency) => fetchData(endpoints, baseCurrency);
 
   return { data, error, loading, runFetchHistoricalValues };
 };

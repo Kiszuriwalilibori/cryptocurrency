@@ -2,9 +2,9 @@ import subMonths from "date-fns/subMonths";
 import getUnixTime from "date-fns/getUnixTime";
 import endOfYesterday from "date-fns/endOfYesterday";
 import startOfYear from "date-fns/startOfYear";
-import { timestampsType, timestampIDs } from "../types/types";
+import { Timestamps, TimestampIDs } from "../types/types";
 
-const timestamps: timestampsType = {
+const timestamps: Timestamps = {
   content: [
     ["1D", () => getUnixTime(endOfYesterday())],
     ["1M", () => getUnixTime(subMonths(new Date(), 1))],
@@ -25,8 +25,8 @@ const timestamps: timestampsType = {
   getContent: function () {
     return this.content;
   },
-  getCodes: function (): timestampIDs[] {
-    const result: timestampIDs[] = [];
+  getCodes: function (): TimestampIDs[] {
+    const result: TimestampIDs[] = [];
     this.content.forEach(item => result.push(item[0]));
     return result;
   },
