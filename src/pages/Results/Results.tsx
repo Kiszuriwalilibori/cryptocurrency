@@ -4,7 +4,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useSnackbar } from "notistack";
 
-import ResultsTabelarised from "./parts/ResultsTabelarised";
+import ResultsTable from "./parts/ResultsTable";
 import FetchingStatusIndicators from "./parts/FetchingStatusIndicators";
 import isToday from "./scripts/isToday";
 import ReturnToSelectionButton from "./parts/returnToSelectionButton";
@@ -97,7 +97,7 @@ const Results = (): JSX.Element => {
     <>
       {(currentCryptoError || !results) && <FetchingStatusIndicators label={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
       <ReturnToSelectionButton />
-      {(results as ResultsType) && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTabelarised currencyCrypto={currencyCrypto} results={results as ResultsType} />}
+      {results && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTable currencyCrypto={currencyCrypto} results={results} />}
     </>
   );
 };

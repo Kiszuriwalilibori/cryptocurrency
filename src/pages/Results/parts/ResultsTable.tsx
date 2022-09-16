@@ -21,8 +21,9 @@ interface propTypes {
  * @param props
  * @returns
  */
-const ResultsTabelarised = (props: propTypes) => {
+const ResultsTable = (props: propTypes) => {
   const { currencyCrypto, results } = props;
+
   return (
     <CryptoCurrencyContainer>
       <Grow in={true} timeout={1000}>
@@ -30,8 +31,8 @@ const ResultsTabelarised = (props: propTypes) => {
           <GeneralInfo name={currencyCrypto.label} />
           {currencyCrypto.image && <Logo URL={currencyCrypto.image} />}
           <CryptoCurrencyPricesContainer>
-            <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />
-            <ComparativeTable historicals={results!.comparativePricesArray} />
+            {results!.currentPrice && <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />}
+            {results!.comparativePricesArray && <ComparativeTable changesArray={results!.comparativePricesArray} />}
             <InvestButton />
           </CryptoCurrencyPricesContainer>
         </div>
@@ -40,4 +41,4 @@ const ResultsTabelarised = (props: propTypes) => {
   );
 };
 
-export default ResultsTabelarised;
+export default ResultsTable;

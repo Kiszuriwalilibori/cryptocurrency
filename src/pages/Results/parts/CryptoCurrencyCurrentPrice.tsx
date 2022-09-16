@@ -19,12 +19,12 @@ const CurrentPriceName = styled.div`
  */
 const CryptoCurrencyCurrentPrice = (props: { [key: string]: string }) => {
   const { currentPrice } = props;
-  return currentPrice ? (
+  return (
     <PriceTableCell>
       <CurrentPriceValue>{Object.values(currentPrice)[0]}</CurrentPriceValue>
       <CurrentPriceName>{Object.keys(currentPrice)[0]}</CurrentPriceName>
     </PriceTableCell>
-  ) : null;
+  );
 };
 
 export default CryptoCurrencyCurrentPrice;
