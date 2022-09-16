@@ -2,13 +2,13 @@ import * as React from "react";
 import { lazy, Suspense } from "react";
 import { /*BrowserRouter as Router,*/ Switch, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import FetchListOfAllCryptos from "../pages/Selection/fetchListOfAllCryptos";
+import FetchListOfAllCryptos from "../pages/SelectionPage/fetchListOfAllCryptos";
 
 const queryClient = new QueryClient();
 
-const Results = lazy(() => import("../pages/Results"));
+const Results = lazy(() => import("../pages/ResultsPage"));
 
-const SelectionSection = lazy(() => import("../pages/Selection/SelectionSection"));
+const SelectionSection = lazy(() => import("../pages/SelectionPage/SelectionSection"));
 /**
  * function that returns App itself
  * @returns App
