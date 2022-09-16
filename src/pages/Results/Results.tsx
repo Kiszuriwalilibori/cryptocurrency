@@ -50,8 +50,8 @@ const Results = (): JSX.Element => {
         const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
         runFetchHistoricalValues(historicalsURLsArray, currencyBase);
       }
-      const res = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
-      return res.data;
+      const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
+      return result.data;
     },
     {
       refetchInterval: intervalMs,
@@ -103,7 +103,3 @@ const Results = (): JSX.Element => {
 };
 
 export default Results;
-
-/**
- * todo res źle wygląda
- */
