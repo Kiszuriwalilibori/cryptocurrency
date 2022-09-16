@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
 
-import { ComparativeArray } from "types";
+import { ChangesArray } from "types";
 import { PriceTableCell } from "./PriceTableCell";
 
 const HistoricalValue = styled.div`
@@ -14,7 +14,7 @@ const HistoricalName = styled.div`
 `;
 
 interface Props {
-  changesArray: ComparativeArray;
+  changesArray: ChangesArray;
 }
 /**
  * Creates table with historical price and percentage change
@@ -22,7 +22,7 @@ interface Props {
  * @returns component with tabelarised data
  */
 
-const ComparativeTable = (props: Props): JSX.Element => {
+const TableOfChanges = (props: Props): JSX.Element => {
   const { changesArray } = props;
 
   return (
@@ -37,4 +37,4 @@ const ComparativeTable = (props: Props): JSX.Element => {
   );
 };
 
-export default ComparativeTable;
+export default TableOfChanges;

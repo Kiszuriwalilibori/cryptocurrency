@@ -11,15 +11,10 @@ import ReturnToSelectionButton from "./parts/returnToSelectionButton";
 
 import useFetchHistoricalValues from "hooks/useFetchHistoricalValues";
 
-import { CreateURL, createComparativeArray, formatCurrentPrice } from "functions";
-import { ComparativeArray, HistoricalPrices } from "types";
+import { CreateURL, createChanges, formatCurrentPrice } from "functions";
+import { ResultsType, HistoricalPrices } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
-
-export interface ResultsType {
-  comparativePricesArray: ComparativeArray;
-  currentPrice: string;
-}
 
 interface refType {
   date: Date;
@@ -30,7 +25,7 @@ interface refType {
  * Presents cryptocurrency price current and historical
  * @returns component
  */
-const Results = (): JSX.Element => {
+const ResultsPage = (): JSX.Element => {
   const ref = React.useRef<refType>({
     date: new Date(),
     currentCryptoPrice: undefined,
@@ -74,10 +69,10 @@ const Results = (): JSX.Element => {
         enqueueSnackbar(`Zmiana`, {
           variant: "success",
         });
-        const comparativeArray = createComparativeArray(cryptoPrice, historicalCryptoPrice);
+        const changes = createChanges(cryptoPrice, historicalCryptoPrice);
         const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
         const result: ResultsType = {
-          comparativePricesArray: comparativeArray,
+          changes: changes,
           currentPrice: formattedCryptoPrice,
         };
         setResults(result);
@@ -102,4 +97,4 @@ const Results = (): JSX.Element => {
   );
 };
 
-export default Results;
+export default ResultsPage;

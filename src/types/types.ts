@@ -27,8 +27,13 @@ export type NotAvailable = "n/a";
 
 export type BaseCurrency = "PLN" | "USD" | "EUR" | "";
 
-export type ComparativeArrayItem = { [K in TimestampIDs]: NotAvailable | string };
+export type ChangesArrayItem = { [K in TimestampIDs]: NotAvailable | string };
 
-export type ComparativeArray = ComparativeArrayItem[];
+export type ChangesArray = ChangesArrayItem[];
 
 export type HistoricalPrices = (number | NotAvailable)[];
+
+export interface ResultsType {
+  changes: ChangesArray;
+  currentPrice: string;
+}

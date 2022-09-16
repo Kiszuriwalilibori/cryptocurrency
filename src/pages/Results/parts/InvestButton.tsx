@@ -78,4 +78,4 @@ const InvestButton = () => {
   );
 };
 
-export default InvestButton;
+export default React.memo(InvestButton);

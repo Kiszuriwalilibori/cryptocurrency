@@ -1,5 +1,5 @@
 import getPercentileChange from "./getPercentileChange";
-import { TimestampIDs, ComparativeArrayItem, ComparativeArray, HistoricalPrices } from "types";
+import { TimestampIDs, ChangesArrayItem, ChangesArray, HistoricalPrices } from "types";
 import timestamps from "./timestamps";
 
 /**
@@ -8,16 +8,16 @@ import timestamps from "./timestamps";
  * @param historicalPricesArray
  * @returns array
  */
-const createComparativeArray = (currentPrice: number, historicalPricesArray: HistoricalPrices): ComparativeArray => {
-  const result: ComparativeArray = [];
+const createChanges = (currentPrice: number, historicalPricesArray: HistoricalPrices): ChangesArray => {
+  const result: ChangesArray = [];
   const IDs: TimestampIDs[] = timestamps.getCodes();
 
   historicalPricesArray.forEach((historicalPrice, index) => {
-    const obj = {} as ComparativeArrayItem;
+    const obj = {} as ChangesArrayItem;
     obj[IDs[index]] = getPercentileChange(currentPrice, historicalPrice);
     result.push(obj);
   });
 
   return result;
 };
-export default createComparativeArray;
+export default createChanges;

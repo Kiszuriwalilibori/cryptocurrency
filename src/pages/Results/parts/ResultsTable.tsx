@@ -2,15 +2,14 @@ import * as React from "react";
 
 import { Grow } from "@material-ui/core";
 
-import ComparativeTable from "./ComparativeTable";
+import TableOfChanges from "./TableOfChanges";
 import CryptoCurrencyPricesContainer from "./CryptoCurencyPricesContainer";
 import CryptoCurrencyContainer from "./CryptoCurrencyContainer";
 import CryptoCurrencyCurrentPrice from "./CryptoCurrencyCurrentPrice";
 import GeneralInfo from "./GeneralInfo";
 import InvestButton from "./InvestButton";
 import Logo from "./Logo";
-import { CurrencyCrypto } from "types";
-import { ResultsType } from "../Results";
+import { CurrencyCrypto, ResultsType } from "types";
 
 interface propTypes {
   currencyCrypto: CurrencyCrypto;
@@ -32,7 +31,7 @@ const ResultsTable = (props: propTypes) => {
           {currencyCrypto.image && <Logo URL={currencyCrypto.image} />}
           <CryptoCurrencyPricesContainer>
             {results!.currentPrice && <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />}
-            {results!.comparativePricesArray && <ComparativeTable changesArray={results!.comparativePricesArray} />}
+            {results!.changes && <TableOfChanges changesArray={results!.changes} />}
             <InvestButton />
           </CryptoCurrencyPricesContainer>
         </div>
