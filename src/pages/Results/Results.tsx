@@ -74,7 +74,6 @@ const Results = (): JSX.Element => {
         enqueueSnackbar(`Zmiana`, {
           variant: "success",
         });
-
         const comparativeArray = createComparativeArray(cryptoPrice, historicalCryptoPrice);
         const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
         const result: ResultsType = {
@@ -104,3 +103,7 @@ const Results = (): JSX.Element => {
 };
 
 export default Results;
+
+/**
+ * todo res źle wygląda
+ */

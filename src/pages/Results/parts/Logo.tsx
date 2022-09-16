@@ -16,7 +16,3 @@ const Logo = (props: Props) => {
 };
 
 export default Logo;
-
-/**
- * todo zawikłana logika w tym miejscu z przeróbką propsa, pytanie czy nie przenieśc jej wyżej
- */

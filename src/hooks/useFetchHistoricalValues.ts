@@ -87,5 +87,5 @@ const useFetchHistoricalValues = () => {
 export default useFetchHistoricalValues;
 
 /**
- * todo: chyba dobre miejsce na useBoolean
+ * todo: chyba dobre miejsce na useBoolean poza tym wszędzie mamy NotAvailable a tu "n/a"
  */
