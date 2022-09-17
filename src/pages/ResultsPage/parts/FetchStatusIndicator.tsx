@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useSnackbar } from "notistack";
 
-import Loader from "components/Loader";
+import { Loader } from "components";
 
 interface Props {
   result: boolean;

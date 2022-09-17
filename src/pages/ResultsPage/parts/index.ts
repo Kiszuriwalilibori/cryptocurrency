@@ -11,4 +11,4 @@ import ResultsTable from "./ResultsTable";
 import ReturnToSelectionButton from "./ReturnToSelectionButton";
 import TableOfChanges from "./TableOfChanges";
 
-export { CryptoCurrencyPricesContainer, CryptoCurrencyContainer, CryptoCurrencyCurrentPrice, FetchStatusIndicator as FetchingStatusIndicator, GeneralInfo, InvestButton, Logo, PriceTableCell, ResultsTable, ReturnToSelectionButton, TableOfChanges, Tooltip };
+export { CryptoCurrencyPricesContainer, CryptoCurrencyContainer, CryptoCurrencyCurrentPrice, FetchStatusIndicator, GeneralInfo, InvestButton, Logo, PriceTableCell, ResultsTable, ReturnToSelectionButton, TableOfChanges, Tooltip };

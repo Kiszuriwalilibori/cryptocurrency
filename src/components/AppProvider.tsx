@@ -2,13 +2,16 @@ import React from "react";
 import { SnackbarProvider } from "notistack";
 import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
 import { HashRouter as Router } from "react-router-dom";
-import "../styles/styles.css";
 import { createStore } from "redux";
-import reducer from "../reducer/reducer";
+
 import { Provider } from "react-redux";
 import { register } from "../../src/serviceWorkerRegistration";
 
+import reducer from "../reducer/reducer";
+import "../styles/styles.css";
+
 export const store = createStore(reducer);
+
 /**
  * creates provider of redux store, router, snackbar, and selectedcurrenciescontext
  * @param param0 anything renders within this provider

@@ -4,7 +4,7 @@ import { useLazyAxios } from "use-axios-client";
 import { useSnackbar } from "notistack";
 import { shallowEqual, useDispatch } from "react-redux";
 
-import Loader from "components/Loader";
+import { Loader } from "components";
 import { ApiResponse } from "types";
 import { useTypedSelector } from "hooks";
 import { createOptions } from "functions";

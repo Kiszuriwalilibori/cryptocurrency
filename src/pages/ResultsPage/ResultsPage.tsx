@@ -4,8 +4,9 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useSnackbar } from "notistack";
 
-import { ResultsTable, FetchingStatusIndicator, ReturnToSelectionButton } from "./parts";
+import { ResultsTable, FetchStatusIndicator, ReturnToSelectionButton } from "./parts";
 import { useFetchHistoricalValues } from "hooks";
+import { BlueButton } from "components";
 
 import { CreateURL, createChanges, formatCurrentPrice, isToday } from "functions";
 import { ResultsType, HistoricalPrices } from "types";
@@ -86,7 +87,7 @@ const ResultsPage = (): JSX.Element => {
 
   return (
     <>
-      {(currentCryptoError || !results) && <FetchingStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
+      {(currentCryptoError || !results) && <FetchStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
       <ReturnToSelectionButton />
       {results && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTable currencyCrypto={currencyCrypto} results={results} />}
     </>
