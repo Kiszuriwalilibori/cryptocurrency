@@ -7,11 +7,11 @@ interface Props {
 }
 
 const BlueButton = (props: Props) => {
-  const { classes = "currencySettingButton enabled", isEnabled = true, onClick = () => {}, label = "", ...rest } = props;
-  const baseClass = "currencySettingButton";
+  const { classes = "enabled", isEnabled = true, onClick = () => {}, label = "", ...rest } = props;
+  const baseClassName = "currencySettingButton";
 
   return (
-    <button className={classes} onClick={onClick} disabled={!isEnabled}>
+    <button className={`${baseClassName} ${classes}`} onClick={onClick} disabled={!isEnabled}>
       {label}
     </button>
   );
