@@ -2,6 +2,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { BaseCurrency, CurrencyCrypto } from "types";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
+import { BlueButton } from "components";
 
 interface Props {
   currencyBase: BaseCurrency;
@@ -17,22 +18,16 @@ const ConfirmButton = (props: Props): JSX.Element => {
   const history = useHistory();
   const { setCurrencyBase, setCurrencyCrypto } = React.useContext(SelectedCurrenciesContext);
   const isEnabled: boolean = currencyBase && currencyCrypto ? true : false;
-  const classes = isEnabled ? "currencySettingButton enabled" : "currencySettingButton";
   const pathToResults = isEnabled ? `/${currencyCrypto.label} / ${currencyBase}` : undefined;
 
-  return (
-    <button
-      className={classes}
-      disabled={!isEnabled}
-      onClick={() => {
-        setCurrencyBase(currencyBase);
-        setCurrencyCrypto(currencyCrypto);
-        if (pathToResults) history.push(pathToResults);
-      }}
-    >
-      Pokaż kurs
-    </button>
-  );
+  const confirmChoice = React.useCallback(() => {
+    setCurrencyBase(currencyBase);
+    setCurrencyCrypto(currencyCrypto);
+    if (pathToResults) history.push(pathToResults);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathToResults]);
+
+  return <BlueButton classes={isEnabled ? "currencySettingButton enabled" : "currencySettingButton"} isEnabled={isEnabled} onClick={confirmChoice} label="Pokaż kurs" />;
 };
 
 export default ConfirmButton;

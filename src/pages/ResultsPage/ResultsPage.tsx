@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import axios from "axios";
 
+import { useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useSnackbar } from "notistack";
 
-import { ResultsTable, FetchStatusIndicator, ReturnToSelectionButton } from "./parts";
+import { ResultsTable, FetchStatusIndicator } from "./parts";
 import { useFetchHistoricalValues } from "hooks";
 import { BlueButton } from "components";
 
@@ -28,6 +29,7 @@ const ResultsPage = (): JSX.Element => {
     currentCryptoPrice: undefined,
   });
 
+  const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
   const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext);
   const intervalMs = initialIntervalMs;
@@ -51,6 +53,11 @@ const ResultsPage = (): JSX.Element => {
   );
 
   const { data: historicalData, runFetchHistoricalValues } = useFetchHistoricalValues();
+
+  const returnToSelectionPage = useCallback(() => {
+    history.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
@@ -88,7 +95,7 @@ const ResultsPage = (): JSX.Element => {
   return (
     <>
       {(currentCryptoError || !results) && <FetchStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
-      <ReturnToSelectionButton />
+      <BlueButton label="Powrót do wyboru" onClick={returnToSelectionPage} />
       {results && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTable currencyCrypto={currencyCrypto} results={results} />}
     </>
   );
