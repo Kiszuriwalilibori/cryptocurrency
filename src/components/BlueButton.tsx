@@ -7,8 +7,8 @@ interface Props {
 }
 
 const BlueButton = (props: Props) => {
-  const { classes = "enabled", isEnabled = true, onClick = () => {}, label = "", ...rest } = props;
-  const baseClassName = "currencySettingButton";
+  const { classes = "enabled", isEnabled = true, onClick = () => {}, label = "" } = props;
+  const baseClassName = "BlueButton";
 
   return (
     <button className={`${baseClassName} ${classes}`} onClick={onClick} disabled={!isEnabled}>
@@ -18,3 +18,7 @@ const BlueButton = (props: Props) => {
 };
 
 export default BlueButton;
+
+/**
+ * todo niepokojące jest to mrygnięcie guzika na stronie wyszukiwania, powinien tylko zmieniać kolor
+ * */
