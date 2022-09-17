@@ -1,1 +1,1 @@
-export { default } from './CurrenciesSelectionConfirmButton';
+export { default } from "./SelectionConfirmButton";

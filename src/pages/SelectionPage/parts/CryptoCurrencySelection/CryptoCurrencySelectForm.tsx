@@ -3,7 +3,7 @@ import "react-virtualized-select/styles.css";
 import "react-virtualized/styles.css";
 import "react-virtualized-select/styles.css";
 import VirtualizedSelect from "react-virtualized-select";
-import { useTypedSelector } from "hooks/useTypedSelector";
+import { useTypedSelector } from "hooks";
 import { shallowEqual } from "react-redux";
 import { CurrencyCrypto } from "types";
 

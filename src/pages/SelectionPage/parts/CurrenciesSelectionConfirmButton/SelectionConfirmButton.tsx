@@ -12,7 +12,7 @@ interface Props {
  * @param props currency base: base currency, currencyCrypto: cryptocurrency
  * @returns button component
  */
-const CurrenciesSelectionConfirmButton = (props: Props): JSX.Element => {
+const ConfirmButton = (props: Props): JSX.Element => {
   const { currencyBase, currencyCrypto } = props;
   const history = useHistory();
   const { setCurrencyBase, setCurrencyCrypto } = React.useContext(SelectedCurrenciesContext);
@@ -35,4 +35,4 @@ const CurrenciesSelectionConfirmButton = (props: Props): JSX.Element => {
   );
 };
 
-export default CurrenciesSelectionConfirmButton;
+export default ConfirmButton;

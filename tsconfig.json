@@ -22,7 +22,8 @@
       "graphics/*": ["graphics/*"],
       "contexts/*": ["contexts/*"],
       "types/*": ["types/*"],
-      "hooks/*": ["hooks/*"]
+      "hooks/*": ["hooks/*"],
+      "pages/*": ["pages/*"]
     }
   },
   "include": ["src"]

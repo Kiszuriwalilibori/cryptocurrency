@@ -4,14 +4,10 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useSnackbar } from "notistack";
 
-import ResultsTable from "./parts/ResultsTable";
-import FetchingStatusIndicators from "./parts/FetchingStatusIndicators";
-import isToday from "./scripts/isToday";
-import ReturnToSelectionButton from "./parts/returnToSelectionButton";
+import { ResultsTable, FetchingStatusIndicator, ReturnToSelectionButton } from "./parts";
+import { useFetchHistoricalValues } from "hooks";
 
-import useFetchHistoricalValues from "hooks/useFetchHistoricalValues";
-
-import { CreateURL, createChanges, formatCurrentPrice } from "functions";
+import { CreateURL, createChanges, formatCurrentPrice, isToday } from "functions";
 import { ResultsType, HistoricalPrices } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
@@ -90,7 +86,7 @@ const ResultsPage = (): JSX.Element => {
 
   return (
     <>
-      {(currentCryptoError || !results) && <FetchingStatusIndicators label={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
+      {(currentCryptoError || !results) && <FetchingStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
       <ReturnToSelectionButton />
       {results && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTable currencyCrypto={currencyCrypto} results={results} />}
     </>
@@ -98,3 +94,7 @@ const ResultsPage = (): JSX.Element => {
 };
 
 export default ResultsPage;
+
+/**
+ * todofetchingstatusindicator przekombinowana logika
+ * */
