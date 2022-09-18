@@ -1,6 +1,0 @@
-REACT_APP_API_KEY = feca5a4838bd3042b5340fb60de7c44aadd2d20a178514c44947c3736be3558e
-REACT_APP_CURRENT_URL = https://min-api.cryptocompare.com/data/price?fsym=
-REACT_APP_BACKGROUND_STYLE = weather
-REACT_APP_HISTORICAL_URL = https://min-api.cryptocompare.com/data/dayAvg?fsym=
-REACT_APP_ALL_CRYPTOS_URL = https://min-api.cryptocompare.com/data/all/coinlist
-REACT_APP_CRYPTOS_GENERAL = https://www.cryptocompare.com
