@@ -20,7 +20,6 @@ interface Props {
 const CryptoCurrencySelectForm: React.FC<Props> = props => {
   const { currencyCrypto, setCurrencyCrypto } = props;
   const cryptos = useTypedSelector(state => state.listOfAllCryptos, shallowEqual);
-
   return cryptos && cryptos.length ? (
     <label>
       <VirtualizedSelect
