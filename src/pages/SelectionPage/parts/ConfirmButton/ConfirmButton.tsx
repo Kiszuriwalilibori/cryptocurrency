@@ -17,7 +17,7 @@ const ConfirmButton = (props: Props): JSX.Element => {
   const { currencyBase, currencyCrypto } = props;
   const history = useHistory();
   const { setCurrencyBase, setCurrencyCrypto } = React.useContext(SelectedCurrenciesContext);
-  const isEnabled: boolean = currencyBase && currencyCrypto ? true : false;
+  const isEnabled = currencyBase && currencyCrypto ? true : false;
   const pathToResults = isEnabled ? `/${currencyCrypto.label} / ${currencyBase}` : undefined;
 
   const confirmChoice = React.useCallback(() => {

@@ -2,15 +2,14 @@ import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Fade from "@material-ui/core/Fade";
-import { CurrencyCrypto } from "types";
 
 interface Props {
-  currencyCrypto: CurrencyCrypto;
+  description: string;
 }
 const CryptoCurrencyDescription = (props: Props) => {
-  const { currencyCrypto } = props;
+  const { description } = props;
 
-  return currencyCrypto.description ? (
+  return (
     <Fade in={true} timeout={1000}>
       <Paper elevation={1}>
         <Box
@@ -23,11 +22,11 @@ const CryptoCurrencyDescription = (props: Props) => {
             color: "white",
           }}
         >
-          {currencyCrypto.description}
+          {description}
         </Box>
       </Paper>
     </Fade>
-  ) : null;
+  );
 };
 
 export default CryptoCurrencyDescription;

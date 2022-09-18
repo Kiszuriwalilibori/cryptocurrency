@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseCurrency, CurrencyCrypto } from "types";
 import BaseCurrencySelectForm from "./parts/BaseCurrencySelection";
 import CryptoCurrencySelectForm from "./parts/CryptoCurrencySelection";
-import CurrenciesSelectionConfirmButton from "./parts/CurrenciesSelectionConfirmButton";
+import CurrenciesSelectionConfirmButton from "./parts/ConfirmButton";
 import CryptoCurrencyDecription from "./parts/CryptoCurrencySelection/cryptoCurrencyDescription";
 import withLogo from "../../HOCs/withLogo";
 
@@ -13,9 +13,8 @@ const SelectionSection = () => {
     <section className="selection-container">
       <CurrenciesSelectionConfirmButton currencyBase={currencyBase as BaseCurrency} currencyCrypto={currencyCrypto as CurrencyCrypto} />
       <BaseCurrencySelectForm currencyBase={currencyBase as BaseCurrency} setCurrencyBase={setCurrencyBase} />
-
       <CryptoCurrencySelectForm currencyCrypto={currencyCrypto as CurrencyCrypto} setCurrencyCrypto={setCurrencyCrypto} />
-      {currencyCrypto && <CryptoCurrencyDecription currencyCrypto={currencyCrypto} />}
+      {currencyCrypto?.description && <CryptoCurrencyDecription description={currencyCrypto.description} />}
     </section>
   );
 };
