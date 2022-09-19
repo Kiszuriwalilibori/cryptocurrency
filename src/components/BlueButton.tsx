@@ -1,4 +1,6 @@
 import React from "react";
+import "./_button.scss";
+
 interface Props {
   classes?: string;
   isEnabled?: boolean;
@@ -18,7 +20,3 @@ const BlueButton = (props: Props) => {
 };
 
 export default BlueButton;
-
-/**
- * todo niepokojące jest to mrygnięcie guzika na stronie wyszukiwania, powinien tylko zmieniać kolor
- * */

@@ -23,7 +23,9 @@
       "contexts/*": ["contexts/*"],
       "types/*": ["types/*"],
       "hooks/*": ["hooks/*"],
-      "pages/*": ["pages/*"]
+      "pages/*": ["pages/*"],
+      "styles/*": ["styles/*"],
+      "HOCs/*": ["HOCs/*"]
     }
   },
   "include": ["src"]

@@ -14,9 +14,10 @@ const CryptoCurrencyDescription = (props: Props) => {
       <Paper elevation={1}>
         <Box
           sx={{
-            bgcolor: "#1076AB",
+            bgcolor: "#376fe0",
             boxShadow: 1,
-            borderRadius: 1,
+            borderRadius: 2,
+            border: "2px solid #174299",
             p: 2,
             maxWidth: 300,
             color: "white",
@@ -30,6 +31,3 @@ const CryptoCurrencyDescription = (props: Props) => {
 };
 
 export default CryptoCurrencyDescription;
-/**
- * todo pytanie czy description powinno być w tym kolorze, bo to jest kolejny kolor w apce. Można by zdjac kolor z gusika. Poza tym mogłby mieć krawędź jak wszystkie na stronie pogrubioną
- */

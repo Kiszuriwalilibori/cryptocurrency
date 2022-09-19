@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { lazy, Suspense } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";

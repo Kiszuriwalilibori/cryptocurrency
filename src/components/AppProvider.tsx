@@ -3,12 +3,11 @@ import { SnackbarProvider } from "notistack";
 import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
 import { HashRouter as Router } from "react-router-dom";
 import { createStore } from "redux";
-
 import { Provider } from "react-redux";
-import { register } from "../../src/serviceWorkerRegistration";
+import { register } from "../serviceWorkerRegistration";
 
 import reducer from "../reducer/reducer";
-import "../styles/styles.css";
+import "styles/styles.css";
 
 export const store = createStore(reducer);
 

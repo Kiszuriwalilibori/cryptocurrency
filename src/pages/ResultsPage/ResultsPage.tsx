@@ -104,5 +104,5 @@ const ResultsPage = (): JSX.Element => {
 export default ResultsPage;
 
 /**
- * todofetchingstatusindicator przekombinowana logika. Prawopodobnie ApiKey nie jest wcale potrzebne do get
+ * Prawopodobnie ApiKey nie jest wcale potrzebne do get
  * */
