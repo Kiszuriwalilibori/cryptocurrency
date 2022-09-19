@@ -30,3 +30,6 @@ const CryptoCurrencyDescription = (props: Props) => {
 };
 
 export default CryptoCurrencyDescription;
+/**
+ * todo pytanie czy description powinno być w tym kolorze, bo to jest kolejny kolor w apce. Można by zdjac kolor z gusika. Poza tym mogłby mieć krawędź jak wszystkie na stronie pogrubioną
+ */

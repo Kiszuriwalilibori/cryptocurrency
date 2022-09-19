@@ -95,7 +95,7 @@ const ResultsPage = (): JSX.Element => {
   return (
     <>
       {(currentCryptoError || !results) && <FetchStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
-      <BlueButton label="Powrót do wyboru" onClick={returnToSelectionPage} />
+      <BlueButton label="Powrót do wyboru" clickHandler={returnToSelectionPage} />
       {results && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTable currencyCrypto={currencyCrypto} results={results} />}
     </>
   );
@@ -104,5 +104,5 @@ const ResultsPage = (): JSX.Element => {
 export default ResultsPage;
 
 /**
- * todofetchingstatusindicator przekombinowana logika
+ * todofetchingstatusindicator przekombinowana logika. Prawopodobnie ApiKey nie jest wcale potrzebne do get
  * */

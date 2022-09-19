@@ -8,7 +8,7 @@ import { MyFormControl } from "./style";
 import { BaseCurrency } from "types";
 
 interface BaseCurrencyChoiceType {
-  currencyBase: BaseCurrency;
+  currencyBase: BaseCurrency | null;
   setCurrencyBase: Function;
 }
 /**
@@ -37,3 +37,7 @@ const BaseCurrencySelectForm = (props: BaseCurrencyChoiceType): JSX.Element => {
 };
 
 export default BaseCurrencySelectForm;
+
+/**
+ * todo wynika, że rozszerzenie typu tutaj w niczym nie przeszkadza a mozna się pozbyć asercji w wywołaniu
+ */

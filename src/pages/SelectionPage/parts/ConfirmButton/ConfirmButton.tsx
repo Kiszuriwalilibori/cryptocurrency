@@ -27,7 +27,7 @@ const ConfirmButton = (props: Props): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathToResults]);
 
-  return <BlueButton classes={isEnabled ? "enabled" : ""} isEnabled={isEnabled} onClick={confirmChoice} label="Pokaż kurs" />;
+  return <BlueButton classes={isEnabled ? "enabled" : ""} isEnabled={isEnabled} clickHandler={confirmChoice} label="Pokaż kurs" />;
 };
 
 export default ConfirmButton;

@@ -17,7 +17,7 @@
 
   &.enabled {
     display: block;
-    animation: fade_in 0.3s ease-in-out forwards;
+    animation: fade_in 0.7s ease-in-out forwards;
     background-color: #759ae9;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #759ae9), color-stop(50%, #376fe0), color-stop(50%, #1a5ad9), color-stop(100%, #2463de));
     background-image: -webkit-linear-gradient(top, #759ae9 0%, #376fe0 50%, #1a5ad9 50%, #2463de 100%);
@@ -63,5 +63,20 @@
     &:focus {
       outline: none;
     }
+  }
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
   }
 }

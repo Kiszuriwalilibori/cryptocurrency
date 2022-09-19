@@ -9,10 +9,11 @@ import withLogo from "../../HOCs/withLogo";
 const SelectionSection = () => {
   let [currencyBase, setCurrencyBase] = React.useState<BaseCurrency | null>(null);
   let [currencyCrypto, setCurrencyCrypto] = React.useState<CurrencyCrypto | null>(null);
+
   return (
     <section className="selection-container">
       <CurrenciesSelectionConfirmButton currencyBase={currencyBase as BaseCurrency} currencyCrypto={currencyCrypto as CurrencyCrypto} />
-      <BaseCurrencySelectForm currencyBase={currencyBase as BaseCurrency} setCurrencyBase={setCurrencyBase} />
+      <BaseCurrencySelectForm currencyBase={currencyBase} setCurrencyBase={setCurrencyBase} />
       <CryptoCurrencySelectForm currencyCrypto={currencyCrypto as CurrencyCrypto} setCurrencyCrypto={setCurrencyCrypto} />
       {currencyCrypto?.description && <CryptoCurrencyDecription description={currencyCrypto.description} />}
     </section>

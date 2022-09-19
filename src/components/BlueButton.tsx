@@ -2,16 +2,16 @@ import React from "react";
 interface Props {
   classes?: string;
   isEnabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  clickHandler?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   label?: string;
 }
 
 const BlueButton = (props: Props) => {
-  const { classes = "enabled", isEnabled = true, onClick = () => {}, label = "" } = props;
+  const { classes = "enabled", isEnabled = true, clickHandler = () => {}, label = "" } = props;
   const baseClassName = "BlueButton";
 
   return (
-    <button className={`${baseClassName} ${classes}`} onClick={onClick} disabled={!isEnabled}>
+    <button className={`${baseClassName} ${classes}`} onClick={clickHandler} disabled={!isEnabled}>
       {label}
     </button>
   );
