@@ -380,4 +380,9 @@ body {
   .search__logo {
     font-size: 36px;
   }
+}
+
+.inactivatedCryptoCurrencySelectForm {
+  opacity: 0.7;
+  pointer-events: none;
 }/*# sourceMappingURL=styles.css.map */

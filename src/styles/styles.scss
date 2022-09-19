@@ -220,3 +220,8 @@ $max_font: 36px;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
+
+.inactivatedCryptoCurrencySelectForm {
+  opacity: 0.7;
+  pointer-events: none;
+}
