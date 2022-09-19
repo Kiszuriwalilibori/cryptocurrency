@@ -1,13 +1,20 @@
 import * as React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { useLazyAxios } from "use-axios-client";
 import { useSnackbar } from "notistack";
 import { shallowEqual, useDispatch } from "react-redux";
+import { withStyles } from "@material-ui/core/styles";
 
-import { Loader } from "components";
 import { ApiResponse } from "types";
 import { useTypedSelector } from "hooks";
 import { createOptions } from "functions";
+
+const ColorCircularProgress = withStyles({
+  root: {
+    color: "rgba(122, 194, 33, 0.8);",
+  },
+})(CircularProgress);
 
 const FetchListOfAllCryptos = ({ children }: any) => {
   const ref = React.useRef({
@@ -45,8 +52,13 @@ const FetchListOfAllCryptos = ({ children }: any) => {
   if (listOfAllCryptos && !ref.current.listReceived) {
     ref.current.listReceived = true;
   }
-  if (loading) return <Loader />;
-  return children;
+
+  return (
+    <>
+      {children}
+      {loading && <ColorCircularProgress thickness={5} size={100} />}
+    </>
+  );
 };
 
 export default FetchListOfAllCryptos;

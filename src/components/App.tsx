@@ -1,8 +1,7 @@
 import * as React from "react";
 import { lazy, Suspense } from "react";
-import { /*BrowserRouter as Router,*/ Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import FetchListOfAllCryptos from "pages/SelectionPage/fetchListOfAllCryptos";
 
 const queryClient = new QueryClient();
 
@@ -20,9 +19,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Suspense fallback={null}>
-            <FetchListOfAllCryptos>
-              <SelectionSection />
-            </FetchListOfAllCryptos>
+            <SelectionSection />
           </Suspense>
         </Route>
 
