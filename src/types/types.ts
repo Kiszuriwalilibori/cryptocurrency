@@ -22,16 +22,18 @@ export interface Timestamps {
   getContent: Function;
   getCodes: Function;
 }
-
-export type NotAvailable = "n/a";
+export enum NotAv {
+  NotAvailable = "n/a",
+}
+export type NotAvailable = "n/a"; /// bedzie do wywalenia
 
 export type BaseCurrency = "PLN" | "USD" | "EUR" | "";
 
-export type ChangesArrayItem = { [K in TimestampIDs]: NotAvailable | string };
+export type ChangesArrayItem = { [K in TimestampIDs]: NotAv | string };
 
 export type ChangesArray = ChangesArrayItem[];
 
-export type HistoricalPrices = (number | NotAvailable)[];
+export type HistoricalPrices = (number | NotAv)[];
 
 export interface ResultsType {
   changes: ChangesArray;
