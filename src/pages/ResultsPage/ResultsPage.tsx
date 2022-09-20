@@ -75,10 +75,12 @@ const ResultsPage = (): JSX.Element => {
         });
         const changes = createChanges(cryptoPrice, historicalCryptoPrice);
         const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
+        console.log(formattedCryptoPrice, "formattedcryptoprice");
         const result: ResultsType = {
           changes: changes,
           currentPrice: formattedCryptoPrice,
         };
+        console.log(result);
         setResults(result);
       }
     }
@@ -102,7 +104,3 @@ const ResultsPage = (): JSX.Element => {
 };
 
 export default ResultsPage;
-
-/**
- * Prawopodobnie ApiKey nie jest wcale potrzebne do get
- * */

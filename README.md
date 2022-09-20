@@ -94,7 +94,7 @@ CryptoCurrency Tracker
 
 002 there is GetListOfCryptos Hook but we use uselazyAxios, why?
 
-003 selection of currency and crypto: too much ifs. Why not useEffect?
+----003 selection of currency and crypto: too much ifs. Why not useEffect?
 
 004 formatCurrentPrice zawiera helpera tworzącego obiekty albo zastosowac wszędzie albo usunąć w każdym razie
 zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz

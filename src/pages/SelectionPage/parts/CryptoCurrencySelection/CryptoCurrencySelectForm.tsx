@@ -5,6 +5,7 @@ import { shallowEqual } from "react-redux";
 import { CurrencyCrypto } from "types";
 
 import FetchListOfAllCryptos from "pages/SelectionPage/fetchListOfAllCryptos";
+import "./_CryptoCurrencySelectForm.scss";
 interface Props {
   setCurrencyCrypto: Function;
   currencyCrypto: CurrencyCrypto;
@@ -25,7 +26,7 @@ const CryptoCurrencySelectForm: React.FC<Props> = props => {
       <label className={style}>
         <VirtualizedSelect
           value={currencyCrypto}
-          className="selector-item virtualized"
+          className="selector-item virtualized-select"
           placeholder="Wybierz kryptowalutę"
           onChange={selectValue => {
             setCurrencyCrypto(selectValue);

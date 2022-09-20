@@ -15,9 +15,13 @@ function createObject(key: string, value: any): any {
 
 const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency): string => {
   const formattedCurrentPrice = currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
-  const withCoin = formattedCurrentPrice + " " + currencyBase;
+  const priceWithCoin = formattedCurrentPrice + " " + currencyBase;
 
-  return createObject("Aktualna cena", withCoin);
+  return createObject("Aktualna cena", priceWithCoin);
 };
 
 export default formatCurrentPrice;
+
+/**
+ * todo bład typu, ta funkcja zwraca obiekt a nie string, sprawdzic dalej dokładnie
+ */
