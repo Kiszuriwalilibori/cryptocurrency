@@ -8,7 +8,7 @@ import FetchListOfAllCryptos from "pages/SelectionPage/fetchListOfAllCryptos";
 import "./_CryptoCurrencySelectForm.scss";
 interface Props {
   setCurrencyCrypto: Function;
-  currencyCrypto: CurrencyCrypto;
+  currencyCrypto: CurrencyCrypto | undefined;
 }
 /**
  * Creates form which alows choise of cryptocurrency
