@@ -17,8 +17,13 @@ const CurrentPriceName = styled.div`
  * @param props object with current cryptocurrency price data
  * @returns component
  */
-const CryptoCurrencyCurrentPrice = (props: { [key: string]: string }) => {
+interface Props {
+  currentPrice: { [key: string]: string };
+}
+
+const CryptoCurrencyCurrentPrice = (props: Props) => {
   const { currentPrice } = props;
+  console.log(currentPrice, "currentProce");
   return (
     <PriceTableCell>
       <CurrentPriceValue>{Object.values(currentPrice)[0]}</CurrentPriceValue>

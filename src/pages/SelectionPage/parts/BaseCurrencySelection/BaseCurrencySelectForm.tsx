@@ -37,7 +37,3 @@ const BaseCurrencySelectForm = (props: BaseCurrencyChoiceType): JSX.Element => {
 };
 
 export default BaseCurrencySelectForm;
-
-/**
- * todo wynika, że rozszerzenie typu tutaj w niczym nie przeszkadza a mozna się pozbyć asercji w wywołaniu pytanie co jest lepsze
- */

@@ -23,7 +23,3 @@ const SelectionSection = () => {
 };
 
 export default withLogo(SelectionSection);
-
-/**
- * todo w przypadku BasecurrencySelctionForm wystarczyło dopuścić null
- */

@@ -1,11 +1,5 @@
 import { BaseCurrency } from "types";
 
-function createObject(key: string, value: any): any {
-  const pair = {} as { [key: string]: any };
-  pair[key] = value;
-  return pair;
-}
-
 /**
  * creates  labelled currency base with currency code
  * @param currentPrice current price of cryptocurrency
@@ -13,15 +7,16 @@ function createObject(key: string, value: any): any {
  * @returns object with key being given string and value being current price with currency symbol
  */
 
-const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency): string => {
+const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency) => {
   const formattedCurrentPrice = currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
   const priceWithCoin = formattedCurrentPrice + " " + currencyBase;
 
-  return createObject("Aktualna cena", priceWithCoin);
+  //return createObject("Aktualna cena", priceWithCoin);
+  return { "Aktualna cena": priceWithCoin };
 };
 
 export default formatCurrentPrice;
 
 /**
- * todo bład typu, ta funkcja zwraca obiekt a nie string, sprawdzic dalej dokładnie
+ * todo MasonicCommemorativeToken rzuca błąd w miejscu aktualnej ceny Okazuje się, że w pewnych sytuacjach przechodzi "Error" zamiast aktualnej ceny
  */

@@ -45,6 +45,7 @@ const ResultsPage = (): JSX.Element => {
         runFetchHistoricalValues(historicalsURLsArray, currencyBase);
       }
       const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
+      console.log(result.data, "result.data");
       return result.data;
     },
     {

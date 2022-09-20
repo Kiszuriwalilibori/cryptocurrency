@@ -35,5 +35,5 @@ export type HistoricalPrices = (number | NotAvailable)[];
 
 export interface ResultsType {
   changes: ChangesArray;
-  currentPrice: string;
+  currentPrice: { [key: string]: string };
 }
