@@ -1,10 +1,11 @@
 import breakWhenInternetExplorer from "./breakWhenInternetExplorer";
 import createChanges from "./createChanges";
 import createOptions from "./createOptions";
-import CreateURL from "./createURL";
+import CreateURL from "./CreateURL";
 import formatCurrentPrice from "./formatCurrentPrice";
 import getPercentileChange from "./getPercentileChange";
-import isToday from "./isToday";
+import hasDateChanged from "./hasDateChanged";
 import timestamps from "./timestamps";
+import createResults from "./createResults";
 
-export { breakWhenInternetExplorer, isToday, createChanges, createOptions, CreateURL, formatCurrentPrice, getPercentileChange, timestamps };
+export { breakWhenInternetExplorer, createResults, hasDateChanged, createChanges, createOptions, CreateURL, formatCurrentPrice, getPercentileChange, timestamps };

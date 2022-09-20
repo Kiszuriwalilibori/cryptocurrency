@@ -42,3 +42,11 @@ class CreateURL {
 }
 
 export default CreateURL;
+
+/**
+ * todo extraParams  chyba nie ma sensu
+ * */
+
+/**
+ * todo opis opcji BTC trzeba wziąć pod uwagę z linku ponizej na samej górze https://min-api.cryptocompare.com/documentation
+ */

@@ -9,7 +9,7 @@ import { ResultsTable, FetchStatusIndicator } from "./parts";
 import { useFetchHistoricalValues } from "hooks";
 import { BlueButton } from "components";
 
-import { CreateURL, createChanges, formatCurrentPrice, isToday } from "functions";
+import { CreateURL, hasDateChanged, createResults } from "functions";
 import { ResultsType, HistoricalPrices } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
@@ -41,7 +41,7 @@ const ResultsPage = (): JSX.Element => {
   const { data: currentCryptoData, error: currentCryptoError } = useQuery(
     "currentCrypto",
     async () => {
-      if (!isToday(ref.current.date)) {
+      if (hasDateChanged(ref.current.date)) {
         const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
         runFetchHistoricalValues(historicalsURLsArray, currencyBase);
       }
@@ -77,19 +77,14 @@ const ResultsPage = (): JSX.Element => {
       }
 
       let cryptoPrice = Object.values(currentCryptoData)[0] as number;
-      console.log(cryptoPrice, "cryptoprice");
       if (cryptoPrice !== ref.current.currentCryptoPrice) {
         ref.current.currentCryptoPrice = cryptoPrice;
+
         enqueueSnackbar(`Zmiana`, {
           variant: "success",
         });
-        const changes = createChanges(cryptoPrice, historicalCryptoPrice);
-        const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
-        const result: ResultsType = {
-          changes: changes,
-          currentPrice: formattedCryptoPrice,
-        };
 
+        const result = createResults({ cryptoPrice, historicalCryptoPrice, currencyBase });
         setResults(result);
       }
     }
@@ -113,3 +108,13 @@ const ResultsPage = (): JSX.Element => {
 };
 
 export default ResultsPage;
+
+/**
+ * todo: będzie sporo roboty nad ogarnieciem tego Stworzyć obok result takze result z Brak Danych i n/a. Musi byyć inicjowany na początku całości.
+ */
+
+/**
+ * todo  const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);  to powinno powędrować do funkcji do któeh idzie
+ *
+ * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego
+ */
