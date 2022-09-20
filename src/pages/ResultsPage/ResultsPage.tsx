@@ -35,6 +35,7 @@ const ResultsPage = (): JSX.Element => {
   const intervalMs = initialIntervalMs;
   const currentURL = CreateURL.current(currencyCrypto.value, currencyBase);
   const [results, setResults] = React.useState<ResultsType | null>(null);
+
   const [historicalCryptoPrice, sethistoricalCryptoPrice] = React.useState<HistoricalPrices | undefined | null>(undefined);
 
   const { data: currentCryptoData, error: currentCryptoError } = useQuery(
@@ -45,7 +46,7 @@ const ResultsPage = (): JSX.Element => {
         runFetchHistoricalValues(historicalsURLsArray, currencyBase);
       }
       const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
-      console.log(result.data, "result.data");
+
       return result.data;
     },
     {
@@ -68,7 +69,15 @@ const ResultsPage = (): JSX.Element => {
 
   React.useEffect(() => {
     if (currentCryptoData && historicalCryptoPrice) {
+      if (currentCryptoData.Response && currentCryptoData.Response === "Error") {
+        enqueueSnackbar(`Błąd danych serwera. Wróć do strony wyboru i spróbuj później. Dokładny opis błędu: ${currentCryptoData.Message}`, {
+          variant: "error",
+        });
+        return;
+      }
+
       let cryptoPrice = Object.values(currentCryptoData)[0] as number;
+      console.log(cryptoPrice, "cryptoprice");
       if (cryptoPrice !== ref.current.currentCryptoPrice) {
         ref.current.currentCryptoPrice = cryptoPrice;
         enqueueSnackbar(`Zmiana`, {
@@ -76,12 +85,11 @@ const ResultsPage = (): JSX.Element => {
         });
         const changes = createChanges(cryptoPrice, historicalCryptoPrice);
         const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
-        console.log(formattedCryptoPrice, "formattedcryptoprice");
         const result: ResultsType = {
           changes: changes,
           currentPrice: formattedCryptoPrice,
         };
-        console.log(result);
+
         setResults(result);
       }
     }

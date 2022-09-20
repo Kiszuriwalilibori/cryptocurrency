@@ -23,7 +23,7 @@ interface Props {
 
 const CryptoCurrencyCurrentPrice = (props: Props) => {
   const { currentPrice } = props;
-  console.log(currentPrice, "currentProce");
+
   return (
     <PriceTableCell>
       <CurrentPriceValue>{Object.values(currentPrice)[0]}</CurrentPriceValue>
