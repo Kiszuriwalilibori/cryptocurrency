@@ -139,6 +139,8 @@ body {
   left: 50%;
   top: 45%;
   margin: 0 1vw;
+  -webkit-animation: fade-in 0.3s ease-in-out forwards;
+          animation: fade-in 0.3s ease-in-out forwards;
   color: #000;
   letter-spacing: -0.05rem;
   text-shadow: -2px -2px 1px #ff6, 2px -2px 1px #ff6, -2px 2px 1px #ff6, 2px 2px 1px #ff6;
@@ -157,5 +159,29 @@ body {
 @media screen and (min-width: 1200px) {
   .search__logo {
     font-size: 36px;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }/*# sourceMappingURL=styles.css.map */

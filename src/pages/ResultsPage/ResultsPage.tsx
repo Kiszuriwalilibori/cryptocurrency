@@ -113,9 +113,6 @@ export default ResultsPage;
  *
  * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego
  *
- * todo obadać favikony bo wygląda że sie podwójnie ładują
- * todo rozważyć użycie fade szerzej dla pierwszego wyświetlenia. Niekoniecznie react fade, po prostu fade
- *
  *
  * todo z cryptoPrice robi się nast rzeczy 19. zakłada refkę o wartości undefined 79 ustala się realną wartość 80 porównuje z refką 81 updatuje refkę
  */

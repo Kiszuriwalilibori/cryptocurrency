@@ -85,7 +85,3 @@ const useFetchHistoricalValues = () => {
 };
 
 export default useFetchHistoricalValues;
-
-/**
- * todo: wszędzie mamy NotAvailable a tu "n/a", do przerobienia na enum
- */

@@ -162,6 +162,7 @@ $max_font: 36px;
   left: 50%;
   top: 45%;
   margin: 0 1vw;
+  animation: fade-in 0.3s ease-in-out forwards;
 
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
   color: #000;
@@ -170,4 +171,16 @@ $max_font: 36px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
