@@ -3,20 +3,26 @@ import styled from "styled-components";
 import parasol from "graphics/parasol.png";
 
 const GeneralInfoTitle = styled.div`
-  
   font-size: 1.25rem;
   white-space: pre-wrap;
   text-align: center;
-  color: rgb(216,53,80);
-  // @media (max-width: 767px) {
-  //     display: block;
-  //     position: absolute;
-  //     top: -10px;
-  // }
-  // @media (min-width: 768px) and (max-width:1200px) {
-  //     line-height: 1;
-  // }
-}
+  color: rgb(216, 53, 80);
+  
+  @media (min-width: 1000px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 180px;
+    white-space: nowrap;
+  }
+    // @media (max-width: 767px) {
+    //     display: block;
+    //     position: absolute;
+    //     top: -10px;
+    // }
+    // @media (min-width: 768px) and (max-width:1200px) {
+    //     line-height: 1;
+    // }
+  }
 `;
 const GeneralInfoWrapper = styled.div`
   position: relative;

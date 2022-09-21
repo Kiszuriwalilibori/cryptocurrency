@@ -13,7 +13,7 @@ class CreateURL {
   private static timestamps = timestamps;
 
   private static historicalURL(coin: string, reference: string, timestamp: Timestamps) {
-    return process.env.REACT_APP_HISTORICAL_URL + coin + "&tsym=" + reference + "&toTs=" + timestamp + "&avgType=MidHighLow&tryConversion=true&extraParams=your_app_name";
+    return process.env.REACT_APP_HISTORICAL_URL + coin + "&tsym=" + reference + "&toTs=" + timestamp + "&avgType=MidHighLow&tryConversion=true&extraParams=Pogodynka";
   }
   /**
    * creates URL which enables fetching current cryptocurrency price
@@ -42,10 +42,6 @@ class CreateURL {
 }
 
 export default CreateURL;
-
-/**
- * todo extraParams  chyba nie ma sensu
- * */
 
 /**
  * todo opis opcji BTC trzeba wziąć pod uwagę z linku ponizej na samej górze https://min-api.cryptocompare.com/documentation

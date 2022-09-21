@@ -16,7 +16,3 @@ const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency) =>
 };
 
 export default formatCurrentPrice;
-
-/**
- * todo MasonicCommemorativeToken rzuca błąd w miejscu aktualnej ceny Okazuje się, że w pewnych sytuacjach przechodzi "Error" zamiast aktualnej ceny
- */
