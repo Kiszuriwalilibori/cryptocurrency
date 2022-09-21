@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useSnackbar } from "notistack";
 
-import { BaseCurrency, HistoricalPrices } from "types";
+import { BaseCurrency, HistoricalPrices, NotAvailable } from "types";
 
 const useFetchHistoricalValues = () => {
   const [data, setData] = useState<HistoricalPrices | null>(null);
@@ -45,7 +45,7 @@ const useFetchHistoricalValues = () => {
             if (weatherData.data.hasOwnProperty(baseCurrency)) {
               historicalPrices.push(weatherData.data[baseCurrency]);
             } else {
-              historicalPrices.push("n/a");
+              historicalPrices.push(NotAvailable.na);
             }
 
             if (reducedEndpoints.length) {
