@@ -72,10 +72,16 @@ const ResultsPage = (): JSX.Element => {
       let cryptoPrice = Object.values(currentCryptoData)[0] as number | string;
       if (cryptoPrice !== ref.current.currentCryptoPrice) {
         ref.current.currentCryptoPrice = cryptoPrice;
-
-        enqueueSnackbar(`Zmiana`, {
-          variant: "success",
-        });
+        if (typeof cryptoPrice === "number") {
+          enqueueSnackbar(`Zmiana`, {
+            variant: "success",
+          });
+        }
+        if (typeof cryptoPrice === "string") {
+          enqueueSnackbar(`Na serwerze nie ma danych o bieżącym kursie kryptowaluty`, {
+            variant: "info",
+          });
+        }
 
         const result = createResults({ cryptoPrice, historicalCryptoPrice, currencyBase });
         setResults(result);
