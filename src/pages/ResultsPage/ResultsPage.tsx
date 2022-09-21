@@ -16,7 +16,7 @@ import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 interface refType {
   date: Date;
-  currentCryptoPrice: number | undefined;
+  currentCryptoPrice: number | string | undefined;
 }
 
 /**
@@ -69,14 +69,7 @@ const ResultsPage = (): JSX.Element => {
 
   React.useEffect(() => {
     if (currentCryptoData && historicalCryptoPrice) {
-      if (currentCryptoData.Response && currentCryptoData.Response === "Error") {
-        enqueueSnackbar(`Błąd danych serwera. Wróć do strony wyboru i spróbuj później. Dokładny opis błędu: ${currentCryptoData.Message}`, {
-          variant: "error",
-        });
-        return;
-      }
-
-      let cryptoPrice = Object.values(currentCryptoData)[0] as number;
+      let cryptoPrice = Object.values(currentCryptoData)[0] as number | string;
       if (cryptoPrice !== ref.current.currentCryptoPrice) {
         ref.current.currentCryptoPrice = cryptoPrice;
 
@@ -108,10 +101,6 @@ const ResultsPage = (): JSX.Element => {
 };
 
 export default ResultsPage;
-
-/**
- * todo: będzie sporo roboty nad ogarnieciem tego Stworzyć obok result takze result z Brak Danych i n/a. Musi byyć inicjowany na początku całości.
- */
 
 /**
  * todo  const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);  to powinno powędrować do funkcji do któeh idzie

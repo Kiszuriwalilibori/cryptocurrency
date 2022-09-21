@@ -1,10 +1,10 @@
-import { BaseCurrency, HistoricalPrices, ResultsType } from "types";
+import { BaseCurrency, HistoricalPrices } from "types";
 
 import createChanges from "./createChanges";
 import formatCurrentPrice from "./formatCurrentPrice";
 
 interface Args {
-  cryptoPrice: number;
+  cryptoPrice: number | string;
   historicalCryptoPrice: HistoricalPrices;
   currencyBase: BaseCurrency;
 }
@@ -13,14 +13,12 @@ const createResults = (args: Args) => {
   const { cryptoPrice, historicalCryptoPrice, currencyBase } = args;
 
   const changes = createChanges(cryptoPrice, historicalCryptoPrice);
-  const formattedCryptoPrice = formatCurrentPrice(cryptoPrice, currencyBase);
+  const formattedCryptoPrice = typeof cryptoPrice === "number" ? formatCurrentPrice(cryptoPrice, currencyBase) : { "Aktualna cena": "Brak danych" };
 
-  const result: ResultsType = {
+  return {
     changes: changes,
     currentPrice: formattedCryptoPrice,
   };
-
-  return result;
 };
 
 export default createResults;
