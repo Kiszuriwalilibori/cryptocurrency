@@ -25,7 +25,6 @@ export interface Timestamps {
 export enum NotAvailable {
   na = "n/a",
 }
-//export type NotAvailable = "n/a"; /// bedzie do wywalenia
 
 export type BaseCurrency = "PLN" | "USD" | "EUR" | "";
 
