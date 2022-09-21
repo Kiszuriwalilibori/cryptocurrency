@@ -119,3 +119,5 @@ zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz
 
 012 na dobrą sprawę Selcetionof currency and crypto zawiera logikę pobierania listy, to trochę nie teges, czy
 tego gdzieś nie wyeksportować? Komponent zwracający zawsze null?
+
+npm-check-unused to komenda do zależności

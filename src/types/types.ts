@@ -1,5 +1,3 @@
-import { string } from "prop-types";
-
 export interface CurrencyCrypto {
   value: string;
   label: string;

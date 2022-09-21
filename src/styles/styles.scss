@@ -11,6 +11,9 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100vw;
+  overflow-y: scroll;
+
   @media (max-width: 640px) {
     background: url("../graphics/background_640.jpg") no-repeat center center fixed;
     background-size: cover;
