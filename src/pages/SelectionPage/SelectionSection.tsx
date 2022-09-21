@@ -23,3 +23,8 @@ const SelectionSection = () => {
 };
 
 export default withLogo(SelectionSection);
+
+/**
+ * todo cryptodescription na pewno moze być z lazy
+ * todo żeby skrócić czas do fully interactive pewnie wczytywanie coinflist musiałoby być dopiero wpo wyborze z pierwszego
+ *   */
