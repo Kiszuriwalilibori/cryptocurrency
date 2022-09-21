@@ -1,3 +1,5 @@
+import { string } from "prop-types";
+
 export interface CurrencyCrypto {
   value: string;
   label: string;
@@ -38,3 +40,5 @@ export interface ResultsType {
   changes: ChangesArray;
   currentPrice: { [key: string]: string };
 }
+
+export type CryptoPrice = number | string;

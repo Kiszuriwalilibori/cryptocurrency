@@ -8,15 +8,15 @@ import { useSnackbar } from "notistack";
 import { ResultsTable, FetchStatusIndicator } from "./parts";
 import { useFetchHistoricalValues } from "hooks";
 import { BlueButton } from "components";
-
 import { CreateURL, hasDateChanged, createResults } from "functions";
 import { ResultsType, HistoricalPrices } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
+import { CryptoPrice } from "types";
 
 interface refType {
   date: Date;
-  currentCryptoPrice: number | string | undefined;
+  currentCryptoPrice: CryptoPrice | undefined;
 }
 
 /**
@@ -69,7 +69,7 @@ const ResultsPage = (): JSX.Element => {
 
   React.useEffect(() => {
     if (currentCryptoData && historicalCryptoPrice) {
-      let cryptoPrice = Object.values(currentCryptoData)[0] as number | string;
+      let cryptoPrice = Object.values(currentCryptoData)[0] as CryptoPrice;
       if (cryptoPrice !== ref.current.currentCryptoPrice) {
         ref.current.currentCryptoPrice = cryptoPrice;
         if (typeof cryptoPrice === "number") {
@@ -115,6 +115,7 @@ export default ResultsPage;
  *
  * todo obadać favikony bo wygląda że sie podwójnie ładują
  * todo rozważyć użycie fade szerzej dla pierwszego wyświetlenia. Niekoniecznie react fade, po prostu fade
+ *
  *
  * todo z cryptoPrice robi się nast rzeczy 19. zakłada refkę o wartości undefined 79 ustala się realną wartość 80 porównuje z refką 81 updatuje refkę
  */

@@ -1,10 +1,10 @@
-import { BaseCurrency, HistoricalPrices } from "types";
+import { BaseCurrency, HistoricalPrices, CryptoPrice } from "types";
 
 import createChanges from "./createChanges";
 import formatCurrentPrice from "./formatCurrentPrice";
 
 interface Args {
-  cryptoPrice: number | string;
+  cryptoPrice: CryptoPrice;
   historicalCryptoPrice: HistoricalPrices;
   currencyBase: BaseCurrency;
 }
