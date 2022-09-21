@@ -88,6 +88,10 @@ CryptoCurrency Tracker
 
 - besides many changes of rather formal type (var's names) cryptocurrencyform is visible from the very beginning but is not active
 
+### 2.1.1
+
+- besides many invisible or formal changes, the bug which caused long cryptocurrency names to overfill its container is fixed. Also, the event when crypto has no price is better handled
+
 ## TODO
 
 001 implementation for INWESTUJ
