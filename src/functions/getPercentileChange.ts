@@ -1,4 +1,4 @@
-import { NotAvailable, NotAv } from "types";
+import { NotAvailable } from "types";
 
 /**
  * calculate percentchange of two numbers (or strings, see return)
@@ -6,7 +6,7 @@ import { NotAvailable, NotAv } from "types";
  * @param historicalPrice
  * @returns string being representation of changes with plus/minus and percents mark. In case of being called with string return is 'n/a'string
  */
-function getPercentileChange(currentPrice: number, historicalPrice: number | NotAv): string | NotAv {
+function getPercentileChange(currentPrice: number, historicalPrice: number | NotAvailable): string | NotAvailable {
   if (typeof historicalPrice === "string") return historicalPrice;
 
   const change = (100 * (currentPrice - historicalPrice)) / historicalPrice;
