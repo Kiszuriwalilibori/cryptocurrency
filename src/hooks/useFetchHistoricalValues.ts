@@ -3,7 +3,8 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useSnackbar } from "notistack";
 
-import { BaseCurrency, HistoricalPrices, NotAvailable } from "types";
+import { BaseCurrency, CurrencyCrypto, HistoricalPrices, NotAvailable } from "types";
+import { CreateURL } from "functions";
 
 const useFetchHistoricalValues = () => {
   const [data, setData] = useState<HistoricalPrices | null>(null);
@@ -79,9 +80,13 @@ const useFetchHistoricalValues = () => {
       });
     }
   };
-  const runFetchHistoricalValues = (endpoints: string[], baseCurrency: BaseCurrency) => fetchData(endpoints, baseCurrency);
+  const fetchHistoricalValues = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
+    fetchData(CreateURL.historical(currencyCrypto, baseCurrency), baseCurrency);
+  };
 
-  return { data, error, loading, runFetchHistoricalValues };
+  return { data, error, loading, fetchHistoricalValues };
 };
 
 export default useFetchHistoricalValues;
+
+//const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
