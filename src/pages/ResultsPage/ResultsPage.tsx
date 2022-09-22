@@ -62,8 +62,7 @@ const ResultsPage = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    //const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
+  React.useEffect(() => {
     fetchHistoricalValues(currencyCrypto, currencyBase);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -114,7 +113,6 @@ const ResultsPage = (): JSX.Element => {
 export default ResultsPage;
 
 /**
- *
  *
  * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego
  *
