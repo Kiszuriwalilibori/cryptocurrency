@@ -1,11 +1,11 @@
-import React, { useEffect, useCallback } from "react";
+import * as React from "react";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useSnackbar } from "notistack";
 
-import { ResultsTable, FetchStatusIndicator } from "./parts";
+import { /*ResultsTable,*/ FetchStatusIndicator } from "./parts";
 import { useFetchHistoricalValues } from "hooks";
 import { BlueButton } from "components";
 import { CreateURL, hasDateChanged, createResults } from "functions";
@@ -13,6 +13,8 @@ import { ResultsType, HistoricalPrices } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 import { CryptoPrice } from "types";
+
+const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
 
 interface refType {
   date: Date;
@@ -56,12 +58,12 @@ const ResultsPage = (): JSX.Element => {
 
   const { data: historicalData, runFetchHistoricalValues } = useFetchHistoricalValues();
 
-  const returnToSelectionPage = useCallback(() => {
+  const returnToSelectionPage = React.useCallback(() => {
     history.push("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
     runFetchHistoricalValues(historicalsURLsArray, currencyBase);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,7 +103,11 @@ const ResultsPage = (): JSX.Element => {
     <>
       {(currentCryptoError || !results) && <FetchStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={currentCryptoError} />}
       <BlueButton label="Powrót do wyboru" clickHandler={returnToSelectionPage} />
-      {results && currencyCrypto !== initialCurrency.currencyCrypto && <ResultsTable currencyCrypto={currencyCrypto} results={results} />}
+      {results && currencyCrypto !== initialCurrency.currencyCrypto && (
+        <React.Suspense fallback={null}>
+          <ResultsTable currencyCrypto={currencyCrypto} results={results} />
+        </React.Suspense>
+      )}
     </>
   );
 };
@@ -113,6 +119,6 @@ export default ResultsPage;
  *
  * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego
  *
- *
+ * todo dobrzez przebadać fetch-histor brancha
  * todo z cryptoPrice robi się nast rzeczy 19. zakłada refkę o wartości undefined 79 ustala się realną wartość 80 porównuje z refką 81 updatuje refkę
  */
