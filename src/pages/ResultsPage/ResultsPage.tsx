@@ -9,10 +9,9 @@ import { /*ResultsTable,*/ FetchStatusIndicator } from "./parts";
 import { useFetchHistoricalValues } from "hooks";
 import { BlueButton } from "components";
 import { CreateURL, hasDateChanged, createResults } from "functions";
-import { ResultsType, HistoricalPrices } from "types";
+import { ResultsType, HistoricalPrices, CryptoPrice } from "types";
 import { initialCurrency, initialIntervalMs } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
-import { CryptoPrice } from "types";
 
 const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
 
@@ -44,8 +43,8 @@ const ResultsPage = (): JSX.Element => {
     "currentCrypto",
     async () => {
       if (hasDateChanged(ref.current.date)) {
-        const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
-        runFetchHistoricalValues(historicalsURLsArray, currencyBase);
+        //const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
+        fetchHistoricalValues(currencyCrypto, currencyBase);
       }
       const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
 
@@ -56,16 +55,16 @@ const ResultsPage = (): JSX.Element => {
     }
   );
 
-  const { data: historicalData, runFetchHistoricalValues } = useFetchHistoricalValues();
+  const { data: historicalData, fetchHistoricalValues } = useFetchHistoricalValues();
 
   const returnToSelectionPage = React.useCallback(() => {
     history.push("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => {
-    const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
-    runFetchHistoricalValues(historicalsURLsArray, currencyBase);
+  useEffect(() => {
+    //const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
+    fetchHistoricalValues(currencyCrypto, currencyBase);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -115,7 +114,7 @@ const ResultsPage = (): JSX.Element => {
 export default ResultsPage;
 
 /**
- * todo  const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);  to powinno powędrować do funkcji do któeh idzie
+ *
  *
  * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego
  *
