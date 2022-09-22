@@ -6,10 +6,10 @@ import { PriceTableCell } from "./PriceTableCell";
 
 import Tooltip from "./Tooltip";
 
-import oko from "graphics/oko.png";
-import waga from "graphics/waga.png";
-import waga_hover from "graphics/wagahover.png";
-import oko_hover from "graphics/okohover.png";
+import oko from "graphics/oko.webp";
+import waga from "graphics/waga.webp";
+import waga_hover from "graphics/wagahover.webp";
+import oko_hover from "graphics/okohover.webp";
 
 const InvestWrapper = styled.div`
   width: 109px;

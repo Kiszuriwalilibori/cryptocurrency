@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import parasol from "graphics/parasol.png";
+import parasol from "graphics/parasol.webp";
 
 const GeneralInfoTitle = styled.div`
   font-size: 1.25rem;
