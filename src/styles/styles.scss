@@ -1,5 +1,7 @@
+@use "sass:math";
+
 body {
-  //overflow-y: scroll;
+  overflow-y: scroll; //
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -11,7 +13,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow-y: auto;
+  //overflow-y: auto;
 
   @media (max-width: 640px) {
     background: url("../graphics/background_640.jpg") no-repeat center center fixed;
@@ -132,7 +134,8 @@ body {
 }
 
 @function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
+  //@return $value / ($value * 0 + 1);
+  @return math.div($value, $value * 0 + 1);
 }
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
   $u1: unit($min-vw);
