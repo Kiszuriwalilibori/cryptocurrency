@@ -114,8 +114,7 @@ export default ResultsPage;
 
 /**
  * todo wydzielić media query do osobnego pliku i wczytywać ten plik warunkowo. Ale, co sie stanie kiedy zrobimy resize?
- * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego
+ * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego, albo hooka na prznajmniej cryptoprice
  * todo doczytać o concurrent axios
- * todo dobrzez przebadać fetch-histor brancha
  * todo z cryptoPrice robi się nast rzeczy 19. zakłada refkę o wartości undefined 79 ustala się realną wartość 80 porównuje z refką 81 updatuje refkę
  */

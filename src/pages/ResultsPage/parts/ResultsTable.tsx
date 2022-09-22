@@ -11,7 +11,7 @@ import InvestButton from "./InvestButton";
 import Logo from "./Logo";
 import { CurrencyCrypto, ResultsType } from "types";
 
-interface propTypes {
+interface Props {
   currencyCrypto: CurrencyCrypto;
   results: ResultsType;
 }
@@ -20,7 +20,7 @@ interface propTypes {
  * @param props
  * @returns
  */
-const ResultsTable = (props: propTypes) => {
+const ResultsTable = (props: Props) => {
   const { currencyCrypto, results } = props;
 
   return (
