@@ -5,6 +5,7 @@
   color: white;
   padding: 20px;
   min-height: 115px;
+  width: 300px;
   font-size: 1rem;
   border: 2px solid #1e1f26;
   border-radius: 2px;
@@ -32,12 +33,29 @@
     padding: 0 2px;
     box-shadow: inset 0px 0px 2px 1px rgba(255, 255, 255, 0.54);
   }
-  & .Select-menu-outer span:hover {
-    background-color: white;
+
+  & .Select-multi-value-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
+  // & .selector-item__coin {
+  //   color: #1a86db;
+  //   width: 300px;
+  //   margin-bottom: 8px;
+  //   background-color: white;
+  //   border-radius: 2px;
+  //   border: 2px solid #1a86db;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-around;
+  //   padding: 7px 2px;
+  // }
 }
 
-.inactivatedCryptoCurrencySelectForm {
+.inactivatedSelect {
   opacity: 0.7;
   pointer-events: none;
 }
