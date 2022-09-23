@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcryptocurrency_tracker=self.webpackChunkcryptocurrency_tracker||[]).push([[200],{200:function(r,c,e){e.r(c);var a=e(5025),n=e(3461),t=e(184);c.default=function(r){var c=r.result,e=r.error,u=r.crypto,o=(0,a.Ds)().enqueueSnackbar;return e&&o("Podczas pobierania danych bie\u017c\u0105cych dla ".concat(u," wyst\u0105pi\u0142 b\u0142\u0105d "),{variant:"error"}),c?null:(0,t.jsx)(n.aN,{})}}}]);
+//# sourceMappingURL=200.7b19cf55.chunk.js.map
