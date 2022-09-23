@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { useSnackbar } from "notistack";
 
 import { Loader } from "components";

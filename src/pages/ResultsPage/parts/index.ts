@@ -1,14 +1,14 @@
 import { Tooltip } from "@material-ui/core";
+
 import FetchStatusIndicator from "./FetchStatusIndicator";
-import CryptoCurrencyPricesContainer from "./CryptoCurencyPricesContainer";
 import CryptoCurrencyContainer from "./CryptoCurrencyContainer";
-import CryptoCurrencyCurrentPrice from "./CryptoCurrencyCurrentPrice";
-import GeneralInfo from "./GeneralInfo";
+import CryptoCurrencyCurrentPrice from "./CurrentPrice";
+import GeneralInfo from "./GeneralInformation";
 import InvestButton from "./InvestButton";
 import Logo from "./Logo";
-import { PriceTableCell } from "./PriceTableCell";
 import ResultsTable from "./ResultsTable";
-//import ReturnToSelectionButton from "./ReturnToSelectionButton";
-import TableOfChanges from "./TableOfChanges";
+import TableOfChanges from "./Changes";
 
-export { CryptoCurrencyPricesContainer, CryptoCurrencyContainer, CryptoCurrencyCurrentPrice, FetchStatusIndicator, GeneralInfo, InvestButton, Logo, PriceTableCell, ResultsTable, TableOfChanges, Tooltip };
+//import { PriceTableCell } from "./PriceTableCell";
+
+export { CryptoCurrencyContainer, CryptoCurrencyCurrentPrice, FetchStatusIndicator, GeneralInfo, InvestButton, Logo, /* PriceTableCell,*/ ResultsTable, TableOfChanges, Tooltip };

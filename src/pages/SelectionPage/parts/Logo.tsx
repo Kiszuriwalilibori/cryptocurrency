@@ -1,6 +1,6 @@
-import * as React from "react";
+import { memo } from "react";
 
-const Logo = React.memo(() => (
+const Logo = memo(() => (
   <header className="search__logo">
     <h1>CryptoCurrency Tracker</h1>
   </header>

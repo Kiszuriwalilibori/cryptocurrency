@@ -1,4 +1,3 @@
-import * as React from "react";
 import Logo from "pages/SelectionPage/parts/Logo";
 
 function withLogo<T>(Component: React.ComponentType<T>) {

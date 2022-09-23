@@ -1,4 +1,5 @@
-import * as React from "react";
+import { memo } from "react";
+
 import Box from "@material-ui/core/Box";
 import Progress from "@material-ui/core/CircularProgress";
 
@@ -31,7 +32,7 @@ export const CircularProgress = withStyles({
  * creates memoised spinner that indicates loading state
  * @returns spinner component
  */
-const Loader = React.memo(() => {
+const Loader = memo(() => {
   return (
     <ContainerVerticallyCentered>
       <CircularProgress thickness={5} size={100} />

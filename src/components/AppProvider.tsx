@@ -1,4 +1,3 @@
-import React from "react";
 import { SnackbarProvider } from "notistack";
 import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
 import { HashRouter as Router } from "react-router-dom";

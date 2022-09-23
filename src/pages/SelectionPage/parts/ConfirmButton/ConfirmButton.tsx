@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { BaseCurrency, CurrencyCrypto } from "types";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
@@ -16,11 +16,11 @@ interface Props {
 const ConfirmButton = (props: Props): JSX.Element => {
   const { currencyBase, currencyCrypto } = props;
   const history = useHistory();
-  const { setCurrencyBase, setCurrencyCrypto } = React.useContext(SelectedCurrenciesContext);
+  const { setCurrencyBase, setCurrencyCrypto } = useContext(SelectedCurrenciesContext);
   const isEnabled = currencyBase && currencyCrypto ? true : false;
   const pathToResults = isEnabled ? `/${currencyCrypto.label} / ${currencyBase}` : undefined;
 
-  const confirmChoice = React.useCallback(() => {
+  const confirmChoice = useCallback(() => {
     setCurrencyBase(currencyBase);
     setCurrencyCrypto(currencyCrypto);
     if (pathToResults) history.push(pathToResults);

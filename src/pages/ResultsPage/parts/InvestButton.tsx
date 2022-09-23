@@ -1,8 +1,8 @@
-import React from "react";
+import { memo } from "react";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 
-import { PriceTableCell } from "./PriceTableCell";
+//import { PriceTableCell } from "./PriceTableCell";
 
 import Tooltip from "./Tooltip";
 
@@ -66,7 +66,7 @@ const InvestWrapper = styled.div`
  */
 const InvestButton = () => {
   return (
-    <PriceTableCell>
+    <div className="cell">
       <InvestWrapper>
         <Tooltip title="Ta funkcjonalność nie jest jeszcze zaimplementowana" placement="top-start">
           <Button variant="contained" color="secondary" size="small">
@@ -74,8 +74,8 @@ const InvestButton = () => {
           </Button>
         </Tooltip>
       </InvestWrapper>
-    </PriceTableCell>
+    </div>
   );
 };
 
-export default React.memo(InvestButton);
+export default memo(InvestButton);

@@ -1,7 +1,7 @@
 @use "sass:math";
 
 body {
-  overflow-y: scroll; //
+  //overflow-y: scroll; //
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +13,13 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  //overflow-y: auto;
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
   @media (max-width: 640px) {
     background: url("../graphics/background_640.webp") no-repeat center center fixed;

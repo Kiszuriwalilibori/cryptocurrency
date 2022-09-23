@@ -1,4 +1,5 @@
-import * as React from "react";
+import { lazy, useState, Suspense } from "react";
+
 import { BaseCurrency, CurrencyCrypto } from "types";
 import BaseCurrencySelectForm from "./parts/BaseCurrencySelection";
 import CryptoCurrencySelectForm from "./parts/CryptoCurrencySelection";
@@ -6,11 +7,12 @@ import CurrenciesSelectionConfirmButton from "./parts/ConfirmButton";
 import withLogo from "HOCs/withLogo";
 
 import "./_SelectionSection.scss";
-const Description = React.lazy(() => import("./parts/CryptoCurrencySelection/CryptoCurrencyDescription"));
+
+const Description = lazy(() => import("./parts/CryptoCurrencySelection/CryptoCurrencyDescription"));
 
 const SelectionSection = () => {
-  let [currencyBase, setCurrencyBase] = React.useState<BaseCurrency | null>(null);
-  let [currencyCrypto, setCurrencyCrypto] = React.useState<CurrencyCrypto | undefined>(undefined);
+  let [currencyBase, setCurrencyBase] = useState<BaseCurrency | null>(null);
+  let [currencyCrypto, setCurrencyCrypto] = useState<CurrencyCrypto | undefined>(undefined);
 
   return (
     <section className="SelectionSection">
@@ -18,9 +20,9 @@ const SelectionSection = () => {
       <BaseCurrencySelectForm currencyBase={currencyBase} setCurrencyBase={setCurrencyBase} />
       <CryptoCurrencySelectForm currencyCrypto={currencyCrypto} setCurrencyCrypto={setCurrencyCrypto} />
       {currencyCrypto?.description && (
-        <React.Suspense fallback={null}>
+        <Suspense fallback={null}>
           <Description description={currencyCrypto.description} />
-        </React.Suspense>
+        </Suspense>
       )}
     </section>
   );

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useLazyAxios } from "use-axios-client";
 import { useSnackbar } from "notistack";
 import { shallowEqual, useDispatch } from "react-redux";
@@ -6,9 +5,10 @@ import { ApiResponse } from "types";
 import { useTypedSelector } from "hooks";
 import { createOptions } from "functions";
 import { CircularProgress } from "components/Loader";
+import { useRef, useEffect } from "react";
 
 const FetchListOfAllCryptos = ({ children }: any) => {
-  const ref = React.useRef({
+  const ref = useRef({
     fetchingListActive: false,
     listReceived: false,
   });
@@ -19,7 +19,7 @@ const FetchListOfAllCryptos = ({ children }: any) => {
   const [getListOfAllAvailableCryptos, { data: dataFromCryptosAPI, error: listError, loading }] = useLazyAxios({
     url: process.env.REACT_APP_ALL_CRYPTOS_URL,
   });
-  React.useEffect(() => {
+  useEffect(() => {
     listError &&
       enqueueSnackbar(`Błąd pobierania listy kryptowalut`, {
         variant: "error",
@@ -27,7 +27,7 @@ const FetchListOfAllCryptos = ({ children }: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listError]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (dataFromCryptosAPI && !ref.current.listReceived) {
       const options = createOptions(dataFromCryptosAPI as ApiResponse);
       dispatch({ type: "LIST_OF_ALL_CRYPTOS_SET", payload: options });

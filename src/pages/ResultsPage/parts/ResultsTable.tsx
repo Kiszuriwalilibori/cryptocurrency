@@ -1,15 +1,15 @@
-import * as React from "react";
-
 import { Grow } from "@material-ui/core";
 
-import TableOfChanges from "./TableOfChanges";
-import CryptoCurrencyPricesContainer from "./CryptoCurencyPricesContainer";
+import Changes from "./Changes";
 import CryptoCurrencyContainer from "./CryptoCurrencyContainer";
-import CryptoCurrencyCurrentPrice from "./CryptoCurrencyCurrentPrice";
-import GeneralInfo from "./GeneralInfo";
+import CurrentPrice from "./CurrentPrice";
+import GeneralInformation from "./GeneralInformation";
 import InvestButton from "./InvestButton";
 import Logo from "./Logo";
+
 import { CurrencyCrypto, ResultsType } from "types";
+
+import "./_Results.scss";
 
 interface Props {
   currencyCrypto: CurrencyCrypto;
@@ -27,13 +27,13 @@ const ResultsTable = (props: Props) => {
     <CryptoCurrencyContainer>
       <Grow in={true} timeout={1000}>
         <div className="DataContainer">
-          <GeneralInfo name={currencyCrypto.label} />
+          <GeneralInformation name={currencyCrypto.label} />
           {currencyCrypto.image && <Logo URL={currencyCrypto.image} />}
-          <CryptoCurrencyPricesContainer>
-            {results!.currentPrice && <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />}
-            {results!.changes && <TableOfChanges changesArray={results!.changes} />}
+          <div className="PricesWithButtons">
+            {results!.currentPrice && <CurrentPrice currentPrice={results!.currentPrice} />}
+            {results!.changes && <Changes changesArray={results!.changes} />}
             <InvestButton />
-          </CryptoCurrencyPricesContainer>
+          </div>
         </div>
       </Grow>
     </CryptoCurrencyContainer>
@@ -41,3 +41,7 @@ const ResultsTable = (props: Props) => {
 };
 
 export default ResultsTable;
+
+/**
+ * todo .DataConteiner jest w ogólnym, wycignąć
+ */
