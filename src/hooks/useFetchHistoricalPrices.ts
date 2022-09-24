@@ -6,7 +6,7 @@ import { useSnackbar } from "notistack";
 import { BaseCurrency, CurrencyCrypto, HistoricalPrices, NotAvailable } from "types";
 import { CreateURL } from "functions";
 
-const useFetchHistoricalValues = () => {
+const useFetchHistoricalPrices = () => {
   const [data, setData] = useState<HistoricalPrices | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -41,12 +41,12 @@ const useFetchHistoricalValues = () => {
         .get(URL as string, { Apikey: process.env.REACT_APP_API_KEY as string })
         .then(data => {
           const weatherData = { ...data };
-
+          console.log(weatherData, "wd");
           if (data.hasOwnProperty("data")) {
             if (weatherData.data.hasOwnProperty(baseCurrency)) {
               historicalPrices.push(weatherData.data[baseCurrency]);
             } else {
-              historicalPrices.push(NotAvailable.na);
+              historicalPrices.push(NotAvailable.na); // todo coś za czesto wychodzi n/a sprawdzić
             }
 
             if (reducedEndpoints.length) {
@@ -80,13 +80,15 @@ const useFetchHistoricalValues = () => {
       });
     }
   };
-  const fetchHistoricalValues = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
+  const fetchHistoricalPrices = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
     fetchData(CreateURL.historical(currencyCrypto, baseCurrency), baseCurrency);
   };
 
-  return { data, error, loading, fetchHistoricalValues };
+  return { data, error, loading, fetchHistoricalPrices };
 };
 
-export default useFetchHistoricalValues;
+export default useFetchHistoricalPrices;
 
-//const historicalsURLsArray = CreateURL.historical(currencyCrypto, currencyBase);
+/**
+ * todo weather co tu robi?
+ */

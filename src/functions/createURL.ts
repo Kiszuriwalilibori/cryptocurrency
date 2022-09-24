@@ -13,7 +13,7 @@ class CreateURL {
   private static timestamps = timestamps;
 
   private static historicalURL(coin: string, reference: string, timestamp: Timestamps) {
-    return process.env.REACT_APP_HISTORICAL_URL + coin + "&tsym=" + reference + "&toTs=" + timestamp + "&avgType=MidHighLow&tryConversion=true&extraParams=Pogodynka";
+    return process.env.REACT_APP_HISTORICAL_URL + coin + "&tsym=" + reference + "&e=CCCAGG" + "&toTs=" + timestamp + "&avgType=MidHighLow&tryConversion=true&extraParams=Pogodynka";
   }
   /**
    * creates URL which enables fetching current cryptocurrency price

@@ -79,3 +79,7 @@ const InvestButton = () => {
 };
 
 export default memo(InvestButton);
+
+/**
+ * todo zamienić na css
+ */

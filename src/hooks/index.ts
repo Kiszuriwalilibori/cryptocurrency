@@ -1,5 +1,5 @@
-import useFetchHistoricalValues from "./useFetchHistoricalValues";
+import useFetchHistoricalPrices from "./useFetchHistoricalPrices";
 import useGetListOfCryptos from "./useGetListOfCryptos";
 import { useTypedSelector } from "./useTypedSelector";
 
-export { useFetchHistoricalValues, useGetListOfCryptos, useTypedSelector };
+export { useFetchHistoricalPrices, useGetListOfCryptos, useTypedSelector };
