@@ -14,19 +14,11 @@ import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
 const FetchStatusIndicator = React.lazy(() => import("./parts/FetchStatusIndicator"));
 
-interface refType {
-  date: Date;
-}
-
 /**
  * Presents cryptocurrency price current and historical
  * @returns component
  */
 const ResultsPage = (): JSX.Element => {
-  const ref = React.useRef<refType>({
-    date: new Date(),
-  });
-
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
   const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext); // tu przemianować na selectedBaseCurrency i selectedCryptoCurrency
@@ -38,7 +30,7 @@ const ResultsPage = (): JSX.Element => {
   const { data: fetchedCryptocurrencyPrice, error } = useQuery(
     "currentCrypto",
     async () => {
-      if (hasDateChanged(ref.current.date)) {
+      if (hasDateChanged(intervalMs)) {
         fetchHistoricalPrices(currencyCrypto, currencyBase);
       }
       const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
