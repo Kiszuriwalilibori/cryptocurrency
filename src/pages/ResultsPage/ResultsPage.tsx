@@ -32,7 +32,6 @@ const ResultsPage = (): JSX.Element => {
     async () => {
       if (hasDateChanged(intervalMs)) {
         fetchHistoricalPrices(currencyCrypto, currencyBase);
-        console.log("date has changed");
       }
       const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
 

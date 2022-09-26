@@ -41,7 +41,6 @@ const useFetchHistoricalPrices = () => {
         .get(URL as string, { Apikey: process.env.REACT_APP_API_KEY as string })
         .then(data => {
           const weatherData = { ...data };
-          console.log(weatherData, "wd");
           if (data.hasOwnProperty("data")) {
             if (weatherData.data.hasOwnProperty(baseCurrency)) {
               historicalPrices.push(weatherData.data[baseCurrency]);
