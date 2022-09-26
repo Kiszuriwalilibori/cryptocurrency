@@ -102,6 +102,5 @@ export default ResultsPage;
 /**
  * todo wydzielić media query do osobnego pliku i wczytywać ten plik warunkowo. Ale, co sie stanie kiedy zrobimy resize?
  * todo doczytać o concurrent axios
- * todo prawdopodobnie niepotrzebna animka na bluebutton, z szarego na chwilę znika.
  *
  */

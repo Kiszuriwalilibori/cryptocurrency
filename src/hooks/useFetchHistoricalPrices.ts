@@ -40,10 +40,9 @@ const useFetchHistoricalPrices = () => {
       axios
         .get(URL as string, { Apikey: process.env.REACT_APP_API_KEY as string })
         .then(data => {
-          const weatherData = { ...data };
           if (data.hasOwnProperty("data")) {
-            if (weatherData.data.hasOwnProperty(baseCurrency)) {
-              historicalPrices.push(weatherData.data[baseCurrency]);
+            if (data.data.hasOwnProperty(baseCurrency)) {
+              historicalPrices.push(data.data[baseCurrency]);
             } else {
               historicalPrices.push(NotAvailable.na); // todo coś za czesto wychodzi n/a sprawdzić
             }
@@ -87,7 +86,3 @@ const useFetchHistoricalPrices = () => {
 };
 
 export default useFetchHistoricalPrices;
-
-/**
- * todo weather co tu robi?
- */
