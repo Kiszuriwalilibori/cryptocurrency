@@ -32,6 +32,7 @@ const ResultsPage = (): JSX.Element => {
     async () => {
       if (hasDateChanged(intervalMs)) {
         fetchHistoricalPrices(currencyCrypto, currencyBase);
+        console.log("date has changed");
       }
       const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
 
@@ -101,9 +102,7 @@ export default ResultsPage;
 
 /**
  * todo wydzielić media query do osobnego pliku i wczytywać ten plik warunkowo. Ale, co sie stanie kiedy zrobimy resize?
- * todo rozdzielić ref na składowe bo tak bez sensu, nia mają nic wspólnego, albo hooka na prznajmniej cryptoprice
  * todo doczytać o concurrent axios
+ * todo prawdopodobnie niepotrzebna animka na bluebutton, z szarego na chwilę znika.
  *
- *
- * todo w zaadzie data nie wymaga w pewnym przybliżeniu zachowywanai data w refce czy stanie, wystarzczy prównać wartość obecną i wartość srzed 3 sekund
  */
