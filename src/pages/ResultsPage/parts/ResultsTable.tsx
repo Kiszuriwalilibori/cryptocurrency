@@ -9,7 +9,7 @@ import Logo from "./Logo";
 
 import { CurrencyCrypto, ResultsType } from "types";
 
-import "./_Results.scss";
+import "./_ResultsTable.scss";
 
 interface Props {
   currencyCrypto: CurrencyCrypto;
@@ -41,7 +41,3 @@ const ResultsTable = (props: Props) => {
 };
 
 export default ResultsTable;
-
-/**
- * todo .DataConteiner jest w ogólnym, wycignąć
- */

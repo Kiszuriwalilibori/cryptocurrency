@@ -1,0 +1,50 @@
+.InvestWrapper {
+  width: 109px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 75px;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 26px;
+    height: 20px;
+    bottom: 0px;
+    left: 25px;
+    background: url("./oko.webp");
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    bottom: 0px;
+    right: 25px;
+    background: url("./waga.webp");
+  }
+  &:hover::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    bottom: 0px;
+    right: 25px;
+    background: url("./waga_hover.webp");
+  }
+  &:hover::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    bottom: 0px;
+    right: 25px;
+    background: url("./oko_hover.webp");
+  }
+}
