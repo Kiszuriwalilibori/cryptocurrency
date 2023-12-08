@@ -1,7 +1,7 @@
-import { BaseCurrency, HistoricalPrices, CryptoPrice } from "types";
-
 import createChanges from "./createChanges";
 import formatCurrentPrice from "./formatCurrentPrice";
+
+import { BaseCurrency, HistoricalPrices, CryptoPrice } from "types";
 
 interface Args {
   cryptoPrice: CryptoPrice;

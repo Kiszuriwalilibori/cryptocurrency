@@ -1,40 +1,42 @@
 import { SnackbarProvider } from "notistack";
 import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
 import { HashRouter as Router } from "react-router-dom";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
 import { register } from "../serviceWorkerRegistration";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-import reducer from "../reducer/reducer";
 import "styles/styles.css";
+import { ThemeProvider } from "@mui/material";
+import theme from "../themes/theme";
 
-export const store = createStore(reducer);
+const queryClient = new QueryClient();
 
 /**
- * creates provider of redux store, router, snackbar, and selectedcurrenciescontext
- * @param param0 anything renders within this provider
+ * creates provider of router, snackbar, and selectedcurrenciescontext
+ * @param children anything renders within this provider
  * @returns provider
  */
+
 const AppProvider: React.FC = ({ children }) => {
-  return (
-    <Provider store={store}>
-      <Router basename={process.env.PUBLIC_URL}>
-        <SelectedCurrenciesContextProvider>
-          <SnackbarProvider
-            maxSnack={3}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-          >
-            {children}
-          </SnackbarProvider>
-        </SelectedCurrenciesContextProvider>
-      </Router>
-    </Provider>
-  );
+    return (
+        <Router>
+            <ThemeProvider theme={theme}>
+                <SelectedCurrenciesContextProvider>
+                    <QueryClientProvider client={queryClient}>
+                        <SnackbarProvider
+                            maxSnack={3}
+                            anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                        >
+                            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+                        </SnackbarProvider>
+                    </QueryClientProvider>
+                </SelectedCurrenciesContextProvider>
+            </ThemeProvider>
+        </Router>
+    );
 };
 register();
-export type RootStateType = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+
 export default AppProvider;

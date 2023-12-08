@@ -1,88 +1,82 @@
 import axios from "axios";
 
 import { useState, useCallback } from "react";
-import { useSnackbar } from "notistack";
 
 import { BaseCurrency, CurrencyCrypto, HistoricalPrices, NotAvailable } from "types";
 import { CreateURL } from "functions";
+import { useMessage, useBoolean } from "hooks";
 
 const useFetchHistoricalPrices = () => {
-  const [data, setData] = useState<HistoricalPrices | null>(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const { enqueueSnackbar } = useSnackbar();
+    const [data, setData] = useState<HistoricalPrices | null>(null);
+    const [error, setError] = useState(false);
+    const [loading, , stopLoading] = useBoolean(true);
+    const showMessage = useMessage();
 
-  let historicalPrices: HistoricalPrices = [];
+    let historicalPrices: HistoricalPrices = [];
 
-  const fatalError = useCallback(() => {
-    setError(true);
-    enqueueSnackbar(`No data fetched at all for given endpoints`, {
-      variant: "error",
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const fatalError = useCallback(() => {
+        setError(true);
+        showMessage.error(`No data fetched at all for given endpoints`);
 
-  const theEndOfRecursiveFetchLoopHandle = () => {
-    setLoading(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    if (historicalPrices.length) {
-      setData(historicalPrices);
-    } else {
-      fatalError();
-    }
-  };
+    const theEndOfRecursiveFetchLoopHandle = () => {
+        stopLoading();
 
-  const fetchData = async (endpoints: string[], baseCurrency: BaseCurrency) => {
-    if (endpoints.length) {
-      let URL = endpoints.shift();
-      let reducedEndpoints = [...endpoints]; /// co ta linika robi, tylko kopię tworzy?
+        if (historicalPrices.length) {
+            setData(historicalPrices);
+        } else {
+            fatalError();
+        }
+    };
 
-      axios
-        .get(URL as string, { Apikey: process.env.REACT_APP_API_KEY as string })
-        .then(data => {
-          if (data.hasOwnProperty("data")) {
-            if (data.data.hasOwnProperty(baseCurrency)) {
-              historicalPrices.push(data.data[baseCurrency]);
-            } else {
-              historicalPrices.push(NotAvailable.na); // todo coś za czesto wychodzi n/a sprawdzić
-            }
+    const fetchData = async (endpoints: string[], baseCurrency: BaseCurrency) => {
+        if (endpoints.length) {
+            let URL = endpoints.shift();
+            let reducedEndpoints = [...endpoints];
 
-            if (reducedEndpoints.length) {
-              fetchData(reducedEndpoints, baseCurrency);
-            } else {
-              theEndOfRecursiveFetchLoopHandle();
-            }
-          } else {
-            setLoading(false);
-            const label = URL ? URL : "unknown location";
-            enqueueSnackbar(`Data for ${label} was broken, corrupted or otherwise invalid`, {
-              variant: "warning",
-            });
-          }
-        })
-        .catch(err => {
-          let code = err.response ? err.response.status : err;
-          enqueueSnackbar(`Error ${code} encountered when fetching data for ${URL}`, {
-            variant: "warning",
-          });
-          if (reducedEndpoints.length) {
-            fetchData(reducedEndpoints, baseCurrency);
-          } else {
-            theEndOfRecursiveFetchLoopHandle();
-          }
-        });
-    } else {
-      setError(true);
-      enqueueSnackbar(`Empty array of URLs passed to useAxiosArray as argument`, {
-        variant: "error",
-      });
-    }
-  };
-  const fetchHistoricalPrices = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
-    fetchData(CreateURL.historical(currencyCrypto, baseCurrency), baseCurrency);
-  };
+            URL &&
+                axios
+                    .get(URL, { Apikey: process.env.REACT_APP_API_KEY as string })
+                    .then(data => {
+                        if (data.hasOwnProperty("data")) {
+                            if (data.data.hasOwnProperty(baseCurrency)) {
+                                historicalPrices.push(data.data[baseCurrency]);
+                            } else {
+                                historicalPrices.push(NotAvailable.na);
+                            }
 
-  return { data, error, loading, fetchHistoricalPrices };
+                            if (reducedEndpoints.length) {
+                                fetchData(reducedEndpoints, baseCurrency);
+                            } else {
+                                theEndOfRecursiveFetchLoopHandle();
+                            }
+                        } else {
+                            stopLoading();
+                            const label = URL ? URL : "unknown crypto";
+                            showMessage.warning(`Data for ${label} was broken, corrupted or otherwise invalid`);
+                        }
+                    })
+                    .catch(err => {
+                        let code = err.response ? err.response.status : err;
+                        showMessage.warning(`Error ${code} encountered when fetching data for ${URL}`);
+                        if (reducedEndpoints.length) {
+                            fetchData(reducedEndpoints, baseCurrency);
+                        } else {
+                            theEndOfRecursiveFetchLoopHandle();
+                        }
+                    });
+        } else {
+            setError(true);
+            showMessage.error(`Empty array of URLs passed to useAxiosArray as argument`);
+        }
+    };
+    const fetchHistoricalPrices = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
+        fetchData(CreateURL.historical(currencyCrypto, baseCurrency), baseCurrency);
+    };
+
+    return { data, error, loading, fetchHistoricalPrices };
 };
 
 export default useFetchHistoricalPrices;

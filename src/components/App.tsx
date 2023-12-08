@@ -1,39 +1,23 @@
-import * as React from "react";
+import loadable from "@loadable/component";
+import useHandleConnectionStatus from "hooks/useHandleConnectionStatus";
 
-import { lazy, Suspense } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-const queryClient = new QueryClient();
+const ResultsPage = loadable(() => import("pages/ResultsPage"));
+const SelectionPage = loadable(() => import("pages/SelectionPage"));
+const NoPage = loadable(() => import("pages/NoPage"));
 
-const Results = lazy(() => import("pages/ResultsPage"));
-
-const SelectionSection = lazy(() => import("pages/SelectionPage/SelectionSection"));
-/**
- * function that returns App itself
- * @returns App
- */
 function App() {
-  const location = useLocation();
-  return (
-    <main>
-      <Switch>
-        <Route exact path="/">
-          <Suspense fallback={null}>
-            <SelectionSection />
-          </Suspense>
-        </Route>
+    const location = useLocation();
+    useHandleConnectionStatus();
 
-        <Route path={location.pathname}>
-          <QueryClientProvider client={queryClient}>
-            <Suspense fallback={null}>
-              <Results />
-            </Suspense>
-          </QueryClientProvider>
-        </Route>
-      </Switch>
-    </main>
-  );
+    return (
+        <Routes>
+            <Route path="/" element={<SelectionPage />} />
+            {location?.state?.results && <Route path={"/" + location.state.results} element={<ResultsPage />} />}
+            <Route path="*" element={<NoPage />} />
+        </Routes>
+    );
 }
 
 export default App;

@@ -1,6 +1,8 @@
 import getPercentileChange from "./getPercentileChange";
-import { TimestampIDs, ChangesArrayItem, ChangesArray, HistoricalPrices, NotAvailable, CryptoPrice } from "types";
 import timestamps from "./timestamps";
+
+import { TimestampIDs, ChangesArrayItem, ChangesArray, HistoricalPrices, NotAvailable, CryptoPrice } from "types";
+
 
 /**
  * combines current cryptocurrency price, historical cryptocurrency prices to get array with percentage changes in time

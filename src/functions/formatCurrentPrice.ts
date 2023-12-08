@@ -11,7 +11,6 @@ const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency) =>
   const formattedCurrentPrice = currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
   const priceWithCoin = formattedCurrentPrice + " " + currencyBase;
 
-  //return createObject("Aktualna cena", priceWithCoin);
   return { "Aktualna cena": priceWithCoin };
 };
 

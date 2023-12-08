@@ -1,57 +1,72 @@
 @use "sass:math";
 
 body {
-  //overflow-y: scroll; //
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  left: 0;
-  overflow: auto;
-  overflow-y: scroll;
-  position: absolute;
-  top: 0;
-  width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    overflow-y: scroll;
+    position: absolute;
+    top: 0;
+    width: 100%;
 
-  @media (max-width: 640px) {
-    background: url("../graphics/background_640.webp") no-repeat center center fixed;
-    background-size: cover;
-  }
-  @media (min-width: 641px) and (max-width: 1280px) {
-    background: url("../graphics/background_1280.webp") no-repeat center center fixed;
-    background-size: cover;
-  }
+    @media (max-width: 640px) {
+        background: url("../assets/background_640.webp") no-repeat center center fixed;
+        background-size: cover;
+    }
+    @media (min-width: 641px) and (max-width: 1280px) {
+        background: url("../assets/background_1280.webp") no-repeat center center fixed;
+        background-size: cover;
+    }
 
-  @media (min-width: 1281px) {
-    background: url("../graphics/background_1920.webp") no-repeat center center fixed;
-    background-size: cover;
-  }
+    @media (min-width: 1281px) {
+        background: url("../assets/background_1920.webp") no-repeat center center fixed;
+        background-size: cover;
+    }
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: white;
-  & * {
-    box-sizing: border-box;
-    user-select: none;
-  }
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    & * {
+        box-sizing: border-box;
+        user-select: none;
+    }
 }
 
 @keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+*:focus {
+    outline: 2px ridge #0ca4f6;
+    outline-offset: 1px;
+    z-index: 2000;
 }

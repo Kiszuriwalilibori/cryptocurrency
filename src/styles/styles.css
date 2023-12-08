@@ -23,19 +23,19 @@ body {
 }
 @media (max-width: 640px) {
   #root {
-    background: url("../graphics/background_640.webp") no-repeat center center fixed;
+    background: url("../assets/background_640.webp") no-repeat center center fixed;
     background-size: cover;
   }
 }
 @media (min-width: 641px) and (max-width: 1280px) {
   #root {
-    background: url("../graphics/background_1280.webp") no-repeat center center fixed;
+    background: url("../assets/background_1280.webp") no-repeat center center fixed;
     background-size: cover;
   }
 }
 @media (min-width: 1281px) {
   #root {
-    background: url("../graphics/background_1920.webp") no-repeat center center fixed;
+    background: url("../assets/background_1920.webp") no-repeat center center fixed;
     background-size: cover;
   }
 }
@@ -43,20 +43,7 @@ body {
   box-sizing: border-box;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
-}
-
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 @keyframes fade-in {
@@ -69,4 +56,18 @@ body {
   100% {
     opacity: 1;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+*:focus {
+  outline: 2px ridge #0ca4f6;
+  outline-offset: 1px;
+  z-index: 2000;
+}

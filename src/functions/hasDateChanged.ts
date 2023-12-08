@@ -5,10 +5,13 @@
  */
 
 const hasDateChanged = (interval: number): boolean => {
-  const now = new Date();
+    const now = new Date();
+    const before = new Date(now.getTime() - interval);
 
-  const before = new Date(now.getTime() - interval);
-
-  return !(before.getDate() === now.getDate() && before.getMonth() === now.getMonth() && before.getFullYear() === now.getFullYear());
+    return !(
+        before.getDate() === now.getDate() &&
+        before.getMonth() === now.getMonth() &&
+        before.getFullYear() === now.getFullYear()
+    );
 };
 export default hasDateChanged;

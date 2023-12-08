@@ -10,11 +10,13 @@ function getPercentileChange(currentPrice: number, historicalPrice: number | Not
   if (typeof historicalPrice === "string") return historicalPrice;
 
   const change = (100 * (currentPrice - historicalPrice)) / historicalPrice;
-  const changeStringified = change.toLocaleString("pl-PL", {
+  let changeStringified = change.toLocaleString("pl-PL", {
     useGrouping: true,
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+
+  if (changeStringified.length > 8) changeStringified = change.toExponential(3);
 
   let result: string = "";
   if (change === 0) result = "no change";

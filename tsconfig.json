@@ -25,7 +25,8 @@
       "hooks/*": ["hooks/*"],
       "pages/*": ["pages/*"],
       "styles/*": ["styles/*"],
-      "HOCs/*": ["HOCs/*"]
+      "HOCs/*": ["HOCs/*"],
+      "config/*": ["config/*"]
     }
   },
   "include": ["src"]

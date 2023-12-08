@@ -1,1 +1,1 @@
-export { default } from './SelectionSection';
+export { default } from './SelectionPage';

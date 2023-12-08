@@ -1,106 +1,87 @@
 import * as React from "react";
 import axios from "axios";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { useSnackbar } from "notistack";
-import { useFetchHistoricalPrices } from "hooks";
+import { useDebouncedCallback, useFetchHistoricalPrices, useMessage } from "hooks";
 import { BlueButton } from "components";
 import { CreateURL, hasDateChanged, createResults } from "functions";
-import { ResultsType, HistoricalPrices, CryptoPrice } from "types";
-import { initialIntervalMs } from "../../config";
+import { ResultsType, CryptoPrice } from "types";
+import { UPDATE_INTERVAL_MILISECONDS } from "../../config";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
-
-const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
-const FetchStatusIndicator = React.lazy(() => import("./parts/FetchStatusIndicator"));
+import { ResultsPageHeader } from "./components";
+const ResultsTable = React.lazy(() => import("./components/ResultsTable"));
+const FetchStatusIndicator = React.lazy(() => import("./components/FetchStatusIndicator"));
 
 /**
  * Presents cryptocurrency price current and historical
  * @returns component
  */
 const ResultsPage = (): JSX.Element => {
-  const history = useHistory();
-  const { enqueueSnackbar } = useSnackbar();
-  const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext); // tu przemianować na selectedBaseCurrency i selectedCryptoCurrency
-  const intervalMs = initialIntervalMs;
-  const currentURL = CreateURL.current(currencyCrypto.value, currencyBase);
-  const [results, setResults] = React.useState<ResultsType | null>(null);
-  const [historicalCryptoPrice, sethistoricalCryptoPrice] = React.useState<HistoricalPrices | undefined | null>(undefined); // todo czy ten stan jest na pewno potrzebny
+    const navigate = useNavigate();
+    const showMessage = useMessage();
+    const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext); // tu przemianować na selectedBaseCurrency i selectedCryptoCurrency
+    const intervalMs = UPDATE_INTERVAL_MILISECONDS;
+    const currentURL = CreateURL.current(currencyCrypto.value, currencyBase);
+    const [results, setResults] = React.useState<ResultsType | null>(null);
 
-  const { data: fetchedCryptocurrencyPrice, error } = useQuery(
-    "currentCrypto",
-    async () => {
-      if (hasDateChanged(intervalMs)) {
+    const { data: fetchedCryptocurrencyPrice, error } = useQuery(
+        "currentCrypto",
+        async () => {
+            if (hasDateChanged(intervalMs)) {
+                fetchHistoricalPrices(currencyCrypto, currencyBase);
+            }
+            const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
+
+            return result.data;
+        },
+        {
+            refetchInterval: intervalMs,
+        }
+    );
+
+    const { data: historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
+
+    const returnToSelectionPage = useDebouncedCallback(navigate, "/");
+
+    React.useEffect(() => {
         fetchHistoricalPrices(currencyCrypto, currencyBase);
-      }
-      const result = await axios.get(currentURL, { Apikey: process.env.REACT_APP_API_KEY });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-      return result.data;
-    },
-    {
-      refetchInterval: intervalMs,
-    }
-  );
+    React.useEffect(() => {
+        if (fetchedCryptocurrencyPrice && historicalCryptoPrice) {
+            let cryptoPrice = fetchedCryptocurrencyPrice[currencyBase] as CryptoPrice;
 
-  const { data: fetchedHistoricalPrices, fetchHistoricalPrices } = useFetchHistoricalPrices();
+            if (typeof cryptoPrice === "number") showMessage.success("Zmiana");
+            else showMessage.info("Na serwerze nie ma danych o bieżącym kursie kryptowaluty");
 
-  const returnToSelectionPage = React.useCallback(() => {
-    history.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+            const result = createResults({ cryptoPrice, historicalCryptoPrice, currencyBase });
+            if (JSON.stringify(results) !== JSON.stringify(result)) {
+                setResults(result);
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fetchedCryptocurrencyPrice, historicalCryptoPrice]);
 
-  React.useEffect(() => {
-    fetchHistoricalPrices(currencyCrypto, currencyBase);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  React.useEffect(() => {
-    if (fetchedCryptocurrencyPrice && historicalCryptoPrice) {
-      let cryptoPrice = fetchedCryptocurrencyPrice[currencyBase] as CryptoPrice;
-      typeof cryptoPrice === "number" &&
-        enqueueSnackbar(`Zmiana`, {
-          variant: "success",
-        });
-
-      typeof cryptoPrice === "string" &&
-        enqueueSnackbar(`Na serwerze nie ma danych o bieżącym kursie kryptowaluty`, {
-          variant: "info",
-        });
-
-      const result = createResults({ cryptoPrice, historicalCryptoPrice, currencyBase });
-      setResults(result);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchedCryptocurrencyPrice, historicalCryptoPrice]);
-
-  React.useEffect(() => {
-    if (fetchedHistoricalPrices && historicalCryptoPrice !== fetchedHistoricalPrices) {
-      sethistoricalCryptoPrice(fetchedHistoricalPrices);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchedHistoricalPrices]);
-
-  return (
-    <>
-      {(error || !results) && (
-        <React.Suspense fallback={null}>
-          <FetchStatusIndicator crypto={currencyCrypto.label} result={Boolean(results)} error={error} />
-        </React.Suspense>
-      )}
-      <BlueButton label="Powrót do wyboru" clickHandler={returnToSelectionPage} />
-      {results && (
-        <React.Suspense fallback={null}>
-          <ResultsTable currencyCrypto={currencyCrypto} results={results} />
-        </React.Suspense>
-      )}
-    </>
-  );
+    return (
+        <>
+            <ResultsPageHeader text="Results of query" />
+            <main>
+                {(error || !results) && (
+                    <React.Suspense fallback={null}>
+                        <FetchStatusIndicator crypto={currencyCrypto.label} isOK={Boolean(results)} error={error} />
+                    </React.Suspense>
+                )}
+                {results && <BlueButton label="Powrót do wyboru" clickHandler={returnToSelectionPage} />}
+                {results && (
+                    <React.Suspense fallback={null}>
+                        <ResultsTable currencyCrypto={currencyCrypto} results={results} />
+                    </React.Suspense>
+                )}
+            </main>
+        </>
+    );
 };
 
 export default ResultsPage;
-
-/**
- * todo wydzielić media query do osobnego pliku i wczytywać ten plik warunkowo. Ale, co sie stanie kiedy zrobimy resize?
- * todo doczytać o concurrent axios
- *
- */
