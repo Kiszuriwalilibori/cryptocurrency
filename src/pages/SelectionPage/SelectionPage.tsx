@@ -14,7 +14,7 @@ const SelectionPage = () => {
     const [currencyCrypto, setCurrencyCrypto] = useState<CurrencyCrypto | undefined>(undefined);
     const { confirmChoice, isEnabled } = useConfirmChoice({ currencyBase, currencyCrypto } as UseConfirmChoice);
 
-    const handleClick = useDebouncedCallback(confirmChoice, undefined);
+    const handleClick = useDebouncedCallback<HTMLButtonElement>(confirmChoice, undefined);
 
     if (!isApiKeyAvailable) return null;
     return (

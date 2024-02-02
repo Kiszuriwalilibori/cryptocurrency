@@ -42,7 +42,7 @@ const ResultsPage = (): JSX.Element => {
 
     const { data: historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
 
-    const returnToSelectionPage = useDebouncedCallback(navigate, "/");
+    const returnToSelectionPage = useDebouncedCallback<HTMLButtonElement>(navigate, "/");
 
     React.useEffect(() => {
         fetchHistoricalPrices(currencyCrypto, currencyBase);
