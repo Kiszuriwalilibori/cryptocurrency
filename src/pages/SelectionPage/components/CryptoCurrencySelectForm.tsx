@@ -2,7 +2,7 @@ import * as React from "react";
 import VirtualizedSelect from "react-virtualized-select";
 
 import { CurrencyCrypto } from "types";
-import { useFetchListOfCryptos } from "hooks";
+import { useDelayedCondition, useFetchListOfCryptos } from "hooks";
 import Loader from "components/Loader/Loader";
 
 import "../styles/_CryptoCurrencySelectForm.scss";
@@ -10,6 +10,10 @@ import "../styles/_CryptoCurrencySelectForm.scss";
 interface Props {
     setCurrencyCrypto: (arg0: CurrencyCrypto) => void;
     currencyCrypto: CurrencyCrypto | undefined;
+}
+
+function createLabelStyle(cryptos: Omit<CurrencyCrypto, "imageURL">[] | undefined) {
+    return cryptos && cryptos.length ? "" : "inactivatedSelect";
 }
 /**
  * Creates form which alows choise of cryptocurrency
@@ -20,11 +24,12 @@ interface Props {
 const CryptoCurrencySelectForm: React.FC<Props> = props => {
     const { currencyCrypto, setCurrencyCrypto } = props;
     const { isLoading, data: cryptos } = useFetchListOfCryptos();
-    const style = cryptos && cryptos.length ? "" : "inactivatedSelect";
+    const labelClass = React.useMemo(() => createLabelStyle(cryptos), [JSON.stringify(cryptos)]);
+    const shouldRenderLoader = useDelayedCondition(isLoading);
 
     return (
         <>
-            <label className={style}>
+            <label className={labelClass}>
                 <VirtualizedSelect
                     value={currencyCrypto}
                     className="virtualized-select"
@@ -35,7 +40,7 @@ const CryptoCurrencySelectForm: React.FC<Props> = props => {
                     options={cryptos}
                 />
             </label>
-            {isLoading && <Loader />}
+            {shouldRenderLoader && <Loader />}
         </>
     );
 };
