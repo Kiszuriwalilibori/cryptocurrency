@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcryptocurrency_tracker=self.webpackChunkcryptocurrency_tracker||[]).push([[769],{769:(e,r,c)=>{c.r(r),c.d(r,{default:()=>n});var s=c(2791),t=c(7689),o=c(184);const n=()=>{const e=(0,t.s0)();return(0,s.useEffect)((()=>{setTimeout((()=>{e(-1)}),3e3)}),[]),(0,o.jsxs)("div",{className:"NoPage",children:[(0,o.jsxs)("h2",{children:['Ojejku! Strony o adresie "',decodeURIComponent(window.location.href),'" po prostu nie ma \ud83d\ude25']}),";"]})}}}]);
+//# sourceMappingURL=769.f8cac065.chunk.js.map
