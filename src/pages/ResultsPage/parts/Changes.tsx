@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
 import uuid from "react-uuid";
+
+import { Typography } from "@mui/material";
 
 import { ChangesArray } from "types";
 

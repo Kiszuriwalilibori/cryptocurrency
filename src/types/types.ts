@@ -1,3 +1,5 @@
+export type { ShowMessage } from "hooks/useMessage";
+
 export interface CurrencyCrypto {
     value: string;
     label: string;
@@ -5,11 +7,15 @@ export interface CurrencyCrypto {
     description: string;
 }
 export type CurrencyCryptoArray = CurrencyCrypto[];
-interface ApiResponseData {
+
+export interface CoinListAPIResponseDataItem {
     [key: string]: { CoinName: string; ImageUrl: string; Description: string };
 }
-export interface ApiResponse {
-    data: { Data: ApiResponseData };
+export interface CoinListAPIResponse {
+    [key: string]: CoinListAPIResponseDataItem;
+}
+export interface CoinListAPIResponseData {
+    data: { Data: CoinListAPIResponseDataItem };
 }
 
 export type TimestampIDs = "1D" | "1M" | "5M" | "12M" | "30M" | "YTD";
@@ -28,6 +34,14 @@ export enum NotAvailable {
 
 export type BaseCurrency = "PLN" | "USD" | "EUR" | "";
 
+export type CurrentCryptocurrencyPriceAPIResponseItem = {
+    [key in BaseCurrency]: number;
+};
+
+export type CurrentCryptocurrencyPriceAPIResponse =
+    | CurrentCryptocurrencyPriceAPIResponseItem
+    | { Response: string; Message: string };
+
 export type ChangesArrayItem = { [K in TimestampIDs]: NotAvailable | string };
 
 export type ChangesArray = ChangesArrayItem[];
@@ -39,9 +53,17 @@ export interface ResultsType {
     currentPrice: { [key: string]: string };
 }
 
-export type CryptoPrice = number | string;
+export type CryptoPrice = number | undefined;
 
 export interface UseConfirmChoice {
     currencyBase: BaseCurrency;
     currencyCrypto: CurrencyCrypto;
+}
+
+export interface Exchanges {
+    [key: string]: string[];
+}
+
+export interface ExchangesObject {
+    Cryptsy: Exchanges;
 }

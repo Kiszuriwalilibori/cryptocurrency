@@ -1,6 +1,7 @@
-import { memo } from "react";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
+
+import { memo } from "react";
 
 import "../styles/_InvestButton.scss";
 

@@ -1,11 +1,13 @@
 import { SnackbarProvider } from "notistack";
-import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
 import { HashRouter as Router } from "react-router-dom";
 import { register } from "../serviceWorkerRegistration";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ThemeProvider } from "@mui/material";
+
+import { SelectedCurrenciesContextProvider } from "contexts/currenciesContext";
 
 import "styles/styles.css";
-import { ThemeProvider } from "@mui/material";
+
 import theme from "../themes/theme";
 
 const queryClient = new QueryClient();

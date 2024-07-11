@@ -1,4 +1,4 @@
-import { Timestamps, CurrencyCrypto } from "types";
+import { CurrencyCrypto } from "types";
 import { BASE_URL } from "../config";
 import timestamps from "./timestamps";
 class CreateURL {
@@ -30,7 +30,7 @@ class CreateURL {
      * @returns string being URL
      */
     static current(crypto: string, base: string) {
-        return BASE_URL.get("current") + crypto + "&tsyms=" + base;
+        return BASE_URL.get("current") + crypto + "&tsyms=" + base + "&tryConversion=true";
     }
     /**
      * creates array of URLs for fetching historical prices

@@ -7,5 +7,23 @@ import getPercentileChange from "./getPercentileChange";
 import hasDateChanged from "./hasDateChanged";
 import timestamps from "./timestamps";
 import createResults from "./createResults";
+import fetchCurrentPrice from "./fetchCurrentPrice";
+import communicateResults from "./communicateResults";
+import haveResultsChanged from "./haveResultsChanged";
+import getConvertibleCryptos from "./getConvertibleCryptos";
 
-export { breakWhenInternetExplorer, createResults, hasDateChanged, createChanges, createOptions, CreateURL, formatCurrentPrice, getPercentileChange, timestamps };
+export {
+    breakWhenInternetExplorer,
+    communicateResults,
+    createResults,
+    createChanges,
+    createOptions,
+    CreateURL,
+    fetchCurrentPrice,
+    formatCurrentPrice,
+    getConvertibleCryptos,
+    getPercentileChange,
+    hasDateChanged,
+    haveResultsChanged,
+    timestamps,
+};

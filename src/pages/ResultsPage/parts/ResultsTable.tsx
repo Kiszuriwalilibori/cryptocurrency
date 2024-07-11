@@ -1,13 +1,15 @@
-import { Grow } from "@mui/material";
-
-import { Changes, CryptoCurrencyCurrentPrice, GeneralInformation, InvestButton, Logo } from "../components";
-import { CryptoContainer } from "./styles";
-import { CurrencyCrypto, ResultsType } from "types";
-
 import "../styles/_ResultsTable.scss";
 
+import React from "react";
+
+import { Grow } from "@mui/material";
+
+import { Changes, CryptoCurrencyCurrentPrice, GeneralInformation, InvestButton, Logo } from ".";
+import { CryptoContainer } from "./styles";
+import { ResultsType } from "types";
+import { SelectedCurrenciesContext } from "contexts/currenciesContext";
+
 interface Props {
-    currencyCrypto: CurrencyCrypto;
     results: ResultsType;
 }
 /**
@@ -16,14 +18,17 @@ interface Props {
  * @returns
  */
 const ResultsTable = (props: Props) => {
-    const { currencyCrypto, results } = props;
+    const { results } = props;
+    const {
+        currencyCrypto: { label, imageURL },
+    } = React.useContext(SelectedCurrenciesContext);
 
     return (
         <CryptoContainer>
             <Grow in={true} timeout={1000}>
                 <section className="DataContainer" aria-label="query data">
-                    <GeneralInformation currencyCryptoName={currencyCrypto.label} />
-                    {currencyCrypto.imageURL && <Logo imageURL={currencyCrypto.imageURL} />}
+                    <GeneralInformation currencyCryptoName={label} />
+                    {imageURL && <Logo imageURL={imageURL} />}
                     <div className="PricesWithButtons">
                         {results!.currentPrice && <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />}
                         {results!.changes && <Changes changesArray={results!.changes} />}

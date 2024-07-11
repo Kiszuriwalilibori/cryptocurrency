@@ -1,16 +1,28 @@
 import axios from "axios";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import { BaseCurrency, CurrencyCrypto, HistoricalPrices, NotAvailable } from "types";
 import { CreateURL } from "functions";
 import { useMessage, useBoolean } from "hooks";
+import { useLoaderStore } from "store";
 
 const useFetchHistoricalPrices = () => {
-    const [data, setData] = useState<HistoricalPrices | null>(null);
+    const [historicalCryptoPrice, setData] = useState<HistoricalPrices | null>(null);
     const [error, setError] = useState(false);
     const [loading, , stopLoading] = useBoolean(true);
     const showMessage = useMessage();
+    const setLoader = useLoaderStore.use.setLoader();
+
+    useEffect(() => {
+        setLoader(true);
+    }, []);
+
+    useEffect(() => {
+        if (!loading) {
+            setLoader(false);
+        }
+    }, [loading]);
 
     let historicalPrices: HistoricalPrices = [];
 
@@ -72,11 +84,12 @@ const useFetchHistoricalPrices = () => {
             showMessage.error(`Empty array of URLs passed to useAxiosArray as argument`);
         }
     };
+
     const fetchHistoricalPrices = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
         fetchData(CreateURL.historical(currencyCrypto, baseCurrency), baseCurrency);
     };
 
-    return { data, error, loading, fetchHistoricalPrices };
+    return { historicalCryptoPrice, error, fetchHistoricalPrices };
 };
 
 export default useFetchHistoricalPrices;
