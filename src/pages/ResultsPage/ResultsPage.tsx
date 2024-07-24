@@ -5,7 +5,7 @@ import {
     useFetchHistoricalPrices,
     useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded,
     useCreateAggregatedResults,
-    useInitializeHistoricalPrices,
+    useSetInitialHistoricalPrices,
     useReturnToSelection,
 } from "hooks";
 
@@ -24,8 +24,8 @@ const ResultsPage = (): JSX.Element => {
     const { historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
     const { cryptoCurrencyPriceAPIResponse } =
         useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded();
-    useInitializeHistoricalPrices(fetchHistoricalPrices);
 
+    useSetInitialHistoricalPrices(fetchHistoricalPrices);
     const aggregatedResults = useCreateAggregatedResults(cryptoCurrencyPriceAPIResponse, historicalCryptoPrice);
 
     return (

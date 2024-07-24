@@ -1,5 +1,5 @@
-import { useAvailableCryptos } from "./availableCryptos";
+import { useConvertibleCryptos } from "./convertibleCryptos";
 import { useCryptocompare } from "./cryptoCompare";
 import { useLoaderStore } from "./setLoader";
 
-export { useAvailableCryptos, useCryptocompare, useLoaderStore };
+export { useConvertibleCryptos, useCryptocompare, useLoaderStore };

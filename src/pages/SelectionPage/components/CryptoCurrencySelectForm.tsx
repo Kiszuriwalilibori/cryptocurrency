@@ -2,7 +2,7 @@ import * as React from "react";
 import VirtualizedSelect from "react-virtualized-select";
 
 import { CurrencyCrypto } from "types";
-import { useAvailableCryptos } from "store";
+import { useConvertibleCryptos } from "store";
 
 import "../styles/_CryptoCurrencySelectForm.scss";
 
@@ -22,7 +22,7 @@ function createLabelStyle(cryptos: Omit<CurrencyCrypto, "imageURL">[] | undefine
  */
 const CryptoCurrencySelectForm: React.FC<Props> = props => {
     const { currencyCrypto, setCurrencyCrypto } = props;
-    const availableCryptos = useAvailableCryptos.use.availableCryptos();
+    const availableCryptos = useConvertibleCryptos.use.convertibleCryptos();
     const labelClass = React.useMemo(() => createLabelStyle(availableCryptos), [JSON.stringify(availableCryptos)]); //todo to wygląda dziwnie
 
     return (

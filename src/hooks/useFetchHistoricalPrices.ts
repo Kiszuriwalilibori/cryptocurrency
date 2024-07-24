@@ -1,11 +1,17 @@
-import axios from "axios";
+import { useState, useEffect } from "react";
 
-import { useState, useCallback, useEffect } from "react";
-
-import { BaseCurrency, CurrencyCrypto, HistoricalPrices, NotAvailable } from "types";
-import { CreateURL } from "functions";
+import { HistoricalPrices, NotAvailable } from "types";
+import { timestamps } from "functions";
 import { useMessage, useBoolean } from "hooks";
-import { useLoaderStore } from "store";
+import { useCryptocompare, useLoaderStore } from "store";
+import React from "react";
+import { SelectedCurrenciesContext } from "contexts/currenciesContext";
+
+const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult =>
+    input.status === "rejected";
+
+// const isFulfilled = <T>(input: PromiseSettledResult<T>): input is PromiseFulfilledResult<T> =>
+//     input.status === "fulfilled";
 
 const useFetchHistoricalPrices = () => {
     const [historicalCryptoPrice, setData] = useState<HistoricalPrices | null>(null);
@@ -13,6 +19,7 @@ const useFetchHistoricalPrices = () => {
     const [loading, , stopLoading] = useBoolean(true);
     const showMessage = useMessage();
     const setLoader = useLoaderStore.use.setLoader();
+    const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext);
 
     useEffect(() => {
         setLoader(true);
@@ -24,71 +31,36 @@ const useFetchHistoricalPrices = () => {
         }
     }, [loading]);
 
-    let historicalPrices: HistoricalPrices = [];
+    const cryptoCompare = useCryptocompare(state => state.cryptoCompare);
+    const fetchPrices = async () => {
+        const promises: any[] = [];
+        const historicalPrices: HistoricalPrices = [];
+        timestamps.timestamps.forEach(timestamp => {
+            promises.push(cryptoCompare.priceHistorical(currencyCrypto.value, [currencyBase], timestamp));
+        });
 
-    const fatalError = useCallback(() => {
-        setError(true);
-        showMessage.error(`No data fetched at all for given endpoints`);
+        Promise.allSettled(promises).then(results => {
+            results.forEach(result => {
+                if (result.status === "rejected") {
+                    historicalPrices.push(NotAvailable.na);
+                } else {
+                    historicalPrices.push(result.value[currencyBase] ? result.value[currencyBase] : NotAvailable.na);
+                }
+            });
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const theEndOfRecursiveFetchLoopHandle = () => {
-        stopLoading();
-
-        if (historicalPrices.length) {
-            setData(historicalPrices);
-        } else {
-            fatalError();
-        }
+            if (historicalPrices.length) {
+                setData(historicalPrices);
+            } else {
+                setError(true);
+                showMessage.error(`No data fetched at all for historical prices`);
+            }
+            stopLoading();
+        });
     };
 
-    const fetchData = async (endpoints: string[], baseCurrency: BaseCurrency) => {
-        if (endpoints.length) {
-            let URL = endpoints.shift();
-            let reducedEndpoints = [...endpoints];
-
-            URL &&
-                axios
-                    .get(URL, { Apikey: process.env.REACT_APP_API_KEY as string })
-                    .then(data => {
-                        if (data.hasOwnProperty("data")) {
-                            if (data.data.hasOwnProperty(baseCurrency)) {
-                                historicalPrices.push(data.data[baseCurrency]);
-                            } else {
-                                historicalPrices.push(NotAvailable.na);
-                            }
-
-                            if (reducedEndpoints.length) {
-                                fetchData(reducedEndpoints, baseCurrency);
-                            } else {
-                                theEndOfRecursiveFetchLoopHandle();
-                            }
-                        } else {
-                            stopLoading();
-                            const label = URL ? URL : "unknown crypto";
-                            showMessage.warning(`Data for ${label} was broken, corrupted or otherwise invalid`);
-                        }
-                    })
-                    .catch(err => {
-                        let code = err.response ? err.response.status : err;
-                        showMessage.warning(`Error ${code} encountered when fetching data for ${URL}`);
-                        if (reducedEndpoints.length) {
-                            fetchData(reducedEndpoints, baseCurrency);
-                        } else {
-                            theEndOfRecursiveFetchLoopHandle();
-                        }
-                    });
-        } else {
-            setError(true);
-            showMessage.error(`Empty array of URLs passed to useAxiosArray as argument`);
-        }
+    const fetchHistoricalPrices = () => {
+        fetchPrices();
     };
-
-    const fetchHistoricalPrices = (currencyCrypto: CurrencyCrypto, baseCurrency: BaseCurrency) => {
-        fetchData(CreateURL.historical(currencyCrypto, baseCurrency), baseCurrency);
-    };
-
     return { historicalCryptoPrice, error, fetchHistoricalPrices };
 };
 

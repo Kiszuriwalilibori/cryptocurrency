@@ -4,28 +4,28 @@ import useConfirmChoice from "./useConfirmChoice";
 import useBoolean from "./useBoolean";
 import useDebouncedCallback from "./useDebouncedCallback";
 import useDelayedCondition from "./useDelayedCondition";
-import useFetchAvailableCryptos from "./useFetchAvailableCryptos";
-import useSetAvailableCryptos from "./useSetAvailableCryptos";
+import useGetConvertibleCryptos from "./useGetConvertibleCryptos";
 import useReturnToSelection from "./useReturnToSelection";
 import useCreateAggregatedResults from "./useCreateAggregatedResults";
 import useFetchCurrentPriceNew from "./useFetchCurrentPriceNew";
 import useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded from "./useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded";
-import useInitializeHistoricalPrices from "./useInitializeHistoricalPrices";
+import useSetInitialHistoricalPrices from "./useSetInitialHistoricalPrices";
 import useFetchHistoricalPrices from "./useFetchHistoricalPrices";
+import useHandleConnectionStatus from "./useHandleConnectionStatus";
 
 export {
     useBoolean,
     useCheckApiKey,
     useConfirmChoice,
-    useDebouncedCallback,
-    useDelayedCondition,
-    useFetchAvailableCryptos,
-    useFetchCurrentPriceNew,
-    useFetchHistoricalPrices,
     useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded,
     useCreateAggregatedResults,
-    useInitializeHistoricalPrices,
+    useDebouncedCallback,
+    useDelayedCondition,
+    useGetConvertibleCryptos,
+    useFetchCurrentPriceNew,
+    useFetchHistoricalPrices,
+    useHandleConnectionStatus,
+    useSetInitialHistoricalPrices,
     useMessage,
     useReturnToSelection,
-    useSetAvailableCryptos,
 };

@@ -13,6 +13,14 @@ const timestamps: Timestamps = {
         ["30M", () => getUnixTime(subMonths(new Date(), 30))],
         ["YTD", () => getUnixTime(startOfYear(new Date()))],
     ],
+    timestamps: [
+        endOfYesterday(),
+        subMonths(new Date(), 1),
+        subMonths(new Date(), 3),
+        subMonths(new Date(), 12),
+        subMonths(new Date(), 30),
+        startOfYear(new Date()),
+    ],
     reducedLength: function () {
         return this.content.length - 1;
     },

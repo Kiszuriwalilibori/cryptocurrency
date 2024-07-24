@@ -22,6 +22,7 @@ export type TimestampIDs = "1D" | "1M" | "5M" | "12M" | "30M" | "YTD";
 
 export interface Timestamps {
     content: [TimestampIDs, () => number][];
+    timestamps: Date[];
     reducedLength: () => number;
     getValue: (i: number) => number;
     getTimestampID: (i: number) => TimestampIDs;

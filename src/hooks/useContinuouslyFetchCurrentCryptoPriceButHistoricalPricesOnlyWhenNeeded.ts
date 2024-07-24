@@ -15,7 +15,7 @@ export const useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNe
         "currentCrypto",
         async () => {
             if (hasDateChanged(UPDATE_INTERVAL_MILISECONDS)) {
-                fetchHistoricalPrices(currencyCrypto, currencyBase);
+                fetchHistoricalPrices();
             }
             const result = await fetchCurrentPrice(currencyCrypto, currencyBase);
 
