@@ -10,7 +10,8 @@ import { ChangesArrayItem, ChangesArray, CryptoPrice, HistoricalPrices, NotAvail
  */
 const createChanges = (currentPrice: CryptoPrice, historicalPricesArray: HistoricalPrices): ChangesArray => {
     const result: ChangesArray = [];
-    const IDs = timestamps.IDs;
+
+    const IDs = timestamps.getIDs();
 
     historicalPricesArray.forEach((historicalPrice, index) => {
         const obj = {} as ChangesArrayItem;
