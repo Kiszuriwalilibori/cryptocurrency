@@ -6,11 +6,11 @@ import { Grow } from "@mui/material";
 
 import { Changes, CryptoCurrencyCurrentPrice, GeneralInformation, InvestButton, Logo } from ".";
 import { CryptoContainer } from "./styles";
-import { ResultsType } from "types";
+import { AggregatedResults } from "types";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 interface Props {
-    results: ResultsType;
+    results: AggregatedResults;
 }
 /**
  * creates array with all provided informations about crypto

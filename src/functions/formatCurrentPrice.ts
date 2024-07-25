@@ -1,4 +1,4 @@
-import { BaseCurrency } from "types";
+import { CurrencyBase } from "types";
 
 /**
  * creates  labelled currency base with currency code
@@ -7,11 +7,12 @@ import { BaseCurrency } from "types";
  * @returns object with key being given string and value being current price with currency symbol
  */
 
-const formatCurrentPrice = (currentPrice: number, currencyBase: BaseCurrency) => {
-  const formattedCurrentPrice = currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
-  const priceWithCoin = formattedCurrentPrice + " " + currencyBase;
+const formatCurrentPrice = (currentPrice: number, currencyBase: CurrencyBase) => {
+    const formattedCurrentPrice =
+        currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
+    const priceWithCoin = formattedCurrentPrice + " " + currencyBase;
 
-  return { "Aktualna cena": priceWithCoin };
+    return { "Aktualna cena": priceWithCoin };
 };
 
 export default formatCurrentPrice;

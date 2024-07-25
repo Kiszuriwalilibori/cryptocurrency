@@ -1,4 +1,4 @@
-import { ChangesArray, ResultsType } from "types";
+import { ChangesArray, AggregatedResults } from "types";
 
 interface Result {
     changes: ChangesArray;
@@ -7,7 +7,7 @@ interface Result {
     };
 }
 
-export const haveResultsChanged = (results: ResultsType | null, result: Result) => {
+export const haveResultsChanged = (results: AggregatedResults | null, result: Result) => {
     if (JSON.stringify(results) !== JSON.stringify(result)) {
         return true;
     } else {

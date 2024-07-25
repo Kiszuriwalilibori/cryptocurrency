@@ -2,12 +2,12 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-import { BaseCurrency } from "types";
+import { CurrencyBase } from "types";
 import { BaseCurrencyForm, Legend } from "../styles";
 
 interface BaseCurrencyChoiceType {
-    currencyBase: BaseCurrency | null;
-    setCurrencyBase: (arg0: BaseCurrency) => void;
+    currencyBase: CurrencyBase | null;
+    setCurrencyBase: (arg0: CurrencyBase) => void;
 }
 /**
  * Creates form which alows choise of base currency
@@ -19,7 +19,7 @@ interface BaseCurrencyChoiceType {
 const BaseCurrencySelectForm = (props: BaseCurrencyChoiceType): JSX.Element => {
     const { currencyBase, setCurrencyBase } = props;
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrencyBase(event.target.value as BaseCurrency);
+        setCurrencyBase(event.target.value as CurrencyBase);
     };
 
     return (

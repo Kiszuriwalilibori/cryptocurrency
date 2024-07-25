@@ -1,18 +1,7 @@
 import subMonths from "date-fns/subMonths";
 import endOfYesterday from "date-fns/endOfYesterday";
 import startOfYear from "date-fns/startOfYear";
-import { TimestampIDs } from "types";
-
-interface TimestampsItem {
-    ID: TimestampIDs;
-    timestamp: Date;
-}
-export interface Timestamps {
-    items: TimestampsItem[];
-    reducedLength: () => number;
-    getTimestamps: () => TimestampsItem["timestamp"][];
-    getIDs: () => TimestampsItem["ID"][];
-}
+import { Timestamps } from "types";
 
 const timestamps: Timestamps = {
     items: [

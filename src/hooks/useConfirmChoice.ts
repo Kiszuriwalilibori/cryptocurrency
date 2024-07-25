@@ -1,18 +1,14 @@
 import { useContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { BaseCurrency, CurrencyCrypto } from "types";
+import { Selection } from "types";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
-interface Props {
-    currencyBase: BaseCurrency;
-    currencyCrypto: CurrencyCrypto;
-}
 /**
  * Creates button which - when clicked - accepts chosen currencies to context and switches to page wit results
- * @param props currency base: base currency, currencyCrypto: cryptocurrency
+ * @param props: Selection
  * @returns button component
  */
-const useConfirmChoice = (props: Props) => {
+const useConfirmChoice = (props: Selection) => {
     const { currencyBase, currencyCrypto } = props;
     const navigate = useNavigate();
     const { setCurrencyBase, setCurrencyCrypto } = useContext(SelectedCurrenciesContext);

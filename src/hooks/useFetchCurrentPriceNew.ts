@@ -5,7 +5,7 @@ import useMessage from "hooks/useMessage";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 import { useCryptocompare } from "store";
-import { BaseCurrency, CurrencyCrypto } from "types";
+import { CurrencyBase, CurrencyCrypto } from "types";
 
 export const useFetchCurrentPriceNew = () => {
     const [prices, setPrice] = useState<any>(undefined as any);
