@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/cryptocurrency/static/css/main.54b3dd87.css",
-    "main.js": "/cryptocurrency/static/js/main.d886a83b.js",
+    "main.js": "/cryptocurrency/static/js/main.96fea355.js",
     "static/css/473.82d8e813.chunk.css": "/cryptocurrency/static/css/473.82d8e813.chunk.css",
-    "static/js/473.ae28e301.chunk.js": "/cryptocurrency/static/js/473.ae28e301.chunk.js",
+    "static/js/473.d120c622.chunk.js": "/cryptocurrency/static/js/473.d120c622.chunk.js",
     "static/css/914.abd2831a.chunk.css": "/cryptocurrency/static/css/914.abd2831a.chunk.css",
-    "static/js/914.312b3f12.chunk.js": "/cryptocurrency/static/js/914.312b3f12.chunk.js",
+    "static/js/914.f9544207.chunk.js": "/cryptocurrency/static/js/914.f9544207.chunk.js",
     "static/css/769.aa013b7e.chunk.css": "/cryptocurrency/static/css/769.aa013b7e.chunk.css",
     "static/js/769.f8cac065.chunk.js": "/cryptocurrency/static/js/769.f8cac065.chunk.js",
     "static/js/228.e91691d3.chunk.js": "/cryptocurrency/static/js/228.e91691d3.chunk.js",
@@ -22,11 +22,11 @@
     "static/media/oko.webp": "/cryptocurrency/static/media/oko.21c401d790afe6da2305.webp",
     "static/media/parasol.webp": "/cryptocurrency/static/media/parasol.ac306b4c1bcdc4a30528.webp",
     "main.54b3dd87.css.map": "/cryptocurrency/static/css/main.54b3dd87.css.map",
-    "main.d886a83b.js.map": "/cryptocurrency/static/js/main.d886a83b.js.map",
+    "main.96fea355.js.map": "/cryptocurrency/static/js/main.96fea355.js.map",
     "473.82d8e813.chunk.css.map": "/cryptocurrency/static/css/473.82d8e813.chunk.css.map",
-    "473.ae28e301.chunk.js.map": "/cryptocurrency/static/js/473.ae28e301.chunk.js.map",
+    "473.d120c622.chunk.js.map": "/cryptocurrency/static/js/473.d120c622.chunk.js.map",
     "914.abd2831a.chunk.css.map": "/cryptocurrency/static/css/914.abd2831a.chunk.css.map",
-    "914.312b3f12.chunk.js.map": "/cryptocurrency/static/js/914.312b3f12.chunk.js.map",
+    "914.f9544207.chunk.js.map": "/cryptocurrency/static/js/914.f9544207.chunk.js.map",
     "769.aa013b7e.chunk.css.map": "/cryptocurrency/static/css/769.aa013b7e.chunk.css.map",
     "769.f8cac065.chunk.js.map": "/cryptocurrency/static/js/769.f8cac065.chunk.js.map",
     "228.e91691d3.chunk.js.map": "/cryptocurrency/static/js/228.e91691d3.chunk.js.map",
@@ -35,6 +35,6 @@
   },
   "entrypoints": [
     "static/css/main.54b3dd87.css",
-    "static/js/main.d886a83b.js"
+    "static/js/main.96fea355.js"
   ]
 }
