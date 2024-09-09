@@ -6,10 +6,10 @@ cryptoCompare.setApiKey(process.env.REACT_APP_API_KEY);
 interface State {
     cryptoCompare: {
         [x: string]: any;
-        coinList: any;
-        price: any;
-        exchangeList: any;
-        priceHistorical: any;
+        coinList: () => Promise<any>;
+        price: (fsym: any, tsyms: any, options: any) => Promise<any>;
+        exchangeList: () => Promise<any>;
+        priceHistorical: (fsym: any, tsyms: any, time: any, options: any) => Promise<any>;
     };
 }
 

@@ -1,14 +1,9 @@
 import { useEffect, useRef } from "react";
 
-import getConvertibleCryptos from "functions/getConvertibleCryptos";
-
+import { getConvertibleCryptos } from "functions";
 import { useConvertibleCryptos, useCryptocompare, useLoaderStore } from "store";
 import { CoinListAPIResponseDataItem, CoinListAPIResponse, CurrencyCryptoArray, Exchanges } from "types";
 import { useBoolean, useDelayedCondition, useMessage } from "hooks";
-
-interface y {
-    [key: string]: { [key: string]: string[] };
-}
 
 function extractCryptosData(data: CoinListAPIResponseDataItem): CurrencyCryptoArray {
     const result = [];
@@ -37,7 +32,7 @@ export const useGetConvertibleCryptos = () => {
     const showMessage = useMessage();
     const isLoaderActive = useDelayedCondition(isLoading);
     const cryptoCompare = useCryptocompare(state => state.cryptoCompare);
-
+    console.log(cryptoCompare.coinList);
     useEffect(() => {
         const promises = Promise.all([cryptoCompare.coinList(), cryptoCompare.exchangeList()]);
         promises

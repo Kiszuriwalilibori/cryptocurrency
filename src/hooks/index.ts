@@ -7,7 +7,6 @@ import useDelayedCondition from "./useDelayedCondition";
 import useGetConvertibleCryptos from "./useGetConvertibleCryptos";
 import useReturnToSelection from "./useReturnToSelection";
 import useCreateAggregatedResults from "./useCreateAggregatedResults";
-import useFetchCurrentPriceNew from "./useFetchCurrentPriceNew";
 import useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded from "./useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded";
 import useSetInitialHistoricalPrices from "./useSetInitialHistoricalPrices";
 import useFetchHistoricalPrices from "./useFetchHistoricalPrices";
@@ -24,7 +23,7 @@ export {
     useDelayedCondition,
     useEnhancedState,
     useGetConvertibleCryptos,
-    useFetchCurrentPriceNew,
+    // useFetchCurrentPriceNew,
     useFetchHistoricalPrices,
     useHandleConnectionStatus,
     useSetInitialHistoricalPrices,

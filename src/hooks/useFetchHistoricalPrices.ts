@@ -37,7 +37,7 @@ const useFetchHistoricalPrices = () => {
         const historicalPrices: HistoricalPrices = [];
 
         timestamps.getTimestamps().forEach(timestamp => {
-            promises.push(cryptoCompare.priceHistorical(currencyCrypto.value, [currencyBase], timestamp));
+            promises.push(cryptoCompare.priceHistorical(currencyCrypto.value, [currencyBase], timestamp, {}));
         });
 
         Promise.allSettled(promises).then(results => {
