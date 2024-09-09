@@ -1,19 +1,9 @@
 import { CurrencyCryptoArray, Exchanges } from "types/index";
 
-type x = [string, string[]];
-
-type FlattenedExchangesItem = [string, any];
+type FlattenedExchangesItem = [string, string[]];
 type FlattenedExchanges = FlattenedExchangesItem[];
 
-// export interface Exchanges {
-//     [key: string]: x;
-// }
-
-// interface y {
-//     [key: string]: { [key: string]: string[] };
-// }
-export const getConvertibleCryptos = (exchanges: Exchanges /*y*/, availableCryptos: CurrencyCryptoArray) => {
-    console.log("exch", exchanges);
+export const getConvertibleCryptos = (exchanges: Exchanges, availableCryptos: CurrencyCryptoArray) => {
     const nonEmptyExchanges = Object.values(exchanges)
 
         .filter(item => {
@@ -22,16 +12,16 @@ export const getConvertibleCryptos = (exchanges: Exchanges /*y*/, availableCrypt
         .map(item => {
             return Object.entries(item);
         });
-    console.log("ne", nonEmptyExchanges);
-    const flattenedExchanges = [] as /*x[];*/ FlattenedExchanges;
+
+    const flattenedExchanges = [] as FlattenedExchanges;
 
     nonEmptyExchanges.forEach(item => {
         flattenedExchanges.push(...item);
     });
-    console.log("flatt", flattenedExchanges);
+
     const uniqueAvailableExchanges = Array.from(
         new Set(
-            flattenedExchanges.map((item: x) => {
+            flattenedExchanges.map((item: FlattenedExchangesItem) => {
                 return item[0];
             })
         )

@@ -64,5 +64,5 @@ export interface Selection {
 }
 
 export interface Exchanges {
-    [key: string]: string[];
+    [key: string]: { [key: string]: string[] };
 }
