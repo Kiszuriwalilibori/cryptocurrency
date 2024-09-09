@@ -12,6 +12,7 @@ import useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded f
 import useSetInitialHistoricalPrices from "./useSetInitialHistoricalPrices";
 import useFetchHistoricalPrices from "./useFetchHistoricalPrices";
 import useHandleConnectionStatus from "./useHandleConnectionStatus";
+import useEnhancedState from "./useEnhancedState";
 
 export {
     useBoolean,
@@ -21,6 +22,7 @@ export {
     useCreateAggregatedResults,
     useDebouncedCallback,
     useDelayedCondition,
+    useEnhancedState,
     useGetConvertibleCryptos,
     useFetchCurrentPriceNew,
     useFetchHistoricalPrices,

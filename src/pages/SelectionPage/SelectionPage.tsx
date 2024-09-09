@@ -1,17 +1,17 @@
-import { lazy, useState, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Stack } from "@mui/material";
 
 import { BlueButton } from "components";
 import { CurrencyBase, CurrencyCrypto, Selection } from "types";
-import { useCheckApiKey, useConfirmChoice, useDebouncedCallback } from "hooks";
+import { useCheckApiKey, useConfirmChoice, useDebouncedCallback, useEnhancedState } from "hooks";
 import { CryptoCurrencySelectForm, BaseCurrencySelectForm, Logo } from "./components";
 
 const Description = lazy(() => import("./components/CryptoCurrencyDescription"));
 
 const SelectionPage = () => {
     const isApiKeyAvailable = useCheckApiKey();
-    const [currencyBase, setCurrencyBase] = useState<CurrencyBase | null>(null);
-    const [currencyCrypto, setCurrencyCrypto] = useState<CurrencyCrypto | undefined>(undefined);
+    const [currencyBase, setCurrencyBase] = useEnhancedState<CurrencyBase | null>(null);
+    const [currencyCrypto, setCurrencyCrypto] = useEnhancedState<CurrencyCrypto | undefined>(undefined);
     const { confirmChoice, isEnabled } = useConfirmChoice({ currencyBase, currencyCrypto } as Selection);
     const handleClick = useDebouncedCallback<HTMLButtonElement>(confirmChoice, undefined);
 
