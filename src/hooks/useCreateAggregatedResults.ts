@@ -26,7 +26,7 @@ export const useCreateAggregatedResults = (
     historicalCryptoPrice: HistoricalPrices | null,
     isInitialRender: React.MutableRefObject<boolean>
 ) => {
-    function updateInitialRender(isInitialRender: React.MutableRefObject<boolean>) {
+    function updateInitialRenderStatus(isInitialRender: React.MutableRefObject<boolean>) {
         if (isInitialRender.current) {
             isInitialRender.current = false;
         }
@@ -42,7 +42,7 @@ export const useCreateAggregatedResults = (
                 currencyBase
             );
             communicateResults(currentCryptocurrencyPrice, showMessage, isInitialRender.current);
-            updateInitialRender(isInitialRender);
+            updateInitialRenderStatus(isInitialRender);
 
             const updatedResults = createResults({
                 currentPrice: currentCryptocurrencyPrice,
