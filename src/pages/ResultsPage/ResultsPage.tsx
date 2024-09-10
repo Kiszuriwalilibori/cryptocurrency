@@ -20,12 +20,18 @@ const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
  */
 const ResultsPage = (): JSX.Element => {
     const returnToSelection = useReturnToSelection();
+    const isInitialRender = React.useRef(true);
     const { historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
     const { cryptoCurrencyPriceAPIResponse } =
         useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded();
 
     useSetInitialHistoricalPrices(fetchHistoricalPrices);
-    const aggregatedResults = useCreateAggregatedResults(cryptoCurrencyPriceAPIResponse, historicalCryptoPrice);
+
+    const aggregatedResults = useCreateAggregatedResults(
+        cryptoCurrencyPriceAPIResponse,
+        historicalCryptoPrice,
+        isInitialRender
+    );
 
     return (
         <>

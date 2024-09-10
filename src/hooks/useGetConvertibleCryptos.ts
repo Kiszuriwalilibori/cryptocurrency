@@ -32,7 +32,7 @@ export const useGetConvertibleCryptos = () => {
     const showMessage = useMessage();
     const isLoaderActive = useDelayedCondition(isLoading);
     const cryptoCompare = useCryptocompare(state => state.cryptoCompare);
-    console.log(cryptoCompare.coinList);
+
     useEffect(() => {
         const promises = Promise.all([cryptoCompare.coinList(), cryptoCompare.exchangeList()]);
         promises

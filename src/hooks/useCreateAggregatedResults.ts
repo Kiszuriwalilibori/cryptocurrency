@@ -2,28 +2,47 @@ import React from "react";
 
 import { haveResultsChanged, communicateResults, createResults } from "functions";
 import { useMessage } from "hooks";
-import { CryptoPrice, CurrentCryptocurrencyPriceAPIResponse, HistoricalPrices, AggregatedResults } from "types";
+import {
+    CryptoPrice,
+    CurrentCryptocurrencyPriceAPIResponse,
+    HistoricalPrices,
+    AggregatedResults,
+    CurrencyBase,
+} from "types";
 import { isOKCurrentCryptocurrencyPriceAPIResponse } from "types/guards";
 
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
+function getCurrentCryptocurrencyPrice(
+    response: CurrentCryptocurrencyPriceAPIResponse,
+    baseCurrency: CurrencyBase
+): CryptoPrice {
+    const price: CryptoPrice = isOKCurrentCryptocurrencyPriceAPIResponse(response) ? response[baseCurrency] : undefined;
+    return price;
+}
+
 export const useCreateAggregatedResults = (
     cryptoCurrencyPriceAPIResponse: CurrentCryptocurrencyPriceAPIResponse,
-    historicalCryptoPrice: HistoricalPrices | null
+    historicalCryptoPrice: HistoricalPrices | null,
+    isInitialRender: React.MutableRefObject<boolean>
 ) => {
+    function updateInitialRender(isInitialRender: React.MutableRefObject<boolean>) {
+        if (isInitialRender.current) {
+            isInitialRender.current = false;
+        }
+    }
     const showMessage = useMessage();
     const { currencyBase } = React.useContext(SelectedCurrenciesContext);
     const [results, setResults] = React.useState<AggregatedResults | null>(null);
 
     React.useEffect(() => {
         if (cryptoCurrencyPriceAPIResponse && historicalCryptoPrice) {
-            let currentCryptocurrencyPrice: CryptoPrice = isOKCurrentCryptocurrencyPriceAPIResponse(
-                cryptoCurrencyPriceAPIResponse
-            )
-                ? cryptoCurrencyPriceAPIResponse[currencyBase]
-                : undefined;
-
-            communicateResults(currentCryptocurrencyPrice, showMessage);
+            const currentCryptocurrencyPrice = getCurrentCryptocurrencyPrice(
+                cryptoCurrencyPriceAPIResponse,
+                currencyBase
+            );
+            communicateResults(currentCryptocurrencyPrice, showMessage, isInitialRender.current);
+            updateInitialRender(isInitialRender);
 
             const updatedResults = createResults({
                 currentPrice: currentCryptocurrencyPrice,

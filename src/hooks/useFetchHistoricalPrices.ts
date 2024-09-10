@@ -7,8 +7,8 @@ import { useCryptocompare, useLoaderStore } from "store";
 import React from "react";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
-const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult =>
-    input.status === "rejected";
+// const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult =>
+//     input.status === "rejected";
 
 // const isFulfilled = <T>(input: PromiseSettledResult<T>): input is PromiseFulfilledResult<T> =>
 //     input.status === "fulfilled";
