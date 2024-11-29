@@ -12,6 +12,7 @@ import useSetInitialHistoricalPrices from "./useSetInitialHistoricalPrices";
 import useFetchHistoricalPrices from "./useFetchHistoricalPrices";
 import useHandleConnectionStatus from "./useHandleConnectionStatus";
 import useEnhancedState from "./useEnhancedState";
+import useGetConvertibles from "./useGetConvertibles";
 
 export {
     useBoolean,
@@ -23,7 +24,7 @@ export {
     useDelayedCondition,
     useEnhancedState,
     useGetConvertibleCryptos,
-    // useFetchCurrentPriceNew,
+    useGetConvertibles,
     useFetchHistoricalPrices,
     useHandleConnectionStatus,
     useSetInitialHistoricalPrices,

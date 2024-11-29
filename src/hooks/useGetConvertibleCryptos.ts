@@ -5,7 +5,7 @@ import { useConvertibleCryptos, useCryptocompare, useLoaderStore } from "store";
 import { CoinListAPIResponseDataItem, CoinListAPIResponse, CurrencyCryptoArray, Exchanges } from "types";
 import { useBoolean, useDelayedCondition, useMessage } from "hooks";
 
-function extractCryptosData(data: CoinListAPIResponseDataItem): CurrencyCryptoArray {
+export function extractCryptosData(data: CoinListAPIResponseDataItem): CurrencyCryptoArray {
     const result = [];
     for (let item in data) {
         if (data.hasOwnProperty(item)) {
@@ -55,6 +55,7 @@ export const useGetConvertibleCryptos = () => {
             exchanges.current !== INITIAL_EXCHANGES
         ) {
             const convertibleCryptos = getConvertibleCryptos(exchanges.current, cryptos.current);
+            console.log("stare", convertibleCryptos);
             setConvertibleCryptos(convertibleCryptos);
         }
     }, [cryptos.current, exchanges.current, getConvertibleCryptos, setConvertibleCryptos]);

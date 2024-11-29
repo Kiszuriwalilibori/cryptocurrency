@@ -13,7 +13,7 @@ function App() {
     const location = useLocation();
     useHandleConnectionStatus();
 
-    useGetConvertibleCryptos();
+    // useGetConvertibleCryptos();
 
     return (
         <>
