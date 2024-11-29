@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 
 import { getConvertibleCryptos } from "functions";
 import { useConvertibleCryptos, useCryptocompare, useLoaderStore } from "store";
-import { CoinListAPIResponseDataItem, CoinListAPIResponse, CurrencyCryptoArray, Exchanges } from "types";
+import { CoinListAPIResponseDataItem, CoinListAPIResponse, AvailableCryptocurrencies, Exchanges } from "types";
 import { useBoolean, useDelayedCondition, useMessage } from "hooks";
 
-export function extractCryptosData(data: CoinListAPIResponseDataItem): CurrencyCryptoArray {
+export function extractCryptosData(data: CoinListAPIResponseDataItem): AvailableCryptocurrencies {
     const result = [];
     for (let item in data) {
         if (data.hasOwnProperty(item)) {
@@ -20,13 +20,13 @@ export function extractCryptosData(data: CoinListAPIResponseDataItem): CurrencyC
 
     return result;
 }
-const INITIAL_AVAILABLE_CRYPTOS = [] as CurrencyCryptoArray;
+const INITIAL_AVAILABLE_CRYPTOS = [] as AvailableCryptocurrencies;
 const INITIAL_EXCHANGES = {} as Exchanges;
 
 export const useGetConvertibleCryptos = () => {
     const setConvertibleCryptos = useConvertibleCryptos.use.updateConvertibleCryptos();
     const setLoader = useLoaderStore.use.setLoader();
-    const cryptos = useRef<CurrencyCryptoArray>(INITIAL_AVAILABLE_CRYPTOS);
+    const cryptos = useRef<AvailableCryptocurrencies>(INITIAL_AVAILABLE_CRYPTOS);
     const exchanges = useRef<Exchanges>(INITIAL_EXCHANGES);
     const [isLoading, , setIsloadingFalse] = useBoolean(true);
     const showMessage = useMessage();

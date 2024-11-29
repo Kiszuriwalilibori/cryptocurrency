@@ -10,7 +10,7 @@ export interface CurrencyCrypto {
     imageURL: string;
     description: string;
 }
-export type CurrencyCryptoArray = CurrencyCrypto[];
+export type AvailableCryptocurrencies = CurrencyCrypto[];
 
 export type CryptoPrice = number | undefined;
 
