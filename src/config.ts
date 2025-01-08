@@ -16,3 +16,4 @@ BASE_URL.set("current", "https://min-api.cryptocompare.com/data/price?fsym=");
 BASE_URL.set("historical", "https://min-api.cryptocompare.com/data/dayAvg?fsym=");
 BASE_URL.set("all", "https://min-api.cryptocompare.com/data/all/coinlist");
 BASE_URL.set("general", "https://www.cryptocompare.com");
+BASE_URL.set("web_sockets", "wss://streamer.cryptocompare.com/v2");
