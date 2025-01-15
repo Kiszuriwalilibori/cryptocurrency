@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { useConvertibleCryptos, useLoaderStore } from "store";
 import { useMessage } from "hooks";
+
 import useGetMemoizedWorker from "./useGetWorker";
 
 export const useGetConvertibles = () => {
@@ -15,11 +16,14 @@ export const useGetConvertibles = () => {
         setLoader(true);
         worker.onerror = function (e) {
             setLoader(false);
-            showMessage.error("fetchBooksWorker wywołał błąd: " + e.message);
+            showMessage.error("getConvertiblesWorker wywołał błąd: " + e.message);
         };
         worker.onmessage = (e: MessageEvent<any>) => {
             setLoader(false);
-            setConvertibleCryptos(e.data.convertibles);
+            e.data.convertibles && setConvertibleCryptos(e.data.convertibles);
+            e.data.errors &&
+                e.data.errors.length &&
+                showMessage.error("Próba pobierania listy dostępnych kryptowalut wywołała błąd: " + e.data.errors[0]);
         };
     }, [worker]);
 };
