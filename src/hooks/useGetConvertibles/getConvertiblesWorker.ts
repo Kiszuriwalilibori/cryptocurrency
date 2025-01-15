@@ -27,8 +27,10 @@ self.onmessage = function (event) {
     const outcome: { errors?: string[]; convertibles?: AvailableCryptocurrencies } = {};
     let exchanges = {} as Exchanges;
     let cryptos = [] as AvailableCryptocurrencies;
+    let errors = [] as string[];
     Promise.allSettled([cryptoCompare.coinList(), cryptoCompare.exchangeList()]).then(results => {
         if (results && results.length) {
+            console.log("results", results);
             results.forEach(result => {
                 if (result.status === "fulfilled") {
                     if (result.value.error) {
@@ -41,14 +43,27 @@ self.onmessage = function (event) {
                         }
                     }
                 } else {
-                    outcome.errors?.push(
+                    console.log("not fulfilled?");
+                    errors.push(
                         result.reason ? "Promise rejected: " + result.reason : "Promise rejected - Unknown error"
                     );
+                    // outcome.errors?.push(
+                    //     result.reason ? "Promise rejected: " + result.reason : "Promise rejected - Unknown error"
+                    // );
+                    console.log("errors from not fulfilled", errors);
                 }
             });
-            if (!isEmpty(exchanges) && !isEmpty(cryptos))
+            if (!isEmpty(exchanges) && !isEmpty(cryptos)) {
                 outcome.convertibles = getConvertibleCryptos(exchanges, cryptos);
+            }
+            if (!isEmpty(errors)) {
+                outcome.errors = [...errors];
+            }
+
+            console.log("outcome", outcome);
             self.postMessage({ ...outcome });
+        } else {
+            console.log("no results");
         }
     });
 };
