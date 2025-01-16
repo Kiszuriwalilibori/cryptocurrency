@@ -13,7 +13,7 @@ const SelectionPage = () => {
     const [currencyBase, setCurrencyBase] = useEnhancedState<CurrencyBase | null>(null);
     const [currencyCrypto, setCurrencyCrypto] = useEnhancedState<CurrencyCrypto | undefined>(undefined);
     const { confirmChoice, isEnabled } = useConfirmChoice({ currencyBase, currencyCrypto } as Selection);
-    const handleClick = useDebouncedCallback<HTMLButtonElement>(confirmChoice, undefined);
+    const handleConfirmClicked = useDebouncedCallback<HTMLButtonElement>(confirmChoice, undefined);
 
     useGetConvertibles();
 
@@ -25,7 +25,7 @@ const SelectionPage = () => {
                 <BlueButton
                     classes={isEnabled ? "enabled" : ""}
                     isEnabled={isEnabled}
-                    clickHandler={handleClick}
+                    clickHandler={handleConfirmClicked}
                     label="Pokaż kurs"
                 />
 
