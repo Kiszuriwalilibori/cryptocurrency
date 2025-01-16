@@ -30,11 +30,10 @@ self.onmessage = function (event) {
     let errors = [] as string[];
     Promise.allSettled([cryptoCompare.coinList(), cryptoCompare.exchangeList()]).then(results => {
         if (results && results.length) {
-            console.log("results", results);
             results.forEach(result => {
                 if (result.status === "fulfilled") {
                     if (result.value.error) {
-                        outcome.errors?.push(result.value.error.message || "Unknown error");
+                        errors.push(result.value.error.message || "Unknown error");
                     } else {
                         if (result.value.Data) {
                             cryptos = extractCryptosData(result.value.Data);
@@ -43,14 +42,9 @@ self.onmessage = function (event) {
                         }
                     }
                 } else {
-                    console.log("not fulfilled?");
                     errors.push(
                         result.reason ? "Promise rejected: " + result.reason : "Promise rejected - Unknown error"
                     );
-                    // outcome.errors?.push(
-                    //     result.reason ? "Promise rejected: " + result.reason : "Promise rejected - Unknown error"
-                    // );
-                    console.log("errors from not fulfilled", errors);
                 }
             });
             if (!isEmpty(exchanges) && !isEmpty(cryptos)) {
@@ -59,11 +53,7 @@ self.onmessage = function (event) {
             if (!isEmpty(errors)) {
                 outcome.errors = [...errors];
             }
-
-            console.log("outcome", outcome);
             self.postMessage({ ...outcome });
-        } else {
-            console.log("no results");
         }
     });
 };

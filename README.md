@@ -139,14 +139,8 @@ zdecydować nie jest to palące bo taki obiekt tworzę tpoza tym tylko raz
 
 011 do rozważenia semantyka typu section zamiast MUI Box itp.
 
-012 na dobrą sprawę SelectionofCurrency and crypto zawiera logikę pobierania listy, to trochę nie teges, czy
-tego gdzieś nie wyeksportować? Komponent zwracający zawsze null?
-
 npm-check-unused to komenda do zależności
 
 wydzielić media query do osobnego pliku i wczytywać ten plik warunkowo. Ale, co sie stanie kiedy zrobimy resize?
-todo doczytać o concurrent axios, moze by się dało uprościć wczytywania historical
-renderowanie Resultspage jest wymuszane przez useQuery, to jest sprawdzone
 
-isApiKeyAvailable nie jest biznesem komponentu Selectionpage, powinno trafić do jakiegoś wrappera
-fetchlistofallcryptos bardziej pasuje na wrappera wywołanego jako withListofAllCryptos czy jakoś tak. W każdym razie związek z tym konkretnym kompoentem gdzie jest to uzyte jest wątpliwy
+renderowanie Resultspage jest wymuszane przez useQuery, to jest sprawdzone

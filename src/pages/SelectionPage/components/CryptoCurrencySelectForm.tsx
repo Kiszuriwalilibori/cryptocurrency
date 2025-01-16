@@ -5,15 +5,13 @@ import { CurrencyCrypto } from "types";
 import { useConvertibleCryptos } from "store";
 
 import "../styles/_CryptoCurrencySelectForm.scss";
+import useGetLabelClassName from "hooks/useManageLabelClass";
 
 interface Props {
     setCurrencyCrypto: (arg0: CurrencyCrypto) => void;
     currencyCrypto: CurrencyCrypto | undefined;
 }
 
-function createLabelStyle(cryptos: Omit<CurrencyCrypto, "imageURL">[] | undefined) {
-    return cryptos && cryptos.length ? "" : "inactivatedSelect"; /// todo to wygląda dziwnie a służy chyba tylko do dezaktywacji vistualselecta
-}
 /**
  * Creates form which alows choise of cryptocurrency
  * @param currencyCrypto base currency
@@ -23,11 +21,11 @@ function createLabelStyle(cryptos: Omit<CurrencyCrypto, "imageURL">[] | undefine
 const CryptoCurrencySelectForm: React.FC<Props> = props => {
     const { currencyCrypto, setCurrencyCrypto } = props;
     const availableCryptos = useConvertibleCryptos.use.convertibleCryptos();
-    const labelClass = React.useMemo(() => createLabelStyle(availableCryptos), [JSON.stringify(availableCryptos)]); //todo to wygląda dziwnie
+    const labelClassName = useGetLabelClassName(availableCryptos);
 
     return (
         <>
-            <label className={labelClass}>
+            <label className={labelClassName}>
                 <VirtualizedSelect
                     value={currencyCrypto}
                     className="virtualized-select"

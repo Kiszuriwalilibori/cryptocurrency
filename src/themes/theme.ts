@@ -52,9 +52,7 @@ const theme = createTheme({
         purpleText: {
             color: COLOR_PURPLE,
             fontSize: "1.25rem",
-            // "@media (max-width:400px)": {
-            //     fontSize: "1rem",
-            // },
+            
         },
         greyText: {
             fontSize: "10px",

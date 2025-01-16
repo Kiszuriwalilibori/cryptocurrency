@@ -27,7 +27,7 @@ export {
     useGetConvertibles,
     useFetchHistoricalPrices,
     useHandleConnectionStatus,
-    useSetInitialHistoricalPrices,
     useMessage,
     useReturnToSelection,
+    useSetInitialHistoricalPrices,
 };
