@@ -4,6 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 import { CurrencyBase } from "types";
 import { BaseCurrencyForm, Legend } from "../styles";
+import { useConvertibleCryptos } from "store/convertibleCryptos";
 
 interface BaseCurrencyChoiceType {
     currencyBase: CurrencyBase | null;
@@ -18,12 +19,13 @@ interface BaseCurrencyChoiceType {
 
 const BaseCurrencySelectForm = (props: BaseCurrencyChoiceType): JSX.Element => {
     const { currencyBase, setCurrencyBase } = props;
+    const convertibles = useConvertibleCryptos.use.convertibles();
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrencyBase(event.target.value as CurrencyBase);
     };
 
     return (
-        <BaseCurrencyForm>
+        <BaseCurrencyForm disabled={!(convertibles && convertibles.length)}>
             <Legend> Waluta odniesienia</Legend>
             <RadioGroup aria-label="currency" name="currency" value={currencyBase} onChange={handleChange}>
                 <FormControlLabel value="PLN" control={<Radio />} label="PLN" />

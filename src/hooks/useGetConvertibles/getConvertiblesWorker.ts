@@ -2,12 +2,12 @@
 
 import { getConvertibleCryptos } from "functions/getConvertibleCryptos";
 import { isEmpty } from "lodash";
-import { CoinListAPIResponseDataItem, AvailableCryptocurrencies, Exchanges } from "types";
+import { CoinListAPIResponseDataItem, Convertibles, Exchanges } from "types";
 
 const cryptoCompare = require("cryptocompare");
 cryptoCompare.setApiKey(process.env.REACT_APP_API_KEY);
 
-function extractCryptosData(data: CoinListAPIResponseDataItem): AvailableCryptocurrencies {
+function extractCryptosData(data: CoinListAPIResponseDataItem): Convertibles {
     const result = [];
     for (let item in data) {
         if (data.hasOwnProperty(item)) {
@@ -24,9 +24,9 @@ function extractCryptosData(data: CoinListAPIResponseDataItem): AvailableCryptoc
 }
 
 self.onmessage = function (event) {
-    const outcome: { errors?: string[]; convertibles?: AvailableCryptocurrencies } = {};
+    const outcome: { errors?: string[]; convertibles?: Convertibles } = {};
     let exchanges = {} as Exchanges;
-    let cryptos = [] as AvailableCryptocurrencies;
+    let cryptos = [] as Convertibles;
     let errors = [] as string[];
     Promise.allSettled([cryptoCompare.coinList(), cryptoCompare.exchangeList()]).then(results => {
         if (results && results.length) {

@@ -20,7 +20,7 @@ interface Props {
  */
 const CryptoCurrencySelectForm: React.FC<Props> = props => {
     const { currencyCrypto, setCurrencyCrypto } = props;
-    const availableCryptos = useConvertibleCryptos.use.convertibleCryptos();
+    const availableCryptos = useConvertibleCryptos.use.convertibles();
     const labelClassName = useGetLabelClassName(availableCryptos);
 
     return (

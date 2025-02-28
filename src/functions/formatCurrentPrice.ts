@@ -8,8 +8,13 @@ import { CurrencyBase } from "types";
  */
 
 const formatCurrentPrice = (currentPrice: number, currencyBase: CurrencyBase) => {
+    const preformattedCurrentPrice =
+        currentPrice >= 1 ? Math.round(currentPrice * 100) / 100 : Math.round(currentPrice * 100000000) / 100000000;
+
     const formattedCurrentPrice =
-        currentPrice.toString().length > 10 ? currentPrice.toExponential(2) : currentPrice.toString();
+        preformattedCurrentPrice.toString().length > 10
+            ? preformattedCurrentPrice.toExponential(2)
+            : preformattedCurrentPrice.toString();
     const priceWithCoin = formattedCurrentPrice + " " + currencyBase;
 
     return { "Aktualna cena": priceWithCoin };

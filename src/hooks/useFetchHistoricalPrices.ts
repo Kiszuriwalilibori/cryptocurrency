@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { HistoricalPrices, NotAvailable } from "types";
 import { timestamps } from "functions";
 import { useMessage, useBoolean } from "hooks";
 import { useCryptocompare, useLoaderStore } from "store";
-import React from "react";
+
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
 
 const useFetchHistoricalPrices = () => {
-    const [historicalCryptoPrice, setData] = useState<HistoricalPrices | null>(null);
+    const [historicalCryptoPrice, setHistoricalCryptoPrice] = useState<HistoricalPrices | null>(null);
     const [error, setError] = useState(false);
     const [loading, , stopLoading] = useBoolean(true);
     const showMessage = useMessage();
     const setLoader = useLoaderStore.use.setLoader();
-    const { currencyBase, currencyCrypto } = React.useContext(SelectedCurrenciesContext);
+    const { currencyBase, currencyCrypto } = useContext(SelectedCurrenciesContext);
 
     useEffect(() => {
         setLoader(true);
@@ -44,7 +44,7 @@ const useFetchHistoricalPrices = () => {
             });
 
             if (historicalPrices.length) {
-                setData(historicalPrices);
+                setHistoricalCryptoPrice(historicalPrices);
             } else {
                 setError(true);
                 showMessage.error(`No data fetched at all for historical prices`);

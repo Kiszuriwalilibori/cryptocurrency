@@ -1,16 +1,17 @@
 import * as React from "react";
 
 import {
-    useFetchHistoricalPrices,
-    useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded,
     useCreateAggregatedResults,
+    useFetchHistoricalPrices,
+    useObserveCurrentCryptoPrice,
     useSetInitialHistoricalPrices,
     useReturnToSelection,
+    useObserveHistoricalPrices,
 } from "hooks";
 
 import { BlueButton } from "components";
-
 import { ResultsPageHeader } from "./parts";
+import { useCurrentCryptoPrice } from "store";
 
 const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
 
@@ -22,16 +23,13 @@ const ResultsPage = (): JSX.Element => {
     const returnToSelection = useReturnToSelection();
     const isInitialRender = React.useRef(true);
     const { historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
-    const { cryptoCurrencyPriceAPIResponse } =
-        useContinuouslyFetchCurrentCryptoPriceButHistoricalPricesOnlyWhenNeeded();
-
     useSetInitialHistoricalPrices(fetchHistoricalPrices);
 
-    const aggregatedResults = useCreateAggregatedResults(
-        cryptoCurrencyPriceAPIResponse,
-        historicalCryptoPrice,
-        isInitialRender
-    );
+    useObserveHistoricalPrices();
+    useObserveCurrentCryptoPrice();
+
+    const currentCryptoPrice = useCurrentCryptoPrice.use.currentCryptoPrice();
+    const aggregatedResults = useCreateAggregatedResults(currentCryptoPrice, historicalCryptoPrice, isInitialRender);
 
     return (
         <>

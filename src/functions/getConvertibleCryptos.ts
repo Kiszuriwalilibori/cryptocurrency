@@ -1,9 +1,9 @@
-import { AvailableCryptocurrencies, Exchanges } from "types/index";
+import { Convertibles, Exchanges } from "types/index";
 
 type FlattenedExchangesItem = [string, string[]];
 type FlattenedExchanges = FlattenedExchangesItem[];
 
-export const getConvertibleCryptos = (exchanges: Exchanges, availableCryptos: AvailableCryptocurrencies) => {
+export const getConvertibleCryptos = (exchanges: Exchanges, availableCryptos: Convertibles) => {
     const nonEmptyExchanges = Object.values(exchanges)
 
         .filter(item => {

@@ -116,6 +116,10 @@ new hook gathers all logic for confirming selection
 
 fetching and keeping available listof all cryptos now with react-query, so redux and useAxios are removed from deps
 
+### 4.0.1
+
+Fetching current crypto price with Web Sockets
+
 ## TODO
 
 001 implementation for INWESTUJ

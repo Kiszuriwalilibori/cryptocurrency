@@ -1,16 +1,15 @@
-import { AvailableCryptocurrencies } from "types";
+import { Convertibles } from "types";
 import { create } from "zustand";
 import createSelectors from "./createSelectors";
 
 interface State {
-    convertibleCryptos: AvailableCryptocurrencies;
-    updateConvertibleCryptos: (arg0: AvailableCryptocurrencies) => void;
+    convertibles: Convertibles;
+    setConvertibles: (arg0: Convertibles) => void;
 }
 
 const useConvertibleCryptosBase = create<State>(set => ({
-    convertibleCryptos: [],
-    updateConvertibleCryptos: (updatedConvertibleCryptos: AvailableCryptocurrencies) =>
-        set({ convertibleCryptos: updatedConvertibleCryptos }),
+    convertibles: [],
+    setConvertibles: (currentConvertibles: Convertibles) => set({ convertibles: currentConvertibles }),
 }));
 
 export const useConvertibleCryptos = createSelectors(useConvertibleCryptosBase);

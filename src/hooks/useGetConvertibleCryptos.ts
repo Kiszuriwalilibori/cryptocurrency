@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 
 import { getConvertibleCryptos } from "functions";
 import { useConvertibleCryptos, useCryptocompare, useLoaderStore } from "store";
-import { CoinListAPIResponseDataItem, CoinListAPIResponse, AvailableCryptocurrencies, Exchanges } from "types";
+import { CoinListAPIResponseDataItem, CoinListAPIResponse, Convertibles, Exchanges } from "types";
 import { useBoolean, useDelayedCondition, useMessage } from "hooks";
 
-export function extractCryptosData(data: CoinListAPIResponseDataItem): AvailableCryptocurrencies {
+export function extractCryptosData(data: CoinListAPIResponseDataItem): Convertibles {
     const result = [];
     for (let item in data) {
         if (data.hasOwnProperty(item)) {
@@ -20,13 +20,14 @@ export function extractCryptosData(data: CoinListAPIResponseDataItem): Available
 
     return result;
 }
-const INITIAL_AVAILABLE_CRYPTOS = [] as AvailableCryptocurrencies;
+const INITIAL_AVAILABLE_CRYPTOS = [] as Convertibles;
 const INITIAL_EXCHANGES = {} as Exchanges;
 
 export const useGetConvertibleCryptos = () => {
-    const setConvertibleCryptos = useConvertibleCryptos.use.updateConvertibleCryptos();
+    const setConvertibleCryptos = useConvertibleCryptos.use.setConvertibles();
+
     const setLoader = useLoaderStore.use.setLoader();
-    const cryptos = useRef<AvailableCryptocurrencies>(INITIAL_AVAILABLE_CRYPTOS);
+    const cryptos = useRef<Convertibles>(INITIAL_AVAILABLE_CRYPTOS);
     const exchanges = useRef<Exchanges>(INITIAL_EXCHANGES);
     const [isLoading, , setIsloadingFalse] = useBoolean(true);
     const showMessage = useMessage();
@@ -55,7 +56,6 @@ export const useGetConvertibleCryptos = () => {
             exchanges.current !== INITIAL_EXCHANGES
         ) {
             const convertibleCryptos = getConvertibleCryptos(exchanges.current, cryptos.current);
-            console.log("stare", convertibleCryptos);
             setConvertibleCryptos(convertibleCryptos);
         }
     }, [cryptos.current, exchanges.current, getConvertibleCryptos, setConvertibleCryptos]);

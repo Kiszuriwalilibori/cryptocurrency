@@ -10,7 +10,7 @@ export interface CurrencyCrypto {
     imageURL: string;
     description: string;
 }
-export type AvailableCryptocurrencies = CurrencyCrypto[];
+export type Convertibles = CurrencyCrypto[];
 
 export type CryptoPrice = number | undefined;
 
@@ -65,4 +65,29 @@ export interface Selection {
 
 export interface Exchanges {
     [key: string]: { [key: string]: string[] };
+}
+
+export interface CryptoMessage {
+    TYPE: string;
+    M: string;
+    FSYM: string;
+    TSYM: string;
+    F: string;
+    ID?: string;
+    TS?: string;
+    Q?: number;
+    P?: number;
+    TOTAL?: number;
+    RTS?: string;
+    CCSEQ?: number;
+    TSNS?: number;
+    RTSNS?: number;
+    VALUE?: number;
+}
+
+export interface LastJsonMessage {
+    INSTRUMENT?: string;
+    MARKET?: string;
+    TYPE?: string;
+    VALUE?: number;
 }
