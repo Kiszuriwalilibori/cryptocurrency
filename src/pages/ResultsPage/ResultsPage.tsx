@@ -11,7 +11,6 @@ import {
 
 import { BlueButton } from "components";
 import { ResultsPageHeader } from "./parts";
-import { useCurrentCryptoPrice } from "store";
 
 const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
 
@@ -23,13 +22,13 @@ const ResultsPage = (): JSX.Element => {
     const returnToSelection = useReturnToSelection();
     const isInitialRender = React.useRef(true);
     const { historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
+
     useSetInitialHistoricalPrices(fetchHistoricalPrices);
 
     useObserveHistoricalPrices();
     useObserveCurrentCryptoPrice();
 
-    const currentCryptoPrice = useCurrentCryptoPrice.use.currentCryptoPrice();
-    const aggregatedResults = useCreateAggregatedResults(currentCryptoPrice, historicalCryptoPrice, isInitialRender);
+    const aggregatedResults = useCreateAggregatedResults(historicalCryptoPrice, isInitialRender);
 
     return (
         <>

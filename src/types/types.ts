@@ -42,11 +42,6 @@ export type CurrentCryptocurrencyPriceAPIResponseItem = {
     [key in CurrencyBase]: number;
 };
 
-export type CurrentCryptocurrencyPriceAPIResponse =
-    | CurrentCryptocurrencyPriceAPIResponseItem
-    | { Response: string; Message: string };
-
-/* changes array */
 export type ChangesArrayItem = { [K in TimestampIDs]: NotAvailable | string };
 
 export type ChangesArray = ChangesArrayItem[];

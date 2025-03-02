@@ -34,10 +34,7 @@ export const useObserveCurrentCryptoPrice = () => {
     }, [readyState, sendJsonMessage]);
 
     useEffect(() => {
-        if (lastJsonMessage && lastJsonMessage.VALUE) {
-            const crypto = { [currencyBase]: lastJsonMessage.VALUE };
-            setCurrentCryptoPrice(crypto as any);
-        }
+        lastJsonMessage && lastJsonMessage.VALUE && setCurrentCryptoPrice(lastJsonMessage.VALUE);
     }, [lastJsonMessage]);
 };
 

@@ -2,30 +2,13 @@ import React from "react";
 
 import { haveResultsChanged, createResults } from "functions";
 
-import {
-    CryptoPrice,
-    CurrentCryptocurrencyPriceAPIResponse,
-    HistoricalPrices,
-    AggregatedResults,
-    CurrencyBase,
-} from "types";
-
-import { isOKCurrentCryptocurrencyPriceAPIResponse } from "types/guards";
+import { HistoricalPrices, AggregatedResults } from "types";
 
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
-
-function getCurrentCryptocurrencyPrice(
-    response: CurrentCryptocurrencyPriceAPIResponse,
-    baseCurrency: CurrencyBase
-): CryptoPrice {
-    const price: CryptoPrice = isOKCurrentCryptocurrencyPriceAPIResponse(response) ? response[baseCurrency] : undefined;
-
-    return price;
-}
+import { useCurrentCryptoPrice } from "store";
 
 export const useCreateAggregatedResults = (
-    currentCryptoPrice: CurrentCryptocurrencyPriceAPIResponse,
-    historicalCryptoPrice: HistoricalPrices | null,
+    historicalPrices: HistoricalPrices | null,
     isInitialRender: React.MutableRefObject<boolean>
 ) => {
     function updateInitialRenderStatus(isInitialRender: React.MutableRefObject<boolean>) {
@@ -35,17 +18,16 @@ export const useCreateAggregatedResults = (
     }
 
     const { currencyBase } = React.useContext(SelectedCurrenciesContext);
+    const currentPrice = useCurrentCryptoPrice.use.currentCryptoPrice();
     const [results, setResults] = React.useState<AggregatedResults | null>(null);
 
     React.useEffect(() => {
-        if (currentCryptoPrice && historicalCryptoPrice) {
-            const currentCryptocurrencyPrice = getCurrentCryptocurrencyPrice(currentCryptoPrice, currencyBase);
-
+        if (currentPrice && historicalPrices) {
             updateInitialRenderStatus(isInitialRender);
 
             const updatedResults = createResults({
-                currentPrice: currentCryptocurrencyPrice,
-                historicalPrices: historicalCryptoPrice,
+                currentPrice: currentPrice,
+                historicalPrices: historicalPrices,
                 currencyBase,
             });
             if (haveResultsChanged(results, updatedResults)) {
@@ -53,7 +35,7 @@ export const useCreateAggregatedResults = (
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentCryptoPrice, historicalCryptoPrice]);
+    }, [currentPrice, historicalPrices]);
 
     return results;
 };

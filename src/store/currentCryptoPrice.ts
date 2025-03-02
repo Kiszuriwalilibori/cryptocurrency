@@ -1,14 +1,13 @@
 import { create } from "zustand";
 import createSelectors from "./createSelectors";
-import { CurrentCryptocurrencyPriceAPIResponse } from "types/index";
+import { CryptoPrice } from "types/index";
 
 interface State {
-    currentCryptoPrice: CurrentCryptocurrencyPriceAPIResponse;
+    currentCryptoPrice: CryptoPrice;
     setCurrentCryptoPrice: (arg0: State["currentCryptoPrice"]) => void;
 }
 
-const initialCurrentCryptoPrice: State["currentCryptoPrice"] = {} as CurrentCryptocurrencyPriceAPIResponse;
-
+const initialCurrentCryptoPrice: State["currentCryptoPrice"] = undefined;
 const useCurrentCryptoPriceBase = create<State>(set => ({
     currentCryptoPrice: initialCurrentCryptoPrice,
     setCurrentCryptoPrice: (updatedCurrentCryptoPrice: State["currentCryptoPrice"]) =>
