@@ -5,13 +5,15 @@ import { CryptoPrice } from "types/index";
 interface State {
     currentCryptoPrice: CryptoPrice;
     setCurrentCryptoPrice: (arg0: State["currentCryptoPrice"]) => void;
+    resetCurrentCryptoPrice: (arg0: State["currentCryptoPrice"]) => void;
 }
 
-const initialCurrentCryptoPrice: State["currentCryptoPrice"] = undefined;
+export const initialCurrentCryptoPrice: State["currentCryptoPrice"] = undefined;
 const useCurrentCryptoPriceBase = create<State>(set => ({
     currentCryptoPrice: initialCurrentCryptoPrice,
     setCurrentCryptoPrice: (updatedCurrentCryptoPrice: State["currentCryptoPrice"]) =>
         set({ currentCryptoPrice: updatedCurrentCryptoPrice }),
+    resetCurrentCryptoPrice: () => set({ currentCryptoPrice: initialCurrentCryptoPrice }),
 }));
 
 export const useCurrentCryptoPrice = createSelectors(useCurrentCryptoPriceBase);

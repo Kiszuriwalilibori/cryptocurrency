@@ -13,6 +13,7 @@ import useEnhancedState from "./useEnhancedState";
 import useGetConvertibles from "./useGetConvertibles";
 import useObserveCurrentCryptoPrice from "./useObserveCurrentCryptoPrice";
 import useObserveHistoricalPrices from "./useObserveHistoricalPrices";
+import useIsCurrentPriceSet from "./useIsCurrentPriceSet";
 
 export {
     useBoolean,
@@ -26,6 +27,7 @@ export {
     useObserveCurrentCryptoPrice,
     useFetchHistoricalPrices,
     useHandleConnectionStatus,
+    useIsCurrentPriceSet,
     useMessage,
     useReturnToSelection,
     useSetInitialHistoricalPrices,

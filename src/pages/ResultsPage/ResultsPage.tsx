@@ -6,6 +6,7 @@ import {
     useSetInitialHistoricalPrices,
     useReturnToSelection,
     useObserveHistoricalPrices,
+    useIsCurrentPriceSet,
 } from "hooks";
 
 import { BlueButton } from "components";
@@ -23,18 +24,19 @@ const ResultsPage = (): JSX.Element => {
     useSetInitialHistoricalPrices();
     useObserveHistoricalPrices();
     useObserveCurrentCryptoPrice();
+    const isCurrentPriceSet = useIsCurrentPriceSet();
 
     const aggregatedResults = useCreateAggregatedResults();
-    console.log(aggregatedResults);
+    console.log(isCurrentPriceSet);
 
     return (
         <>
             <ResultsPageHeader text="Results of query" />
             <main>
-                {aggregatedResults && <BlueButton label="Powrót do wyboru" clickHandler={returnToSelection} />}
-                {aggregatedResults && (
+                {isCurrentPriceSet && <BlueButton label="Powrót do wyboru" clickHandler={returnToSelection} />}
+                {isCurrentPriceSet && (
                     <React.Suspense fallback={null}>
-                        <ResultsTable results={aggregatedResults} />
+                        {aggregatedResults && <ResultsTable results={aggregatedResults} />}
                     </React.Suspense>
                 )}
             </main>

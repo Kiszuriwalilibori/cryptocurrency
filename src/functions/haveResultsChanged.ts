@@ -2,9 +2,6 @@ import { ChangesArray, AggregatedResults } from "types";
 
 interface Result {
     changes: ChangesArray;
-    currentPrice: {
-        "Aktualna cena": string;
-    };
 }
 
 export const haveResultsChanged = (results: AggregatedResults | null, result: Result) => {

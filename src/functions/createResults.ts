@@ -1,25 +1,19 @@
-import { createChanges, formatCurrentPrice } from "functions";
+import { createChanges } from "functions";
 
-import { CurrencyBase, CryptoPrice, HistoricalPrices } from "types";
+import { CryptoPrice, HistoricalPrices } from "types";
 
 interface Args {
     currentPrice: CryptoPrice;
     historicalPrices: HistoricalPrices;
-    currencyBase: CurrencyBase;
 }
 
 const createResults = (args: Args) => {
-    const { currentPrice, historicalPrices, currencyBase } = args;
+    const { currentPrice, historicalPrices } = args;
 
     const changes = createChanges(currentPrice, historicalPrices);
-    const formattedCryptoPrice =
-        typeof currentPrice === "number"
-            ? formatCurrentPrice(currentPrice, currencyBase)
-            : { "Aktualna cena": "Brak danych" };
 
     return {
         changes: changes,
-        currentPrice: formattedCryptoPrice,
     };
 };
 

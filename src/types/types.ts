@@ -50,7 +50,7 @@ export type HistoricalPrices = (number | NotAvailable.na)[];
 
 export interface AggregatedResults {
     changes: ChangesArray;
-    currentPrice: { [key: string]: string };
+    // currentPrice: { [key: string]: string };
 }
 
 export interface Selection {

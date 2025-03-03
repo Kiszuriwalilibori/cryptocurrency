@@ -30,7 +30,7 @@ const ResultsTable = (props: Props) => {
                     <GeneralInformation currencyCryptoName={label} />
                     {imageURL && <Logo imageURL={imageURL} />}
                     <div className="PricesWithButtons">
-                        {results!.currentPrice && <CryptoCurrencyCurrentPrice currentPrice={results!.currentPrice} />}
+                        <CryptoCurrencyCurrentPrice />
                         {results!.changes && <Changes changesArray={results!.changes} />}
                         <InvestButton />
                     </div>
