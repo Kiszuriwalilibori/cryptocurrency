@@ -2,7 +2,6 @@ import * as React from "react";
 
 import {
     useCreateAggregatedResults,
-    useFetchHistoricalPrices,
     useObserveCurrentCryptoPrice,
     useSetInitialHistoricalPrices,
     useReturnToSelection,
@@ -20,15 +19,14 @@ const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
  */
 const ResultsPage = (): JSX.Element => {
     const returnToSelection = useReturnToSelection();
-    const isInitialRender = React.useRef(true);
-    const { historicalCryptoPrice, fetchHistoricalPrices } = useFetchHistoricalPrices();
+    // const isInitialRender = React.useRef(true);
 
-    useSetInitialHistoricalPrices(fetchHistoricalPrices);
-
+    useSetInitialHistoricalPrices();
     useObserveHistoricalPrices();
     useObserveCurrentCryptoPrice();
 
-    const aggregatedResults = useCreateAggregatedResults(historicalCryptoPrice, isInitialRender);
+    const aggregatedResults = useCreateAggregatedResults(/*isInitialRender*/);
+    console.log(aggregatedResults);
 
     return (
         <>
