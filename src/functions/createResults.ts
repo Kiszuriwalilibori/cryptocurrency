@@ -12,9 +12,11 @@ const createResults = (args: Args) => {
 
     const changes = createChanges(currentPrice, historicalPrices);
 
-    return {
-        changes: changes,
-    };
+    return changes;
+
+    // return {
+    //     changes: changes,
+    // };
 };
 
 export default createResults;

@@ -26,9 +26,6 @@ const ResultsPage = (): JSX.Element => {
     useObserveCurrentCryptoPrice();
     const isCurrentPriceSet = useIsCurrentPriceSet();
 
-    const aggregatedResults = useCreateAggregatedResults();
-    console.log(isCurrentPriceSet);
-
     return (
         <>
             <ResultsPageHeader text="Results of query" />
@@ -36,7 +33,7 @@ const ResultsPage = (): JSX.Element => {
                 {isCurrentPriceSet && <BlueButton label="Powrót do wyboru" clickHandler={returnToSelection} />}
                 {isCurrentPriceSet && (
                     <React.Suspense fallback={null}>
-                        {aggregatedResults && <ResultsTable results={aggregatedResults} />}
+                        <ResultsTable />
                     </React.Suspense>
                 )}
             </main>

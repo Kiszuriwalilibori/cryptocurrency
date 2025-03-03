@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import { ChangesArray } from "types";
 
 interface Props {
-    changesArray: ChangesArray;
+    changes: ChangesArray;
 }
 /**
  * Creates table with historical price and percentage change
@@ -14,7 +14,7 @@ interface Props {
  */
 
 const Changes = (props: Props): JSX.Element => {
-    const { changesArray } = props;
+    const { changes: changesArray } = props;
 
     return (
         <>

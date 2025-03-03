@@ -1,16 +1,13 @@
 import React from "react";
 
 import { haveResultsChanged, createResults } from "functions";
-
-import { AggregatedResults } from "types";
-
+import { ChangesArray } from "types";
 import { useCurrentCryptoPrice, useHistoricalPrices } from "store";
 
 export const useCreateAggregatedResults = () => {
     const historicalPrices = useHistoricalPrices.use.historicalPrices();
-
     const currentPrice = useCurrentCryptoPrice.use.currentCryptoPrice();
-    const [results, setResults] = React.useState<AggregatedResults | null>(null);
+    const [results, setResults] = React.useState<ChangesArray | null>(null);
 
     React.useEffect(() => {
         if (currentPrice && historicalPrices) {
@@ -18,6 +15,7 @@ export const useCreateAggregatedResults = () => {
                 currentPrice: currentPrice,
                 historicalPrices: historicalPrices,
             });
+
             if (haveResultsChanged(results, updatedResults)) {
                 setResults(updatedResults);
             }
