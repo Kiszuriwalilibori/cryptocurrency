@@ -1,24 +1,21 @@
 import uuid from "react-uuid";
 
 import { Typography } from "@mui/material";
+import { useCreateChanges } from "hooks";
 
-import { ChangesArray } from "types";
-
-interface Props {
-    changes: ChangesArray;
-}
 /**
  * Creates table with historical price and percentage change
- * @param changesArray data to be displayed
+ *
  * @returns component with tabelarised data
  */
 
-const Changes = (props: Props): JSX.Element => {
-    const { changes: changesArray } = props;
+const Changes = () => {
+    const changes = useCreateChanges();
+    if (!changes) return null;
 
     return (
         <>
-            {changesArray.map(change => (
+            {changes.map(change => (
                 <div className="cell" key={uuid()}>
                     <Typography variant="purpleText" key={uuid()}>
                         {Object.values(change)[0]}

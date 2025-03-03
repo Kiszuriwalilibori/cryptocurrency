@@ -6,9 +6,7 @@ import { Grow } from "@mui/material";
 
 import { Changes, CryptoCurrencyCurrentPrice, GeneralInformation, InvestButton, Logo } from ".";
 import { CryptoContainer } from "./styles";
-
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
-import { useCreateAggregatedResults } from "hooks";
 
 /**
  * creates array with all provided informations about crypto
@@ -16,8 +14,6 @@ import { useCreateAggregatedResults } from "hooks";
  * @returns
  */
 const ResultsTable = () => {
-    const results = useCreateAggregatedResults();
-
     const {
         currencyCrypto: { label, imageURL },
     } = React.useContext(SelectedCurrenciesContext);
@@ -30,7 +26,7 @@ const ResultsTable = () => {
                     {imageURL && <Logo imageURL={imageURL} />}
                     <div className="PricesWithButtons">
                         <CryptoCurrencyCurrentPrice />
-                        {results && <Changes changes={results} />}
+                        {<Changes />}
                         <InvestButton />
                     </div>
                 </section>

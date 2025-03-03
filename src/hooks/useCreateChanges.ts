@@ -4,7 +4,7 @@ import { haveResultsChanged, createResults } from "functions";
 import { ChangesArray } from "types";
 import { useCurrentCryptoPrice, useHistoricalPrices } from "store";
 
-export const useCreateAggregatedResults = () => {
+export const useCreateChanges = () => {
     const historicalPrices = useHistoricalPrices.use.historicalPrices();
     const currentPrice = useCurrentCryptoPrice.use.currentCryptoPrice();
     const [results, setResults] = React.useState<ChangesArray | null>(null);
@@ -26,4 +26,4 @@ export const useCreateAggregatedResults = () => {
     return results;
 };
 
-export default useCreateAggregatedResults;
+export default useCreateChanges;

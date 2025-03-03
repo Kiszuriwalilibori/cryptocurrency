@@ -4,8 +4,9 @@ import useConfirmChoice from "./useConfirmChoice";
 import useBoolean from "./useBoolean";
 import useDebouncedCallback from "./useDebouncedCallback";
 import useDelayedCondition from "./useDelayedCondition";
+import useResetPrices from "./useResetPrices";
 import useReturnToSelection from "./useReturnToSelection";
-import useCreateAggregatedResults from "./useCreateAggregatedResults";
+import useCreateChanges from "./useCreateChanges";
 import useSetInitialHistoricalPrices from "./useSetInitialHistoricalPrices";
 import useFetchHistoricalPrices from "./useFetchHistoricalPrices";
 import useHandleConnectionStatus from "./useHandleConnectionStatus";
@@ -19,7 +20,7 @@ export {
     useBoolean,
     useCheckApiKey,
     useConfirmChoice,
-    useCreateAggregatedResults,
+    useCreateChanges,
     useDebouncedCallback,
     useDelayedCondition,
     useEnhancedState,
@@ -29,6 +30,7 @@ export {
     useHandleConnectionStatus,
     useIsCurrentPriceSet,
     useMessage,
+    useResetPrices,
     useReturnToSelection,
     useSetInitialHistoricalPrices,
     useObserveHistoricalPrices,
