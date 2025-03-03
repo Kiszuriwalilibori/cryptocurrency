@@ -19,13 +19,12 @@ const ResultsTable = React.lazy(() => import("./parts/ResultsTable"));
  */
 const ResultsPage = (): JSX.Element => {
     const returnToSelection = useReturnToSelection();
-    // const isInitialRender = React.useRef(true);
 
     useSetInitialHistoricalPrices();
     useObserveHistoricalPrices();
     useObserveCurrentCryptoPrice();
 
-    const aggregatedResults = useCreateAggregatedResults(/*isInitialRender*/);
+    const aggregatedResults = useCreateAggregatedResults();
     console.log(aggregatedResults);
 
     return (
