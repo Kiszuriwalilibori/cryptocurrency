@@ -120,6 +120,10 @@ fetching and keeping available listof all cryptos now with react-query, so redux
 
 Fetching current crypto price with Web Sockets
 
+### 4.0.2
+
+Simplified in many aspects. No more Aggregated Results. Now current price goes to final component directly from store and not through aggregated.
+
 ## TODO
 
 001 implementation for INWESTUJ

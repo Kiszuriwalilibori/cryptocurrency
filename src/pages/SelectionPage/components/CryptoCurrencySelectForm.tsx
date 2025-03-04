@@ -5,7 +5,7 @@ import { CurrencyCrypto } from "types";
 import { useConvertibleCryptos } from "store";
 
 import "../styles/_CryptoCurrencySelectForm.scss";
-import useGetLabelClassName from "hooks/useManageLabelClass";
+import { useGetLabelClassName } from "hooks";
 
 interface Props {
     setCurrencyCrypto: (arg0: CurrencyCrypto) => void;

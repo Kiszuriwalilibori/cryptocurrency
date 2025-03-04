@@ -15,6 +15,7 @@ import useGetConvertibles from "./useGetConvertibles";
 import useObserveCurrentCryptoPrice from "./useObserveCurrentCryptoPrice";
 import useObserveHistoricalPrices from "./useObserveHistoricalPrices";
 import useIsCurrentPriceSet from "./useIsCurrentPriceSet";
+import useGetLabelClassName from "./useGetLabelClass";
 
 export {
     useBoolean,
@@ -25,6 +26,7 @@ export {
     useDelayedCondition,
     useEnhancedState,
     useGetConvertibles,
+    useGetLabelClassName,
     useObserveCurrentCryptoPrice,
     useFetchHistoricalPrices,
     useHandleConnectionStatus,
