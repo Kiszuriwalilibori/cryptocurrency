@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Stack } from "@mui/material";
 
 import { BlueButton } from "components";
@@ -20,7 +20,7 @@ const SelectionPage = () => {
     const [currencyBase, setCurrencyBase] = useEnhancedState<CurrencyBase | null>(null);
     const [currencyCrypto, setCurrencyCrypto] = useEnhancedState<CurrencyCrypto | undefined>(undefined);
     const { confirmChoice, isEnabled } = useConfirmChoice({ currencyBase, currencyCrypto } as Selection);
-    const handleConfirmClicked = useDebouncedCallback<HTMLButtonElement>(confirmChoice, undefined);
+    const handleConfirmChoiceClicked = useDebouncedCallback<HTMLButtonElement>(confirmChoice, undefined);
     useResetPrices();
     useGetConvertibles();
 
@@ -32,7 +32,7 @@ const SelectionPage = () => {
                 <BlueButton
                     classes={isEnabled ? "enabled" : ""}
                     isEnabled={isEnabled}
-                    clickHandler={handleConfirmClicked}
+                    clickHandler={handleConfirmChoiceClicked}
                     label="Pokaż kurs"
                 />
 

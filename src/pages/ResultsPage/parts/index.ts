@@ -1,6 +1,5 @@
 import { Tooltip } from "@mui/material";
 
-import FetchStatusIndicator from "./FetchStatusIndicator";
 import CryptoCurrencyCurrentPrice from "./CryptoCurrencyCurrentPrice";
 import GeneralInformation from "./GeneralInformation";
 import InvestButton from "./InvestButton";
@@ -14,7 +13,6 @@ export {
     Changes,
     CryptoContainer,
     CryptoCurrencyCurrentPrice,
-    FetchStatusIndicator,
     GeneralInformation,
     InvestButton,
     Logo,

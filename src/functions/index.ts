@@ -6,7 +6,6 @@ import formatCurrentPrice from "./formatCurrentPrice";
 import getPercentileChange from "./getPercentileChange";
 import hasDateChanged from "./hasDateChanged";
 import createResults from "./createResults";
-import fetchCurrentPrice from "./fetchCurrentPrice";
 import communicateResults from "./communicateResults";
 import haveResultsChanged from "./haveResultsChanged";
 import getConvertibleCryptos from "./getConvertibleCryptos";
@@ -21,7 +20,6 @@ export {
     createOptions,
     createCurrentCryptoPriceURL,
     CreateURL,
-    fetchCurrentPrice,
     formatCurrentPrice,
     getConvertibleCryptos,
     getPercentileChange,

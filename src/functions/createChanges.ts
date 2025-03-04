@@ -1,6 +1,6 @@
 import { getPercentileChange, timestamps } from "functions";
 
-import { ChangesArrayItem, ChangesArray, CryptoPrice, HistoricalPrices, NotAvailable } from "types";
+import { Change, Changes, CryptoPrice, HistoricalPrices, NotAvailable } from "types";
 
 /**
  * combines current cryptocurrency price, historical cryptocurrency prices to get array with percentage changes in time
@@ -8,20 +8,20 @@ import { ChangesArrayItem, ChangesArray, CryptoPrice, HistoricalPrices, NotAvail
  * @param historicalPricesArray
  * @returns array
  */
-const createChanges = (currentPrice: CryptoPrice, historicalPricesArray: HistoricalPrices): ChangesArray => {
-    const result: ChangesArray = [];
+const createChanges = (currentPrice: CryptoPrice, historicalPricesArray: HistoricalPrices): Changes => {
+    const changes: Changes = [];
 
     const IDs = timestamps.getIDs();
 
     historicalPricesArray.forEach((historicalPrice, index) => {
-        const obj = {} as ChangesArrayItem;
+        const obj = {} as Change;
 
         obj[IDs[index]] =
             typeof currentPrice === "number" ? getPercentileChange(currentPrice, historicalPrice) : NotAvailable.na;
 
-        result.push(obj);
+        changes.push(obj);
     });
 
-    return result;
+    return changes;
 };
 export default createChanges;

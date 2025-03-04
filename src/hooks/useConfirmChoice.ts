@@ -2,7 +2,6 @@ import { useContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Selection } from "types";
 import { SelectedCurrenciesContext } from "contexts/currenciesContext";
-import { useCurrentCryptoPrice } from "store";
 
 /**
  * Creates button which - when clicked - accepts chosen currencies to context and switches to page wit results

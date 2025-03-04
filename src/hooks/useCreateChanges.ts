@@ -1,13 +1,13 @@
 import React from "react";
 
 import { haveResultsChanged, createResults } from "functions";
-import { ChangesArray } from "types";
+import { Changes } from "types";
 import { useCurrentCryptoPrice, useHistoricalPrices } from "store";
 
 export const useCreateChanges = () => {
     const historicalPrices = useHistoricalPrices.use.historicalPrices();
     const currentPrice = useCurrentCryptoPrice.use.currentCryptoPrice();
-    const [results, setResults] = React.useState<ChangesArray | null>(null);
+    const [results, setResults] = React.useState<Changes | null>(null);
 
     React.useEffect(() => {
         if (currentPrice && historicalPrices) {

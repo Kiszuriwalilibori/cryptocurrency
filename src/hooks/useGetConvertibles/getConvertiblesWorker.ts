@@ -2,16 +2,16 @@
 
 import { getConvertibleCryptos } from "functions/getConvertibleCryptos";
 import { isEmpty } from "lodash";
-import { CoinListAPIResponseDataItem, Convertibles, Exchanges } from "types";
+import { CoinListAPIResponseItem, Convertibles, Exchanges } from "types";
 
 const cryptoCompare = require("cryptocompare");
 cryptoCompare.setApiKey(process.env.REACT_APP_API_KEY);
 
-function extractCryptosData(data: CoinListAPIResponseDataItem): Convertibles {
-    const result = [];
+function extractCryptosData(data: CoinListAPIResponseItem): Convertibles {
+    const cryptosData = [];
     for (let item in data) {
         if (data.hasOwnProperty(item)) {
-            result.push({
+            cryptosData.push({
                 value: item,
                 label: data[item].CoinName,
                 imageURL: data[item].ImageUrl,
@@ -20,7 +20,7 @@ function extractCryptosData(data: CoinListAPIResponseDataItem): Convertibles {
         }
     }
 
-    return result;
+    return cryptosData;
 }
 
 self.onmessage = function (event) {
@@ -53,6 +53,7 @@ self.onmessage = function (event) {
             if (!isEmpty(errors)) {
                 outcome.errors = [...errors];
             }
+
             self.postMessage({ ...outcome });
         }
     });
